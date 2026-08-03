@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://amacs.accelanalysis.com/schemas/request-family.schema.json",
+  "title": "AMACS Request Family",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "request_family_id",
+    "code",
+    "preferred_label",
+    "purpose",
+    "default_endpoint",
+    "supports_award",
+    "default_response_template_id",
+    "default_decision_template_id",
+    "default_governance_profile_id",
+    "allowed_governance_profile_ids",
+    "recommended_requirement_bundle_ids",
+    "lifecycle",
+    "status",
+    "version_introduced"
+  ],
+  "properties": {
+    "request_family_id": {
+      "type": "string",
+      "pattern": "^AMACS-[A-Z]{3,5}-\\d{6}$"
+    },
+    "code": {
+      "type": "string",
+      "pattern": "^[A-Z0-9_]+$"
+    },
+    "preferred_label": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 160
+    },
+    "purpose": {
+      "type": "string",
+      "minLength": 20,
+      "maxLength": 1000
+    },
+    "default_endpoint": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 100
+    },
+    "supports_award": {
+      "type": "boolean"
+    },
+    "default_response_template_id": {
+      "type": "string",
+      "pattern": "^AMACS-[A-Z]{3,5}-\\d{6}$"
+    },
+    "default_decision_template_id": {
+      "type": "string",
+      "pattern": "^AMACS-[A-Z]{3,5}-\\d{6}$"
+    },
+    "lifecycle": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "type": "string",
+        "minLength": 2
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "proposed",
+        "active",
+        "deprecated",
+        "suspended",
+        "retired"
+      ]
+    },
+    "version_introduced": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "default_governance_profile_id": {
+      "type": "string",
+      "pattern": "^AMACS-GOV-\\d{6}$"
+    },
+    "allowed_governance_profile_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^AMACS-GOV-\\d{6}$"
+      }
+    },
+    "recommended_requirement_bundle_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^AMACS-RBND-\\d{6}$"
+      }
+    }
+  }
+}

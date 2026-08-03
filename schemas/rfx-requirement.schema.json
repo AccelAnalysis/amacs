@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://amacs.accelanalysis.com/schemas/rfx-requirement.schema.json",
+  "title": "RFx Capability Requirement",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "requirement_id",
+    "requirement_type_id",
+    "concept_id",
+    "amacs_release",
+    "requirement_level",
+    "team_coverage_allowed",
+    "decision_treatment",
+    "qualifiers",
+    "evidence_requirement_ids",
+    "linked_response_section_ids",
+    "linked_decision_factor_ids"
+  ],
+  "properties": {
+    "requirement_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "concept_id": {
+      "type": "string",
+      "pattern": "^AMACS-CAP-\\d{6}$"
+    },
+    "amacs_release": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "label_snapshot": {
+      "type": "string"
+    },
+    "definition_snapshot": {
+      "type": "string"
+    },
+    "requirement_level": {
+      "type": "string",
+      "enum": [
+        "required",
+        "preferred",
+        "informational"
+      ]
+    },
+    "team_coverage_allowed": {
+      "type": "boolean"
+    },
+    "decision_treatment": {
+      "type": "string",
+      "enum": [
+        "gate_only",
+        "scored_only",
+        "gate_and_scored_depth",
+        "informational_only"
+      ]
+    },
+    "qualifiers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "property_id",
+          "operator",
+          "value",
+          "unit_id"
+        ],
+        "properties": {
+          "property_id": {
+            "type": "string",
+            "pattern": "^AMACS-PROP-\\d{6}$"
+          },
+          "operator": {
+            "type": "string",
+            "enum": [
+              "equals",
+              "not_equals",
+              "greater_than",
+              "greater_than_or_equal",
+              "less_than",
+              "less_than_or_equal",
+              "contains",
+              "within",
+              "exists"
+            ]
+          },
+          "value": {},
+          "unit_id": {
+            "oneOf": [
+              {
+                "type": "string",
+                "pattern": "^AMACS-UNIT-\\d{6}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "evidence_requirement_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^AMACS-CRED-\\d{6}$"
+      }
+    },
+    "requirement_type_id": {
+      "const": "AMACS-RTYP-000001"
+    },
+    "linked_response_section_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^AMACS-RSP-\\d{6}$"
+      }
+    },
+    "linked_decision_factor_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^AMACS-DEC-\\d{6}$"
+      }
+    }
+  }
+}

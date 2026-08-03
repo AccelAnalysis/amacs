@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://amacs.accelanalysis.com/schemas/proposal.schema.json",
+  "title": "AMACS Taxonomy Proposal",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "proposal_id",
+    "submitted_label",
+    "submitted_definition",
+    "submitted_by_organization_id",
+    "suggested_concept_type",
+    "example_use",
+    "review_status",
+    "created_at"
+  ],
+  "properties": {
+    "proposal_id": {
+      "type": "string",
+      "pattern": "^AMACS-PROPOSED-\\d{6}$"
+    },
+    "submitted_label": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 200
+    },
+    "submitted_definition": {
+      "type": "string",
+      "minLength": 20,
+      "maxLength": 2000
+    },
+    "submitted_by_organization_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "suggested_concept_type": {
+      "type": "string",
+      "enum": [
+        "capability",
+        "property",
+        "credential",
+        "response_section",
+        "decision_factor",
+        "unknown"
+      ]
+    },
+    "suggested_parent_id": {
+      "oneOf": [
+        {
+          "type": "string",
+          "pattern": "^AMACS-[A-Z]{3,5}-\\d{6}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "example_use": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 2000
+    },
+    "review_status": {
+      "type": "string",
+      "enum": [
+        "submitted",
+        "triaged",
+        "mapped_to_existing",
+        "approved_new",
+        "rejected",
+        "needs_information"
+      ]
+    },
+    "mapped_concept_id": {
+      "oneOf": [
+        {
+          "type": "string",
+          "pattern": "^AMACS-[A-Z]{3,5}-\\d{6}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

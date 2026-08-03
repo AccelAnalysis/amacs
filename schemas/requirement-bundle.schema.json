@@ -1,0 +1,170 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://amacs.accelanalysis.com/schemas/requirement-bundle.schema.json",
+  "title": "AMACS Requirement Bundle",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "requirement_bundle_id",
+    "code",
+    "preferred_label",
+    "description",
+    "applicable_request_family_ids",
+    "items",
+    "status",
+    "version_introduced"
+  ],
+  "properties": {
+    "requirement_bundle_id": {
+      "type": "string",
+      "pattern": "^AMACS-[A-Z]{3,5}-\\d{6}$"
+    },
+    "code": {
+      "type": "string",
+      "pattern": "^[A-Z0-9_]+$"
+    },
+    "preferred_label": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 180
+    },
+    "description": {
+      "type": "string",
+      "minLength": 20,
+      "maxLength": 1200
+    },
+    "applicable_request_family_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^AMACS-REQ-\\d{6}$"
+      }
+    },
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "item_key",
+          "requirement_type_id",
+          "preferred_label",
+          "requirement_level",
+          "decision_treatment",
+          "value_source",
+          "property_id",
+          "credential_id",
+          "default_team_coverage_allowed",
+          "repeatable",
+          "linked_response_section_ids",
+          "linked_decision_factor_ids"
+        ],
+        "properties": {
+          "item_key": {
+            "type": "string",
+            "pattern": "^[a-z0-9_]+$"
+          },
+          "requirement_type_id": {
+            "type": "string",
+            "pattern": "^AMACS-RTYP-\\d{6}$"
+          },
+          "preferred_label": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 180
+          },
+          "requirement_level": {
+            "type": "string",
+            "enum": [
+              "required",
+              "preferred",
+              "informational"
+            ]
+          },
+          "decision_treatment": {
+            "type": "string",
+            "enum": [
+              "gate_only",
+              "scored_only",
+              "gate_and_scored_depth",
+              "informational_only"
+            ]
+          },
+          "value_source": {
+            "type": "string",
+            "enum": [
+              "issuer_selected_capability",
+              "credential_selection",
+              "structured_property",
+              "response_evidence",
+              "technical_specification",
+              "commercial_term",
+              "site_project_definition"
+            ]
+          },
+          "property_id": {
+            "oneOf": [
+              {
+                "type": "string",
+                "pattern": "^AMACS-PROP-\\d{6}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "credential_id": {
+            "oneOf": [
+              {
+                "type": "string",
+                "pattern": "^AMACS-CRED-\\d{6}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "default_team_coverage_allowed": {
+            "type": "boolean"
+          },
+          "repeatable": {
+            "type": "boolean"
+          },
+          "linked_response_section_ids": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "pattern": "^AMACS-RSP-\\d{6}$"
+            }
+          },
+          "linked_decision_factor_ids": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "pattern": "^AMACS-DEC-\\d{6}$"
+            }
+          }
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "proposed",
+        "active",
+        "deprecated",
+        "suspended",
+        "retired"
+      ]
+    },
+    "version_introduced": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    }
+  }
+}

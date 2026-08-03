@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://amacs.accelanalysis.com/schemas/crosswalk.schema.json",
+  "title": "AMACS External Crosswalk",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "crosswalk_id",
+    "concept_id",
+    "external_system",
+    "external_version",
+    "external_code",
+    "mapping_type",
+    "confidence",
+    "status",
+    "version_introduced"
+  ],
+  "properties": {
+    "crosswalk_id": {
+      "type": "string",
+      "pattern": "^AMACS-[A-Z]{3,5}-\\d{6}$"
+    },
+    "concept_id": {
+      "type": "string",
+      "pattern": "^AMACS-[A-Z]{3,5}-\\d{6}$"
+    },
+    "external_system": {
+      "type": "string",
+      "enum": [
+        "NAICS",
+        "NAPCS",
+        "PSC",
+        "CPV",
+        "NIGP",
+        "UNSPSC",
+        "ECLASS",
+        "OTHER"
+      ]
+    },
+    "external_version": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 80
+    },
+    "external_code": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "mapping_type": {
+      "type": "string",
+      "enum": [
+        "exact",
+        "narrower",
+        "broader",
+        "related"
+      ]
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "license_note": {
+      "type": "string",
+      "maxLength": 500
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "proposed",
+        "active",
+        "deprecated",
+        "suspended",
+        "retired"
+      ]
+    },
+    "version_introduced": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    }
+  }
+}

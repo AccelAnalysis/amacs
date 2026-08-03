@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://amacs.accelanalysis.com/schemas/alias.schema.json",
+  "title": "AMACS Alias",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "alias_id",
+    "concept_id",
+    "alias",
+    "alias_type",
+    "language",
+    "region",
+    "status",
+    "version_introduced"
+  ],
+  "properties": {
+    "alias_id": {
+      "type": "string",
+      "pattern": "^AMACS-[A-Z]{3,5}-\\d{6}$"
+    },
+    "concept_id": {
+      "type": "string",
+      "pattern": "^AMACS-[A-Z]{3,5}-\\d{6}$"
+    },
+    "alias": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "alias_type": {
+      "type": "string",
+      "enum": [
+        "synonym",
+        "abbreviation",
+        "acronym",
+        "former_label",
+        "common_misspelling",
+        "industry_term",
+        "search_term"
+      ]
+    },
+    "language": {
+      "type": "string",
+      "pattern": "^[a-z]{2,3}(-[A-Z]{2})?$"
+    },
+    "region": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 12
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "proposed",
+        "active",
+        "deprecated",
+        "suspended",
+        "retired"
+      ]
+    },
+    "version_introduced": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    }
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://amacs.accelanalysis.com/schemas/organization-capability.schema.json",
+  "title": "Organization Capability Assertion",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "organization_id",
+    "concept_id",
+    "amacs_release",
+    "assertion_status",
+    "delivery_roles",
+    "property_values"
+  ],
+  "properties": {
+    "organization_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "concept_id": {
+      "type": "string",
+      "pattern": "^AMACS-CAP-\\d{6}$"
+    },
+    "amacs_release": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "label_snapshot": {
+      "type": "string"
+    },
+    "assertion_status": {
+      "type": "string",
+      "enum": [
+        "self_reported",
+        "evidence_submitted",
+        "verified",
+        "suspended"
+      ]
+    },
+    "delivery_roles": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "prime",
+          "subcontractor",
+          "supplier",
+          "referral_partner"
+        ]
+      }
+    },
+    "property_values": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "property_id",
+          "value",
+          "verification_status",
+          "unit_id"
+        ],
+        "properties": {
+          "property_id": {
+            "type": "string",
+            "pattern": "^AMACS-PROP-\\d{6}$"
+          },
+          "value": {},
+          "verification_status": {
+            "type": "string",
+            "enum": [
+              "self_reported",
+              "platform_observed",
+              "counterparty_confirmed",
+              "independently_verified"
+            ]
+          },
+          "unit_id": {
+            "oneOf": [
+              {
+                "type": "string",
+                "pattern": "^AMACS-UNIT-\\d{6}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

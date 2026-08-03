@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://amacs.accelanalysis.com/schemas/relationship.schema.json",
+  "title": "AMACS Relationship",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "relationship_id",
+    "source_concept_id",
+    "relationship_type",
+    "target_concept_id",
+    "status",
+    "version_introduced"
+  ],
+  "properties": {
+    "relationship_id": {
+      "type": "string",
+      "pattern": "^AMACS-[A-Z]{3,5}-\\d{6}$"
+    },
+    "source_concept_id": {
+      "type": "string",
+      "pattern": "^AMACS-[A-Z]{3,5}-\\d{6}$"
+    },
+    "relationship_type": {
+      "type": "string",
+      "enum": [
+        "related_to",
+        "requires",
+        "commonly_combined_with",
+        "replaced_by",
+        "split_into",
+        "merged_into"
+      ]
+    },
+    "target_concept_id": {
+      "type": "string",
+      "pattern": "^AMACS-[A-Z]{3,5}-\\d{6}$"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "proposed",
+        "active",
+        "deprecated",
+        "suspended",
+        "retired"
+      ]
+    },
+    "version_introduced": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    }
+  }
+}
