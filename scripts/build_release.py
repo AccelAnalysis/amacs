@@ -4,10 +4,14 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 import shutil
+import subprocess
 from pathlib import Path
 
 from amacs_io import DATASET_FILENAMES, DATASET_ORDER, ROOT, all_datasets, write_jsonl
+
+COMMIT_PATTERN = re.compile(r'^[0-9a-fA-F]{40}$')
 
 
 def sha256(path: Path) -> str:
@@ -16,16 +20,48 @@ def sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def resolve_source_commit(explicit_commit: str | None) -> str:
+    source_commit = explicit_commit
+    if source_commit is None:
+        result = subprocess.run(
+            ['git', 'rev-parse', '--verify', 'HEAD'],
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        if result.returncode != 0:
+            detail = result.stderr.strip() or 'git rev-parse did not return a commit'
+            raise ValueError(f'unable to determine source commit: {detail}')
+        source_commit = result.stdout.strip()
+
+    if not COMMIT_PATTERN.fullmatch(source_commit):
+        raise ValueError('source commit must be a full 40-character Git commit SHA')
+    return source_commit.lower()
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description='Build an immutable AMACS release directory.')
     parser.add_argument('--output', required=True)
-    parser.add_argument('--source-commit', default='UNCOMMITTED')
+    parser.add_argument(
+        '--source-commit',
+        help='Full Git commit SHA for the canonical source. Defaults to git rev-parse HEAD.',
+    )
     args = parser.parse_args()
+
+    try:
+        source_commit = resolve_source_commit(args.source_commit)
+    except ValueError as exc:
+        parser.error(str(exc))
 
     version = (ROOT / 'VERSION').read_text(encoding='utf-8').strip()
     target = Path(args.output) / version
     if target.exists():
-        shutil.rmtree(target)
+        parser.error(
+            f'release directory already exists and is immutable: {target}. '
+            'Increment VERSION or choose a different empty output root.'
+        )
+
     source_target = target / 'source'
     schema_target = target / 'schemas'
     seed_target = target / 'source-seeds'
@@ -48,7 +84,7 @@ def main() -> None:
         'version': version,
         'status': 'development',
         'released_at': '2026-08-03',
-        'source_commit': args.source_commit,
+        'source_commit': source_commit,
         'record_counts': counts,
     }
     (target / 'manifest.json').write_text(json.dumps(manifest, indent=2) + '\n', encoding='utf-8')
