@@ -1,0 +1,39 @@
+{
+  "requirement_id": "requirement-electrical-controls",
+  "requirement_type_id": "AMACS-RTYP-000001",
+  "concept_id": "AMACS-CAP-000012",
+  "amacs_release": "0.1.0",
+  "label_snapshot": "Building controls integration",
+  "definition_snapshot": "The organizational ability to provide or perform building controls integration in a commercial, institutional, public, or community context, as applicable.",
+  "requirement_level": "required",
+  "team_coverage_allowed": true,
+  "decision_treatment": "gate_and_scored_depth",
+  "qualifiers": [
+    {
+      "property_id": "AMACS-PROP-000013",
+      "operator": "greater_than_or_equal",
+      "value": 3,
+      "unit_id": "AMACS-UNIT-000006"
+    },
+    {
+      "property_id": "AMACS-PROP-000005",
+      "operator": "less_than_or_equal",
+      "value": 2,
+      "unit_id": "AMACS-UNIT-000008"
+    }
+  ],
+  "evidence_requirement_ids": [
+    "AMACS-CRED-000004",
+    "AMACS-CRED-000014"
+  ],
+  "linked_response_section_ids": [
+    "AMACS-RSP-000002",
+    "AMACS-RSP-000007",
+    "AMACS-RSP-000014"
+  ],
+  "linked_decision_factor_ids": [
+    "AMACS-DEC-000001",
+    "AMACS-DEC-000005",
+    "AMACS-DEC-000007"
+  ]
+}

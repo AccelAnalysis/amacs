@@ -1,0 +1,44 @@
+name: AMACS concept proposal
+description: Propose a capability, property, credential, response section, or decision factor.
+title: "Proposal: "
+labels: ["proposal"]
+body:
+  - type: dropdown
+    id: record_type
+    attributes:
+      label: Proposed record type
+      options:
+        - Capability
+        - Property or qualifier
+        - Credential or evidence type
+        - Response section
+        - Decision factor
+        - Unsure
+    validations:
+      required: true
+  - type: input
+    id: label
+    attributes:
+      label: Proposed preferred label
+    validations:
+      required: true
+  - type: textarea
+    id: definition
+    attributes:
+      label: Plain-language definition
+    validations:
+      required: true
+  - type: textarea
+    id: example
+    attributes:
+      label: Realistic use example
+    validations:
+      required: true
+  - type: input
+    id: parent
+    attributes:
+      label: Closest existing AMACS concept
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Existing labels searched or considered

@@ -1,0 +1,36 @@
+{
+  "organization_id": "org-example-coastal-building-services",
+  "concept_id": "AMACS-CAP-000009",
+  "amacs_release": "0.1.0",
+  "label_snapshot": "Commercial electrical installation",
+  "assertion_status": "self_reported",
+  "delivery_roles": [
+    "subcontractor"
+  ],
+  "property_values": [
+    {
+      "property_id": "AMACS-PROP-000002",
+      "value": {
+        "country": "US",
+        "state": "VA",
+        "localities": [
+          "Isle of Wight County"
+        ]
+      },
+      "verification_status": "self_reported",
+      "unit_id": null
+    },
+    {
+      "property_id": "AMACS-PROP-000020",
+      "value": true,
+      "verification_status": "self_reported",
+      "unit_id": null
+    },
+    {
+      "property_id": "AMACS-PROP-000005",
+      "value": 2,
+      "verification_status": "self_reported",
+      "unit_id": "AMACS-UNIT-000008"
+    }
+  ]
+}

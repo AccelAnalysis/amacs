@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://amacs.accelanalysis.com/schemas/response-section.schema.json",
+  "title": "AMACS Response Section",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "response_section_id",
+    "preferred_label",
+    "response_type",
+    "purpose",
+    "repeatable",
+    "attachments_allowed",
+    "status",
+    "version_introduced"
+  ],
+  "properties": {
+    "response_section_id": {
+      "type": "string",
+      "pattern": "^AMACS-[A-Z]{3,5}-\\d{6}$"
+    },
+    "preferred_label": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 160
+    },
+    "response_type": {
+      "type": "string",
+      "enum": [
+        "narrative",
+        "yes_no",
+        "multiple_choice",
+        "numeric",
+        "date",
+        "schedule",
+        "pricing_table",
+        "compliance_matrix",
+        "project_table",
+        "personnel_table",
+        "reference_table",
+        "credential_table",
+        "specification_table",
+        "exception_table",
+        "structured_fields",
+        "structured_terms",
+        "repeatable_location",
+        "utility_table",
+        "cost_table",
+        "attachment_set",
+        "acknowledgment_set"
+      ]
+    },
+    "purpose": {
+      "type": "string",
+      "minLength": 20,
+      "maxLength": 1000
+    },
+    "repeatable": {
+      "type": "boolean"
+    },
+    "attachments_allowed": {
+      "type": "boolean"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "proposed",
+        "active",
+        "deprecated",
+        "suspended",
+        "retired"
+      ]
+    },
+    "version_introduced": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    }
+  }
+}

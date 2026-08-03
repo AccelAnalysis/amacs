@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://amacs.accelanalysis.com/schemas/release-manifest.schema.json",
+  "title": "AMACS Release Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "name",
+    "version",
+    "status",
+    "released_at",
+    "source_commit",
+    "record_counts"
+  ],
+  "properties": {
+    "name": {
+      "const": "Accel Market Activity and Capability Standard"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "development",
+        "release_candidate",
+        "stable",
+        "deprecated"
+      ]
+    },
+    "released_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "source_commit": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "record_counts": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "integer",
+        "minimum": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://amacs.accelanalysis.com/schemas/readiness-rule.schema.json",
+  "title": "AMACS Publication Readiness Rule",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "readiness_rule_id",
+    "code",
+    "preferred_label",
+    "severity",
+    "condition_code",
+    "message_template",
+    "rationale",
+    "applies_to_request_family_ids",
+    "applies_to_governance_profile_ids",
+    "fix_target",
+    "blocking",
+    "acknowledgment_allowed",
+    "status",
+    "version_introduced"
+  ],
+  "properties": {
+    "readiness_rule_id": {
+      "type": "string",
+      "pattern": "^AMACS-[A-Z]{3,5}-\\d{6}$"
+    },
+    "code": {
+      "type": "string",
+      "pattern": "^[A-Z0-9_]+$"
+    },
+    "preferred_label": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 180
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "blocking",
+        "warning",
+        "advisory"
+      ]
+    },
+    "condition_code": {
+      "type": "string",
+      "pattern": "^[a-z0-9_.]+$"
+    },
+    "message_template": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 1000
+    },
+    "rationale": {
+      "type": "string",
+      "minLength": 20,
+      "maxLength": 1200
+    },
+    "applies_to_request_family_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^AMACS-REQ-\\d{6}$"
+      }
+    },
+    "applies_to_governance_profile_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^AMACS-GOV-\\d{6}$"
+      }
+    },
+    "fix_target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "builder_stage",
+        "section_key",
+        "field_key"
+      ],
+      "properties": {
+        "builder_stage": {
+          "type": "string",
+          "enum": [
+            "need",
+            "scope",
+            "requirements",
+            "response_architecture",
+            "decision_architecture",
+            "schedule",
+            "governance",
+            "attachments",
+            "review"
+          ]
+        },
+        "section_key": {
+          "type": "string",
+          "pattern": "^[a-z0-9_.-]+$"
+        },
+        "field_key": {
+          "type": "string",
+          "pattern": "^[a-z0-9_.-]+$"
+        }
+      }
+    },
+    "blocking": {
+      "type": "boolean"
+    },
+    "acknowledgment_allowed": {
+      "type": "boolean"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "proposed",
+        "active",
+        "deprecated",
+        "suspended",
+        "retired"
+      ]
+    },
+    "version_introduced": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    }
+  }
+}

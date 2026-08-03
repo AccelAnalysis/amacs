@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://amacs.accelanalysis.com/schemas/property.schema.json",
+  "title": "AMACS Property",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "property_id",
+    "preferred_label",
+    "data_type",
+    "definition",
+    "unit_family",
+    "allowed_unit_ids",
+    "status",
+    "version_introduced"
+  ],
+  "properties": {
+    "property_id": {
+      "type": "string",
+      "pattern": "^AMACS-[A-Z]{3,5}-\\d{6}$"
+    },
+    "preferred_label": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 160
+    },
+    "data_type": {
+      "type": "string",
+      "enum": [
+        "boolean",
+        "text",
+        "number",
+        "currency",
+        "date",
+        "duration",
+        "enum",
+        "controlled_list",
+        "geography",
+        "language",
+        "credential_reference"
+      ]
+    },
+    "definition": {
+      "type": "string",
+      "minLength": 20,
+      "maxLength": 1000
+    },
+    "unit_family": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 80
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "proposed",
+        "active",
+        "deprecated",
+        "suspended",
+        "retired"
+      ]
+    },
+    "version_introduced": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "allowed_unit_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^AMACS-UNIT-\\d{6}$"
+      }
+    }
+  }
+}

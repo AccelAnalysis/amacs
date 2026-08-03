@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://amacs.accelanalysis.com/schemas/unit.schema.json",
+  "title": "AMACS Unit",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "unit_id",
+    "code",
+    "preferred_label",
+    "symbol",
+    "unit_family",
+    "data_type",
+    "base_unit_id",
+    "conversion_factor_to_base",
+    "status",
+    "version_introduced"
+  ],
+  "properties": {
+    "unit_id": {
+      "type": "string",
+      "pattern": "^AMACS-[A-Z]{3,5}-\\d{6}$"
+    },
+    "code": {
+      "type": "string",
+      "pattern": "^[A-Z0-9_]+$"
+    },
+    "preferred_label": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 120
+    },
+    "symbol": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 24
+    },
+    "unit_family": {
+      "type": "string",
+      "pattern": "^[a-z0-9_]+$"
+    },
+    "data_type": {
+      "type": "string",
+      "enum": [
+        "currency",
+        "percent",
+        "count",
+        "duration",
+        "distance",
+        "area",
+        "capacity"
+      ]
+    },
+    "base_unit_id": {
+      "oneOf": [
+        {
+          "type": "string",
+          "pattern": "^AMACS-UNIT-\\d{6}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "conversion_factor_to_base": {
+      "oneOf": [
+        {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "proposed",
+        "active",
+        "deprecated",
+        "suspended",
+        "retired"
+      ]
+    },
+    "version_introduced": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    }
+  }
+}

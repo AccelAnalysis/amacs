@@ -1,0 +1,12 @@
+{
+  "proposal_id": "AMACS-PROPOSED-000001",
+  "submitted_label": "Low-voltage access control integration",
+  "submitted_definition": "Integration and commissioning of access-control hardware, low-voltage wiring, identity systems, and facility control interfaces.",
+  "submitted_by_organization_id": "org-example-001",
+  "suggested_concept_type": "capability",
+  "suggested_parent_id": "AMACS-FAM-000049",
+  "example_use": "An issuer needs a teammate to integrate door controllers, card readers, low-voltage cabling, and identity software.",
+  "review_status": "submitted",
+  "mapped_concept_id": null,
+  "created_at": "2026-08-03T12:00:00Z"
+}

@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://amacs.accelanalysis.com/schemas/concept.schema.json",
+  "title": "AMACS Concept",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "concept_id",
+    "concept_type",
+    "preferred_label",
+    "definition",
+    "status",
+    "matchable",
+    "editorial_maturity",
+    "version_introduced",
+    "primary_parent_id",
+    "source_origin"
+  ],
+  "properties": {
+    "concept_id": {
+      "type": "string",
+      "pattern": "^AMACS-[A-Z]{3,5}-\\d{6}$"
+    },
+    "concept_type": {
+      "type": "string",
+      "enum": [
+        "domain",
+        "family",
+        "capability"
+      ]
+    },
+    "preferred_label": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 160
+    },
+    "definition": {
+      "type": "string",
+      "minLength": 20,
+      "maxLength": 1000
+    },
+    "inclusion_notes": {
+      "type": "string",
+      "maxLength": 2000
+    },
+    "exclusion_notes": {
+      "type": "string",
+      "maxLength": 2000
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "proposed",
+        "active",
+        "deprecated",
+        "suspended",
+        "retired"
+      ]
+    },
+    "matchable": {
+      "type": "boolean"
+    },
+    "editorial_maturity": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "reviewed",
+        "approved"
+      ]
+    },
+    "version_introduced": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "version_deprecated": {
+      "oneOf": [
+        {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "primary_parent_id": {
+      "oneOf": [
+        {
+          "type": "string",
+          "pattern": "^AMACS-[A-Z]{3,5}-\\d{6}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "replacement_concept_id": {
+      "oneOf": [
+        {
+          "type": "string",
+          "pattern": "^AMACS-[A-Z]{3,5}-\\d{6}$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "source_origin": {
+      "type": "string",
+      "enum": [
+        "original_amacs",
+        "user_proposal",
+        "external_crosswalk"
+      ]
+    }
+  }
+}

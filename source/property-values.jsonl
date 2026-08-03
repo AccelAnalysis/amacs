@@ -1,0 +1,19 @@
+{"property_value_id":"AMACS-PVAL-000001","property_id":"AMACS-PROP-000001","value":"prime","label":"Prime or lead organization","status":"active","version_introduced":"0.1.0"}
+{"property_value_id":"AMACS-PVAL-000002","property_id":"AMACS-PROP-000001","value":"subcontractor","label":"Subcontractor or specialist teammate","status":"active","version_introduced":"0.1.0"}
+{"property_value_id":"AMACS-PVAL-000003","property_id":"AMACS-PROP-000001","value":"supplier","label":"Product or material supplier","status":"active","version_introduced":"0.1.0"}
+{"property_value_id":"AMACS-PVAL-000004","property_id":"AMACS-PROP-000001","value":"referral_partner","label":"Referral or service-delivery partner","status":"active","version_introduced":"0.1.0"}
+{"property_value_id":"AMACS-PVAL-000005","property_id":"AMACS-PROP-000004","value":"on_site","label":"On-site delivery","status":"active","version_introduced":"0.1.0"}
+{"property_value_id":"AMACS-PVAL-000006","property_id":"AMACS-PROP-000004","value":"remote","label":"Remote delivery","status":"active","version_introduced":"0.1.0"}
+{"property_value_id":"AMACS-PVAL-000007","property_id":"AMACS-PROP-000004","value":"hybrid","label":"Combination of on-site and remote delivery","status":"active","version_introduced":"0.1.0"}
+{"property_value_id":"AMACS-PVAL-000008","property_id":"AMACS-PROP-000004","value":"mobile","label":"Mobile delivery at changing locations","status":"active","version_introduced":"0.1.0"}
+{"property_value_id":"AMACS-PVAL-000009","property_id":"AMACS-PROP-000026","value":"owned","label":"Property owned by the responding organization or public entity","status":"active","version_introduced":"0.1.0"}
+{"property_value_id":"AMACS-PVAL-000010","property_id":"AMACS-PROP-000026","value":"optioned","label":"Property under an enforceable option or comparable control","status":"active","version_introduced":"0.1.0"}
+{"property_value_id":"AMACS-PVAL-000011","property_id":"AMACS-PROP-000026","value":"listed","label":"Property actively offered but not controlled for the project","status":"active","version_introduced":"0.1.0"}
+{"property_value_id":"AMACS-PVAL-000012","property_id":"AMACS-PROP-000026","value":"unknown","label":"Control status has not been established","status":"active","version_introduced":"0.1.0"}
+{"property_value_id":"AMACS-PVAL-000013","property_id":"AMACS-PROP-000029","value":"compatible","label":"Current zoning supports the proposed use","status":"active","version_introduced":"0.1.0"}
+{"property_value_id":"AMACS-PVAL-000014","property_id":"AMACS-PROP-000029","value":"conditional","label":"Proposed use may require a conditional or special approval","status":"active","version_introduced":"0.1.0"}
+{"property_value_id":"AMACS-PVAL-000015","property_id":"AMACS-PROP-000029","value":"rezoning_required","label":"Rezoning is expected to be required","status":"active","version_introduced":"0.1.0"}
+{"property_value_id":"AMACS-PVAL-000016","property_id":"AMACS-PROP-000034","value":"self_reported","label":"Reported by the organization or responding party","status":"active","version_introduced":"0.1.0"}
+{"property_value_id":"AMACS-PVAL-000017","property_id":"AMACS-PROP-000034","value":"platform_observed","label":"Derived from an action observed in the platform","status":"active","version_introduced":"0.1.0"}
+{"property_value_id":"AMACS-PVAL-000018","property_id":"AMACS-PROP-000034","value":"counterparty_confirmed","label":"Confirmed by the applicable counterparty","status":"active","version_introduced":"0.1.0"}
+{"property_value_id":"AMACS-PVAL-000019","property_id":"AMACS-PROP-000034","value":"independently_verified","label":"Verified through an authoritative source or approved review process","status":"active","version_introduced":"0.1.0"}
