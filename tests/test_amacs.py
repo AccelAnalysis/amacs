@@ -14,6 +14,8 @@ sys.path.insert(0, str(ROOT / 'scripts'))
 
 from amacs_io import all_datasets, load_dataset  # noqa: E402
 
+VALID_TEST_COMMIT = 'a' * 40
+
 
 class AmacsFoundationTests(unittest.TestCase):
     @classmethod
@@ -72,6 +74,22 @@ class AmacsFoundationTests(unittest.TestCase):
                 if item['decision_treatment'] == 'gate_and_scored_depth':
                     capability_fit_seen = capability_fit_seen or 'AMACS-DEC-000005' in item['linked_decision_factor_ids']
         self.assertTrue(capability_fit_seen)
+
+    def test_requirement_bundle_team_coverage_respects_requirement_type(self):
+        requirement_types = {
+            record['requirement_type_id']: record for record in self.data['requirement_types']
+        }
+        for bundle in self.data['requirement_bundles']:
+            for item in bundle['items']:
+                requirement_type = requirement_types[item['requirement_type_id']]
+                if item['default_team_coverage_allowed']:
+                    self.assertTrue(
+                        requirement_type['team_coverage_allowed'],
+                        msg=(
+                            f"{bundle['requirement_bundle_id']}/{item['item_key']} allows team coverage "
+                            f"but {requirement_type['requirement_type_id']} forbids it"
+                        ),
+                    )
 
     def test_request_families_reference_governance_and_bundles(self):
         governance_ids = {record['governance_profile_id'] for record in self.data['governance_profiles']}
@@ -138,16 +156,64 @@ class AmacsFoundationTests(unittest.TestCase):
     def test_release_builder_materializes_expanded_datasets(self):
         with tempfile.TemporaryDirectory() as temporary:
             result = subprocess.run(
-                [sys.executable, str(ROOT / 'scripts' / 'build_release.py'), '--output', temporary, '--source-commit', 'TEST-COMMIT'],
+                [
+                    sys.executable,
+                    str(ROOT / 'scripts' / 'build_release.py'),
+                    '--output',
+                    temporary,
+                    '--source-commit',
+                    VALID_TEST_COMMIT,
+                ],
                 cwd=ROOT, capture_output=True, text=True, check=False,
             )
             self.assertEqual(result.returncode, 0, msg=result.stdout + result.stderr)
             release = Path(temporary) / '0.1.0'
             concepts = (release / 'source' / 'concepts.jsonl').read_text(encoding='utf-8').splitlines()
             aliases = (release / 'source' / 'aliases.jsonl').read_text(encoding='utf-8').splitlines()
+            manifest = json.loads((release / 'manifest.json').read_text(encoding='utf-8'))
             self.assertEqual(len(concepts), 599)
             self.assertEqual(len(aliases), 185)
+            self.assertEqual(manifest['source_commit'], VALID_TEST_COMMIT)
             self.assertTrue((release / 'SHA256SUMS').exists())
+
+    def test_release_builder_rejects_existing_version_directory(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            command = [
+                sys.executable,
+                str(ROOT / 'scripts' / 'build_release.py'),
+                '--output',
+                temporary,
+                '--source-commit',
+                VALID_TEST_COMMIT,
+            ]
+            first = subprocess.run(command, cwd=ROOT, capture_output=True, text=True, check=False)
+            self.assertEqual(first.returncode, 0, msg=first.stdout + first.stderr)
+            release = Path(temporary) / '0.1.0'
+            checksums_before = (release / 'SHA256SUMS').read_text(encoding='utf-8')
+
+            second = subprocess.run(command, cwd=ROOT, capture_output=True, text=True, check=False)
+            self.assertNotEqual(second.returncode, 0)
+            self.assertIn('already exists and is immutable', second.stderr)
+            self.assertEqual(
+                (release / 'SHA256SUMS').read_text(encoding='utf-8'),
+                checksums_before,
+            )
+
+    def test_release_builder_derives_git_source_commit(self):
+        expected = subprocess.run(
+            ['git', 'rev-parse', '--verify', 'HEAD'],
+            cwd=ROOT, capture_output=True, text=True, check=True,
+        ).stdout.strip().lower()
+        with tempfile.TemporaryDirectory() as temporary:
+            result = subprocess.run(
+                [sys.executable, str(ROOT / 'scripts' / 'build_release.py'), '--output', temporary],
+                cwd=ROOT, capture_output=True, text=True, check=False,
+            )
+            self.assertEqual(result.returncode, 0, msg=result.stdout + result.stderr)
+            release = Path(temporary) / '0.1.0'
+            manifest = json.loads((release / 'manifest.json').read_text(encoding='utf-8'))
+            self.assertEqual(manifest['source_commit'], expected)
+            self.assertRegex(manifest['source_commit'], r'^[0-9a-f]{40}$')
 
 
 if __name__ == '__main__':
