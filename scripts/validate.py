@@ -98,7 +98,7 @@ def check_references(data: dict[str, list[dict[str, Any]]], errors: list[str]) -
     properties = {record['property_id'] for record in data['properties']}
     credentials = {record['credential_id'] for record in data['credentials']}
     units = {record['unit_id'] for record in data['units']}
-    requirement_types = {record['requirement_type_id'] for record in data['requirement_types']}
+    requirement_types = {record['requirement_type_id']: record for record in data['requirement_types']}
     requirement_bundles = {record['requirement_bundle_id'] for record in data['requirement_bundles']}
     governance_profiles = {record['governance_profile_id'] for record in data['governance_profiles']}
     request_families = {record['request_family_id'] for record in data['request_families']}
@@ -178,8 +178,20 @@ def check_references(data: dict[str, list[dict[str, Any]]], errors: list[str]) -
             errors.append(f'{bundle_id}: duplicate item keys {duplicates}')
         for item in record['items']:
             item_ref = f"{bundle_id}/{item['item_key']}"
-            if item['requirement_type_id'] not in requirement_types:
+            requirement_type = requirement_types.get(item['requirement_type_id'])
+            if requirement_type is None:
                 errors.append(f'{item_ref}: missing requirement type')
+            else:
+                if item['decision_treatment'] not in requirement_type['allowed_decision_treatments']:
+                    errors.append(
+                        f"{item_ref}: decision treatment {item['decision_treatment']} is not allowed "
+                        f"for requirement type {requirement_type['requirement_type_id']}"
+                    )
+                if item['default_team_coverage_allowed'] and not requirement_type['team_coverage_allowed']:
+                    errors.append(
+                        f"{item_ref}: team coverage is not allowed for requirement type "
+                        f"{requirement_type['requirement_type_id']}"
+                    )
             if item['property_id'] is not None and item['property_id'] not in properties:
                 errors.append(f'{item_ref}: missing property')
             if item['credential_id'] is not None and item['credential_id'] not in credentials:
