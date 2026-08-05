@@ -22,3 +22,9 @@
 {"relationship_id":"AMACS-REL-000022","source_concept_id":"AMACS-CAP-000555","relationship_type":"related_to","target_concept_id":"AMACS-CAP-000556","status":"active","version_introduced":"0.1.0"}
 {"relationship_id":"AMACS-REL-000023","source_concept_id":"AMACS-CAP-000580","relationship_type":"related_to","target_concept_id":"AMACS-CAP-000581","status":"active","version_introduced":"0.1.0"}
 {"relationship_id":"AMACS-REL-000024","source_concept_id":"AMACS-CAP-000567","relationship_type":"related_to","target_concept_id":"AMACS-CAP-000554","status":"active","version_introduced":"0.1.0"}
+{"relationship_id":"AMACS-REL-000025","source_concept_id":"AMACS-CAP-000586","relationship_type":"commonly_combined_with","target_concept_id":"AMACS-CAP-000587","status":"active","version_introduced":"0.2.0"}
+{"relationship_id":"AMACS-REL-000026","source_concept_id":"AMACS-CAP-000586","relationship_type":"commonly_combined_with","target_concept_id":"AMACS-CAP-000588","status":"active","version_introduced":"0.2.0"}
+{"relationship_id":"AMACS-REL-000027","source_concept_id":"AMACS-CAP-000590","relationship_type":"commonly_combined_with","target_concept_id":"AMACS-CAP-000591","status":"active","version_introduced":"0.2.0"}
+{"relationship_id":"AMACS-REL-000028","source_concept_id":"AMACS-CAP-000591","relationship_type":"commonly_combined_with","target_concept_id":"AMACS-CAP-000592","status":"active","version_introduced":"0.2.0"}
+{"relationship_id":"AMACS-REL-000029","source_concept_id":"AMACS-CAP-000594","relationship_type":"commonly_combined_with","target_concept_id":"AMACS-CAP-000595","status":"active","version_introduced":"0.2.0"}
+{"relationship_id":"AMACS-REL-000030","source_concept_id":"AMACS-CAP-000588","relationship_type":"related_to","target_concept_id":"AMACS-CAP-000595","status":"active","version_introduced":"0.2.0"}
