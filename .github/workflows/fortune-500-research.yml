@@ -42,10 +42,18 @@ jobs:
             --user-agent "Mozilla/5.0 (compatible; AMACS taxonomy research; +https://github.com/AccelAnalysis/amacs)" \
             https://us500.com/data/log8.json \
             --output /tmp/fortune-1000-2026.json
+      - name: Retrieve SEC company registry
+        run: |
+          curl --fail --silent --show-error --retry 3 \
+            --header "Accept: application/json" \
+            --user-agent "AccelAnalysis-AMACS/0.3 https://github.com/AccelAnalysis/amacs" \
+            https://www.sec.gov/files/company_tickers.json \
+            --output /tmp/sec-company-tickers.json
       - name: Run Fortune 500 evidence-depth analysis
         run: >-
           python scripts/analyze_fortune_500.py
           --source-file /tmp/fortune-1000-2026.json
+          --sec-tickers-file /tmp/sec-company-tickers.json
           --output dist/research/fortune-500-2026
           --fetch-filings
           --max-filings 500
