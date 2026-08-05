@@ -131,11 +131,53 @@ def expand_domain_seed(seed: dict[str, Any], source_file: str) -> list[dict[str,
     return records
 
 
+def expand_domain_extension(extension: dict[str, Any], source_file: str) -> list[dict[str, Any]]:
+    """Expand additive families without restating or mutating an existing domain seed."""
+    version = extension["version_introduced"]
+    origin = extension.get("source_origin", "original_amacs")
+    records: list[dict[str, Any]] = []
+    for family in extension["families"]:
+        family_label = family["label"]
+        records.append({
+            "concept_id": family["family_id"],
+            "concept_type": "family",
+            "preferred_label": family_label,
+            "definition": family["definition"],
+            "status": family.get("status", "active"),
+            "matchable": False,
+            "editorial_maturity": family.get("editorial_maturity", "draft"),
+            "version_introduced": version,
+            "primary_parent_id": extension["domain_id"],
+            "source_origin": origin,
+            "__source_file": source_file,
+            "__source_line": 1,
+        })
+        for capability in family["capabilities"]:
+            records.append({
+                "concept_id": capability["capability_id"],
+                "concept_type": "capability",
+                "preferred_label": capability["label"],
+                "definition": capability["definition"],
+                "status": capability.get("status", "active"),
+                "matchable": True,
+                "editorial_maturity": capability.get("editorial_maturity", "draft"),
+                "version_introduced": version,
+                "primary_parent_id": family["family_id"],
+                "source_origin": origin,
+                "__source_file": source_file,
+                "__source_line": 1,
+            })
+    return records
+
+
 def load_concepts(root: Path = ROOT) -> list[dict[str, Any]]:
     records: list[dict[str, Any]] = []
     for path in sorted(root.glob("source/domain-seeds/*.json")):
         seed = json.loads(path.read_text(encoding="utf-8"))
         records.extend(expand_domain_seed(seed, str(path.relative_to(root))))
+    for path in sorted(root.glob("source/domain-extensions/**/*.json")):
+        extension = json.loads(path.read_text(encoding="utf-8"))
+        records.extend(expand_domain_extension(extension, str(path.relative_to(root))))
     return records
 
 

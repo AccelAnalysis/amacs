@@ -1,0 +1,33 @@
+{
+  "corpus_id": "fortune-1000-2026",
+  "edition": "2026",
+  "reviewed_at": "2026-08-05T16:00:00Z",
+  "source_sha256": "16aff4ed3c2117f29c242ed81368b1e38019bd5597d7990a34af03bd5163ea0f",
+  "organization_count": 1000,
+  "cohort_counts": {
+    "fortune_1000": 1000,
+    "fortune_500": 500,
+    "fortune_100": 100
+  },
+  "primary_activity_label_count": 74,
+  "baseline_release": "0.2.0",
+  "baseline_organization_coverage": {
+    "direct": 154,
+    "partial": 524,
+    "gap": 322
+  },
+  "baseline_label_coverage": {
+    "direct": 13,
+    "partial": 35,
+    "gap": 26
+  },
+  "candidate_release": "0.3.0",
+  "organizations_with_candidate_concept_coverage": 1000,
+  "observation_review_counts": {
+    "analyst_reviewed": 1,
+    "machine_triage": 999
+  },
+  "observations_with_first_party_evidence": 1,
+  "profile_assertions_created": 0,
+  "generated_observation_semantics": "taxonomy_research_only"
+}

@@ -1,0 +1,282 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://amacs.accelanalysis.com/schemas/organization-taxonomy-observation.schema.json",
+  "title": "Organization Taxonomy Observation",
+  "description": "A research-only observation used to test AMACS coverage without asserting that an organization possesses a capability.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "observation_id",
+    "organization",
+    "corpus",
+    "observed_at",
+    "activity_observation",
+    "evidence",
+    "candidate_mappings",
+    "gap_disposition",
+    "review_status",
+    "not_for_profile_import"
+  ],
+  "properties": {
+    "observation_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200
+    },
+    "organization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "entity_scope"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "entity_scope": {
+          "type": "string",
+          "enum": [
+            "reporting_entity",
+            "legal_entity",
+            "operating_segment",
+            "subsidiary",
+            "brand",
+            "unknown"
+          ]
+        },
+        "external_identifiers": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 300
+          }
+        },
+        "headquarters": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "city": {
+              "type": "string",
+              "maxLength": 160
+            },
+            "region": {
+              "type": "string",
+              "maxLength": 160
+            },
+            "country": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 2
+            }
+          }
+        }
+      }
+    },
+    "corpus": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "corpus_id",
+        "edition",
+        "memberships",
+        "position"
+      ],
+      "properties": {
+        "corpus_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "edition": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "memberships": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80
+          }
+        },
+        "position": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "observed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "activity_observation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_label",
+        "method"
+      ],
+      "properties": {
+        "source_label": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "method": {
+          "type": "string",
+          "enum": [
+            "explicit_statement",
+            "product_or_service_evidence",
+            "industry_proxy",
+            "analyst_inference"
+          ]
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "source_type",
+          "title",
+          "url",
+          "publisher",
+          "accessed_at"
+        ],
+        "properties": {
+          "source_type": {
+            "type": "string",
+            "enum": [
+              "company_website",
+              "regulatory_filing",
+              "annual_report",
+              "ranking_profile",
+              "other_public_source"
+            ]
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "publisher": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 300
+          },
+          "published_at": {
+            "type": "string",
+            "format": "date"
+          },
+          "accessed_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "evidence_locator": {
+            "type": "string",
+            "maxLength": 500
+          },
+          "content_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        }
+      }
+    },
+    "candidate_mappings": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "concept_id",
+          "mapping_status",
+          "confidence",
+          "entity_relationship",
+          "rationale"
+        ],
+        "properties": {
+          "concept_id": {
+            "type": "string",
+            "pattern": "^AMACS-CAP-\\d{6}$"
+          },
+          "mapping_status": {
+            "type": "string",
+            "enum": [
+              "exact",
+              "candidate",
+              "partial",
+              "none"
+            ]
+          },
+          "confidence": {
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "high"
+            ]
+          },
+          "entity_relationship": {
+            "type": "string",
+            "enum": [
+              "direct",
+              "controlled_subsidiary",
+              "operating_segment",
+              "affiliate",
+              "platform_participant",
+              "unknown"
+            ]
+          },
+          "rationale": {
+            "type": "string",
+            "minLength": 10,
+            "maxLength": 2000
+          }
+        }
+      }
+    },
+    "gap_disposition": {
+      "type": "string",
+      "enum": [
+        "none",
+        "alias_candidate",
+        "new_capability_candidate",
+        "new_property_candidate",
+        "needs_entity_resolution",
+        "insufficient_evidence"
+      ]
+    },
+    "review_status": {
+      "type": "string",
+      "enum": [
+        "machine_triage",
+        "analyst_reviewed",
+        "domain_reviewed"
+      ]
+    },
+    "not_for_profile_import": {
+      "const": true
+    }
+  }
+}

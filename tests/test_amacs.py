@@ -39,7 +39,35 @@ class AmacsFoundationTests(unittest.TestCase):
         first = load_dataset('concepts', ROOT)
         second = load_dataset('concepts', ROOT)
         self.assertEqual(first, second)
-        self.assertEqual(len(first), 611)
+        self.assertEqual(len(first), 751)
+
+    def test_domain_extensions_are_additive_and_versioned(self):
+        concepts = {record['concept_id']: record for record in self.data['concepts']}
+        self.assertEqual(sum(record['concept_type'] == 'domain' for record in concepts.values()), 16)
+        self.assertEqual(sum(record['concept_type'] == 'family' for record in concepts.values()), 120)
+        self.assertEqual(sum(record['concept_type'] == 'capability' for record in concepts.values()), 615)
+        self.assertEqual(concepts['AMACS-CAP-000145']['version_introduced'], '0.1.0')
+        self.assertEqual(concepts['AMACS-CAP-000594']['version_introduced'], '0.2.0')
+
+        expected = {
+            'AMACS-CAP-000597': ('Motor vehicle manufacturing', 'AMACS-FAM-000596'),
+            'AMACS-CAP-000625': ('Commercial banking', 'AMACS-FAM-000624'),
+            'AMACS-CAP-000651': ('Petroleum refining', 'AMACS-FAM-000648'),
+            'AMACS-CAP-000664': ('General merchandise retail', 'AMACS-FAM-000663'),
+            'AMACS-CAP-000680': ('Online marketplace operation', 'AMACS-FAM-000677'),
+            'AMACS-CAP-000697': ('Airline operations', 'AMACS-FAM-000696'),
+            'AMACS-CAP-000708': ('Health plan administration', 'AMACS-FAM-000707'),
+            'AMACS-CAP-000715': ('Real estate development', 'AMACS-FAM-000714'),
+            'AMACS-CAP-000734': ('Funeral and cremation services', 'AMACS-FAM-000733'),
+        }
+        for concept_id, (label, parent_id) in expected.items():
+            concept = concepts[concept_id]
+            self.assertEqual(concept['preferred_label'], label)
+            self.assertEqual(concept['primary_parent_id'], parent_id)
+            self.assertEqual(concept['version_introduced'], '0.3.0')
+            self.assertEqual(concept['editorial_maturity'], 'draft')
+            self.assertTrue(concept['matchable'])
+            self.assertGreaterEqual(len(concept['definition']), 80)
 
     def test_capabilities_are_matchable_only(self):
         for concept in self.data['concepts']:
@@ -177,6 +205,10 @@ class AmacsFoundationTests(unittest.TestCase):
     def test_runtime_examples_validate_against_schemas(self):
         pairs = [
             ('examples/organization-capability.example.json', 'schemas/organization-capability.schema.json'),
+            (
+                'examples/organization-taxonomy-observation.example.json',
+                'schemas/organization-taxonomy-observation.schema.json',
+            ),
             ('examples/rfx-requirement.example.json', 'schemas/rfx-requirement.schema.json'),
             ('examples/taxonomy-proposal.example.json', 'schemas/proposal.schema.json'),
         ]
@@ -218,13 +250,15 @@ class AmacsFoundationTests(unittest.TestCase):
                 cwd=ROOT, capture_output=True, text=True, check=False,
             )
             self.assertEqual(result.returncode, 0, msg=result.stdout + result.stderr)
-            release = Path(temporary) / '0.2.0'
+            release = Path(temporary) / '0.3.0'
             concepts = (release / 'source' / 'concepts.jsonl').read_text(encoding='utf-8').splitlines()
             aliases = (release / 'source' / 'aliases.jsonl').read_text(encoding='utf-8').splitlines()
             manifest = json.loads((release / 'manifest.json').read_text(encoding='utf-8'))
-            self.assertEqual(len(concepts), 611)
+            self.assertEqual(len(concepts), 751)
             self.assertEqual(len(aliases), 185)
             self.assertEqual(manifest['source_commit'], VALID_TEST_COMMIT)
+            self.assertEqual(manifest['released_at'], '2026-08-05')
+            self.assertTrue((release / 'source-seeds' / 'domain-extensions' / '0.3.0').exists())
             self.assertTrue((release / 'SHA256SUMS').exists())
 
     def test_release_builder_rejects_existing_version_directory(self):
@@ -239,7 +273,7 @@ class AmacsFoundationTests(unittest.TestCase):
             ]
             first = subprocess.run(command, cwd=ROOT, capture_output=True, text=True, check=False)
             self.assertEqual(first.returncode, 0, msg=first.stdout + first.stderr)
-            release = Path(temporary) / '0.2.0'
+            release = Path(temporary) / '0.3.0'
             checksums_before = (release / 'SHA256SUMS').read_text(encoding='utf-8')
 
             second = subprocess.run(command, cwd=ROOT, capture_output=True, text=True, check=False)
@@ -261,7 +295,7 @@ class AmacsFoundationTests(unittest.TestCase):
                 cwd=ROOT, capture_output=True, text=True, check=False,
             )
             self.assertEqual(result.returncode, 0, msg=result.stdout + result.stderr)
-            release = Path(temporary) / '0.2.0'
+            release = Path(temporary) / '0.3.0'
             manifest = json.loads((release / 'manifest.json').read_text(encoding='utf-8'))
             self.assertEqual(manifest['source_commit'], expected)
             self.assertRegex(manifest['source_commit'], r'^[0-9a-f]{40}$')

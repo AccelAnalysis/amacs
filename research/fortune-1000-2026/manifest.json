@@ -1,0 +1,28 @@
+{
+  "corpus_id": "fortune-1000-2026",
+  "edition": "2026",
+  "scope": "The 1,000 largest United States companies in the current 2026 Fortune ranking, used as a breadth-first AMACS taxonomy validation corpus.",
+  "expected_organization_count": 1000,
+  "expected_position_min": 1,
+  "expected_position_max": 1000,
+  "authoritative_reference_url": "https://fortune.com/ranking/fortune500/2026/",
+  "machine_readable_roster": {
+    "publisher": "US500",
+    "page_url": "https://us500.com/fortune-1000-companies",
+    "data_url": "https://us500.com/data/log8.json",
+    "retrieved_at": "2026-08-05T16:00:00Z",
+    "expected_sha256": "16aff4ed3c2117f29c242ed81368b1e38019bd5597d7990a34af03bd5163ea0f",
+    "data_path": "data"
+  },
+  "activity_map": "research/fortune-1000-2026/primary-activity-map.json",
+  "baseline_amacs_release": "0.2.0",
+  "candidate_amacs_release": "0.3.0",
+  "method": "primary_activity_breadth_triage",
+  "boundaries": [
+    "The external roster is retrieved for analysis and is not vendored in the AMACS repository.",
+    "Only organization identity, position, headquarters, and primary activity label are carried into generated research observations; financial measures are excluded.",
+    "An industry proxy identifies candidate AMACS concepts and taxonomy gaps; it is not evidence that an organization possesses a capability.",
+    "Generated records are marked not_for_profile_import and require first-party evidence plus entity-resolution review before any separate organization capability assertion could be considered.",
+    "FORTUNE is a trademark of Fortune Media IP Limited. AMACS and Accel Analysis are not affiliated with or endorsed by Fortune or US500."
+  ]
+}

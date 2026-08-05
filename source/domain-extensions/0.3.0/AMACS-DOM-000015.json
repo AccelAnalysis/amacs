@@ -1,0 +1,45 @@
+{
+  "domain_id": "AMACS-DOM-000015",
+  "version_introduced": "0.3.0",
+  "source_origin": "original_amacs",
+  "families": [
+    {
+      "family_id": "AMACS-FAM-000714",
+      "label": "Real Estate Development, Ownership and Investment",
+      "definition": "Development, ownership, leasing, investment, portfolio management, and public-market operation of residential and commercial real estate assets.",
+      "editorial_maturity": "draft",
+      "capabilities": [
+        {
+          "capability_id": "AMACS-CAP-000715",
+          "label": "Real estate development",
+          "definition": "The organizational ability to acquire, entitle, finance, design, construct, position, and deliver land or property development projects for market use.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000716",
+          "label": "Residential development and homebuilding",
+          "definition": "The organizational ability to acquire sites, plan communities, finance, construct, market, and deliver housing units or residential developments.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000717",
+          "label": "Commercial property ownership and leasing",
+          "definition": "The organizational ability to own, position, lease, operate, and steward income-producing commercial or institutional real property.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000718",
+          "label": "Real estate investment management",
+          "definition": "The organizational ability to source, underwrite, acquire, finance, manage, reposition, and dispose of real estate investments for an owner or investment vehicle.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000719",
+          "label": "Real estate investment trust operations",
+          "definition": "The organizational ability to operate a real estate investment trust with portfolio, capital, distribution, compliance, governance, and investor-reporting systems.",
+          "editorial_maturity": "draft"
+        }
+      ]
+    }
+  ]
+}

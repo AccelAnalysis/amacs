@@ -1,0 +1,51 @@
+{
+  "observation_id": "fortune-1000-2026-rank-1000",
+  "organization": {
+    "name": "Louisiana-Pacific",
+    "entity_scope": "reporting_entity",
+    "external_identifiers": {
+      "ticker": "LPX"
+    },
+    "headquarters": {
+      "city": "Nashville",
+      "region": "Tennessee",
+      "country": "US"
+    }
+  },
+  "corpus": {
+    "corpus_id": "fortune-1000-2026",
+    "edition": "2026",
+    "memberships": [
+      "fortune_1000"
+    ],
+    "position": 1000
+  },
+  "observed_at": "2026-08-05T16:00:00Z",
+  "activity_observation": {
+    "source_label": "Building products manufacturing",
+    "description": "The company describes itself as a manufacturer of high-performance building products.",
+    "method": "explicit_statement"
+  },
+  "evidence": [
+    {
+      "source_type": "company_website",
+      "title": "LP Building Solutions Reports First Quarter 2026 Results",
+      "url": "https://investor.lpcorp.com/news-releases/news-release-details/lp-building-solutions-reports-first-quarter-2026-results-updates/",
+      "publisher": "Louisiana-Pacific Corporation",
+      "accessed_at": "2026-08-05T16:00:00Z",
+      "evidence_locator": "Company description"
+    }
+  ],
+  "candidate_mappings": [
+    {
+      "concept_id": "AMACS-CAP-000615",
+      "mapping_status": "exact",
+      "confidence": "high",
+      "entity_relationship": "direct",
+      "rationale": "The first-party company description directly states that the reporting organization manufactures building products."
+    }
+  ],
+  "gap_disposition": "none",
+  "review_status": "analyst_reviewed",
+  "not_for_profile_import": true
+}

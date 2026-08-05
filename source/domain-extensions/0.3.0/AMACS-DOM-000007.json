@@ -1,0 +1,51 @@
+{
+  "domain_id": "AMACS-DOM-000007",
+  "version_introduced": "0.3.0",
+  "source_origin": "original_amacs",
+  "families": [
+    {
+      "family_id": "AMACS-FAM-000707",
+      "label": "Health Plan and Care Delivery Operations",
+      "definition": "Administration of health plans, provider networks, pharmacy benefits, hospitals, outpatient facilities, and senior living care-delivery organizations.",
+      "editorial_maturity": "draft",
+      "capabilities": [
+        {
+          "capability_id": "AMACS-CAP-000708",
+          "label": "Health plan administration",
+          "definition": "The organizational ability to design, enroll, price, administer, service, and govern health benefit plans and their member, claim, and payment operations.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000709",
+          "label": "Managed care network administration",
+          "definition": "The organizational ability to establish, contract, credential, coordinate, measure, and administer provider networks and managed care delivery arrangements.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000710",
+          "label": "Pharmacy benefit management",
+          "definition": "The organizational ability to administer prescription benefit formularies, pharmacy networks, claims, pricing, utilization controls, and related member services.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000711",
+          "label": "Hospital operations",
+          "definition": "The organizational ability to own, manage, or operate inpatient healthcare facilities with integrated clinical, diagnostic, pharmacy, facility, revenue, and safety systems.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000712",
+          "label": "Outpatient care facility operations",
+          "definition": "The organizational ability to own, manage, or operate ambulatory, physician, urgent, diagnostic, surgical, or other outpatient care facilities and services.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000713",
+          "label": "Senior living facility operations",
+          "definition": "The organizational ability to own, manage, or operate independent living, assisted living, memory care, or continuing-care facilities and resident services.",
+          "editorial_maturity": "draft"
+        }
+      ]
+    }
+  ]
+}

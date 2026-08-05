@@ -2,15 +2,16 @@
 
 1. Create a change branch from the current default branch.
 2. Add or modify canonical source and schemas.
-3. Run schema, referential, hierarchy, duplicate, template, team-coverage, and release-invariant validation.
-4. Obtain required editorial and domain review.
-5. Merge through pull request.
-6. Tag the approved commit with the semantic version.
-7. Build the immutable release directory and checksums from the approved commit.
-8. Generate Excel and CSV review artifacts.
-9. Import the release into the RFxchange staging environment.
-10. Verify migration, search, matching, request, response, and decision behavior.
-11. Promote the exact release to production.
+3. Set `VERSION` and the ISO 8601 calendar date in `RELEASE_DATE` for the proposed release.
+4. Run schema, referential, hierarchy, duplicate, template, team-coverage, and release-invariant validation.
+5. Obtain required editorial and domain review.
+6. Merge through pull request.
+7. Tag the approved commit with the semantic version.
+8. Build the immutable release directory and checksums from the approved commit.
+9. Generate Excel and CSV review artifacts.
+10. Import the release into the RFxchange staging environment.
+11. Verify migration, search, matching, request, response, and decision behavior.
+12. Promote the exact release to production.
 
 ## Source provenance
 
@@ -26,6 +27,8 @@ python scripts/build_release.py \
 ```
 
 The builder rejects missing, abbreviated, malformed, or placeholder commit values.
+
+The manifest release date is read from the canonical `RELEASE_DATE` file and validated as an ISO 8601 calendar date. This keeps release metadata reviewable and prevents a stale date embedded in the build script.
 
 ## Immutability
 

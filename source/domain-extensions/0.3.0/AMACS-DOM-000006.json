@@ -1,0 +1,115 @@
+{
+  "domain_id": "AMACS-DOM-000006",
+  "version_introduced": "0.3.0",
+  "source_origin": "original_amacs",
+  "families": [
+    {
+      "family_id": "AMACS-FAM-000663",
+      "label": "Retail Commerce",
+      "definition": "Direct sale of merchandise and products to consumers or business buyers through stores, dealerships, digital channels, and specialized retail formats.",
+      "editorial_maturity": "draft",
+      "capabilities": [
+        {
+          "capability_id": "AMACS-CAP-000664",
+          "label": "General merchandise retail",
+          "definition": "The organizational ability to merchandise, sell, fulfill, and service a broad assortment of consumer goods through physical or digital retail operations.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000665",
+          "label": "Grocery retail",
+          "definition": "The organizational ability to merchandise, sell, store, and fulfill food, beverage, household, and related grocery products through retail channels.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000666",
+          "label": "Pharmacy retail",
+          "definition": "The organizational ability to dispense prescription products and merchandise nonprescription health, wellness, and consumer goods through licensed retail pharmacy operations.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000667",
+          "label": "Apparel retail",
+          "definition": "The organizational ability to merchandise, sell, fulfill, and service apparel, footwear, accessories, or related fashion products through retail channels.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000668",
+          "label": "Motor vehicle retail and dealership operations",
+          "definition": "The organizational ability to sell, lease, finance, deliver, and service new or used motor vehicles through dealership or direct retail operations.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000669",
+          "label": "Building supply and home improvement retail",
+          "definition": "The organizational ability to merchandise, sell, fulfill, and support building materials, tools, fixtures, and home improvement products through retail channels.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000670",
+          "label": "Specialty retail",
+          "definition": "The organizational ability to merchandise, sell, fulfill, and service a focused category of consumer or business products through specialized retail operations.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000671",
+          "label": "E-commerce retail",
+          "definition": "The organizational ability to merchandise, sell, transact, fulfill, and service goods through a digital storefront where the organization acts as the retailer of record.",
+          "editorial_maturity": "draft"
+        }
+      ]
+    },
+    {
+      "family_id": "AMACS-FAM-000672",
+      "label": "Hospitality and Leisure Operations",
+      "definition": "Operation of restaurants, lodging properties, resorts, casinos, attractions, and other guest-facing leisure or recreation businesses.",
+      "editorial_maturity": "draft",
+      "capabilities": [
+        {
+          "capability_id": "AMACS-CAP-000673",
+          "label": "Restaurant operations",
+          "definition": "The organizational ability to operate food and beverage establishments, including menu, kitchen, service, safety, staffing, and customer-experience systems.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000674",
+          "label": "Hotel and resort operations",
+          "definition": "The organizational ability to own, manage, or operate lodging and resort properties with integrated reservations, guest, housekeeping, facility, and service systems.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000675",
+          "label": "Casino operations",
+          "definition": "The organizational ability to operate regulated gaming venues and associated wagering, security, compliance, hospitality, and customer-service systems.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000676",
+          "label": "Recreation and attraction operations",
+          "definition": "The organizational ability to operate amusement, recreation, sports, cultural, or visitor attractions and their admission, safety, facility, and guest systems.",
+          "editorial_maturity": "draft"
+        }
+      ]
+    },
+    {
+      "family_id": "AMACS-FAM-000733",
+      "label": "Bereavement and Memorial Services",
+      "definition": "Care, planning, facility, disposition, interment, memorialization, and property services provided to individuals and families following a death.",
+      "editorial_maturity": "draft",
+      "capabilities": [
+        {
+          "capability_id": "AMACS-CAP-000734",
+          "label": "Funeral and cremation services",
+          "definition": "The organizational ability to arrange and deliver funeral, cremation, preparation, ceremony, transport, and related care services for deceased persons and families.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000735",
+          "label": "Cemetery and memorial property services",
+          "definition": "The organizational ability to develop, operate, maintain, sell, and administer cemetery, interment, mausoleum, memorial, or related remembrance property and services.",
+          "editorial_maturity": "draft"
+        }
+      ]
+    }
+  ]
+}

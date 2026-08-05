@@ -1,0 +1,185 @@
+{
+  "domain_id": "AMACS-DOM-000002",
+  "version_introduced": "0.3.0",
+  "source_origin": "original_amacs",
+  "families": [
+    {
+      "family_id": "AMACS-FAM-000596",
+      "label": "Transportation Equipment Manufacturing",
+      "definition": "Production and systems integration of vehicles, mobility equipment, aerospace systems, and other transportation equipment and their major components.",
+      "editorial_maturity": "draft",
+      "capabilities": [
+        {
+          "capability_id": "AMACS-CAP-000597",
+          "label": "Motor vehicle manufacturing",
+          "definition": "The organizational ability to produce and integrate road vehicles through controlled manufacturing, assembly, testing, and production-quality processes.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000598",
+          "label": "Motor vehicle parts manufacturing",
+          "definition": "The organizational ability to manufacture components, subsystems, and replacement parts intended for integration into or use with motor vehicles.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000599",
+          "label": "Aerospace and defense systems manufacturing",
+          "definition": "The organizational ability to manufacture, integrate, and test aircraft, spacecraft, defense platforms, or their mission-critical systems and assemblies.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000600",
+          "label": "Rail and other transportation equipment manufacturing",
+          "definition": "The organizational ability to manufacture rail vehicles and other non-road transportation equipment, systems, components, or specialized conveyances.",
+          "editorial_maturity": "draft"
+        }
+      ]
+    },
+    {
+      "family_id": "AMACS-FAM-000601",
+      "label": "Computing, Semiconductor and Communications Manufacturing",
+      "definition": "Design and production of semiconductors, computing hardware, communications equipment, electronic components, and scientific or control instruments.",
+      "editorial_maturity": "draft",
+      "capabilities": [
+        {
+          "capability_id": "AMACS-CAP-000602",
+          "label": "Semiconductor design",
+          "definition": "The organizational ability to design semiconductor devices, integrated circuits, architectures, layouts, or related intellectual property for fabrication.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000603",
+          "label": "Semiconductor fabrication",
+          "definition": "The organizational ability to fabricate semiconductor wafers or devices through controlled process, cleanroom, testing, and production operations.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000604",
+          "label": "Computer hardware manufacturing",
+          "definition": "The organizational ability to manufacture and assemble computers, servers, storage devices, office computing equipment, or their principal hardware systems.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000605",
+          "label": "Communications equipment manufacturing",
+          "definition": "The organizational ability to manufacture network, wireless, routing, switching, transmission, or other communications equipment and systems.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000606",
+          "label": "Electronic component manufacturing",
+          "definition": "The organizational ability to manufacture electronic components, modules, sensors, connectors, assemblies, or related electrical equipment at production scale.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000607",
+          "label": "Scientific and control instrument manufacturing",
+          "definition": "The organizational ability to manufacture scientific, measurement, imaging, photographic, analytical, or industrial control instruments and systems.",
+          "editorial_maturity": "draft"
+        }
+      ]
+    },
+    {
+      "family_id": "AMACS-FAM-000608",
+      "label": "Chemical, Pharmaceutical and Medical Manufacturing",
+      "definition": "Production of chemicals, pharmaceuticals, medical devices, and formulated household or personal care products under controlled manufacturing systems.",
+      "editorial_maturity": "draft",
+      "capabilities": [
+        {
+          "capability_id": "AMACS-CAP-000609",
+          "label": "Chemical manufacturing",
+          "definition": "The organizational ability to produce basic, intermediate, specialty, or formulated chemicals through controlled industrial processing and quality systems.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000610",
+          "label": "Pharmaceutical manufacturing",
+          "definition": "The organizational ability to manufacture pharmaceutical ingredients or finished drug products through controlled, traceable, and quality-assured production processes.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000611",
+          "label": "Medical device and equipment manufacturing",
+          "definition": "The organizational ability to design for production, manufacture, assemble, and test devices, equipment, or consumables intended for medical use.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000612",
+          "label": "Household and personal care product manufacturing",
+          "definition": "The organizational ability to formulate, manufacture, package, and quality-control household, hygiene, beauty, or personal care products.",
+          "editorial_maturity": "draft"
+        }
+      ]
+    },
+    {
+      "family_id": "AMACS-FAM-000613",
+      "label": "Materials and Consumer Product Manufacturing",
+      "definition": "Production of primary materials, building products, paper goods, furnishings, apparel, tobacco products, toys, and related consumer goods.",
+      "editorial_maturity": "draft",
+      "capabilities": [
+        {
+          "capability_id": "AMACS-CAP-000614",
+          "label": "Primary metals production",
+          "definition": "The organizational ability to smelt, refine, alloy, cast, roll, or otherwise produce primary metal materials and standardized metal products.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000615",
+          "label": "Building product manufacturing",
+          "definition": "The organizational ability to manufacture structural or nonstructural products and material systems used in building and construction applications.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000616",
+          "label": "Forest and paper product manufacturing",
+          "definition": "The organizational ability to process timber, fiber, pulp, or recovered material into lumber, panels, paper, tissue, or other forest-derived products.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000617",
+          "label": "Furniture and home equipment manufacturing",
+          "definition": "The organizational ability to manufacture furniture, fixtures, household equipment, furnishings, or related durable products for residential or institutional use.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000618",
+          "label": "Apparel and textile product manufacturing",
+          "definition": "The organizational ability to produce apparel, footwear, textiles, sewn products, or related wearable and fabric-based goods at commercial scale.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000619",
+          "label": "Tobacco product manufacturing",
+          "definition": "The organizational ability to manufacture regulated tobacco or nicotine products through controlled processing, formulation, packaging, and quality systems.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000620",
+          "label": "Toy and sporting goods manufacturing",
+          "definition": "The organizational ability to manufacture toys, games, recreation equipment, fitness products, or sporting goods through controlled production operations.",
+          "editorial_maturity": "draft"
+        }
+      ]
+    },
+    {
+      "family_id": "AMACS-FAM-000621",
+      "label": "Standard Industrial Equipment Manufacturing",
+      "definition": "Production of repeatable industrial, construction, agricultural, and material-handling machinery and equipment for commercial markets.",
+      "editorial_maturity": "draft",
+      "capabilities": [
+        {
+          "capability_id": "AMACS-CAP-000622",
+          "label": "Industrial machinery manufacturing",
+          "definition": "The organizational ability to manufacture standardized machinery, production equipment, engines, pumps, controls, or other industrial equipment at commercial scale.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000623",
+          "label": "Construction and agricultural equipment manufacturing",
+          "definition": "The organizational ability to manufacture construction, mining, forestry, agricultural, or grounds-maintenance machinery and major equipment systems.",
+          "editorial_maturity": "draft"
+        }
+      ]
+    }
+  ]
+}

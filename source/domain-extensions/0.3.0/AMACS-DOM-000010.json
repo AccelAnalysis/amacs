@@ -1,0 +1,33 @@
+{
+  "domain_id": "AMACS-DOM-000010",
+  "version_introduced": "0.3.0",
+  "source_origin": "original_amacs",
+  "families": [
+    {
+      "family_id": "AMACS-FAM-000725",
+      "label": "Enterprise Outsourcing Services",
+      "definition": "Contracted operation of repeatable business processes, staffing systems, and integrated multi-service functions on behalf of other organizations.",
+      "editorial_maturity": "draft",
+      "capabilities": [
+        {
+          "capability_id": "AMACS-CAP-000726",
+          "label": "Business process outsourcing",
+          "definition": "The organizational ability to assume and operate defined administrative, transactional, customer, finance, human-resource, or other business processes for a client.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000727",
+          "label": "Workforce staffing services",
+          "definition": "The organizational ability to recruit, employ or place, schedule, administer, and support temporary, contract, contingent, or direct-hire workers for client organizations.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000728",
+          "label": "Multi-service enterprise outsourcing",
+          "definition": "The organizational ability to integrate and operate multiple contracted workplace, facility, administrative, technical, or support functions under a unified service model.",
+          "editorial_maturity": "draft"
+        }
+      ]
+    }
+  ]
+}
