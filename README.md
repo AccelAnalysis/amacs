@@ -15,19 +15,21 @@ The RFxchange is the first production implementation of AMACS. AMACS supplies th
 
 ## Current release
 
-`0.1.0` is a **development foundation**, not a finished universal classification standard. It establishes the governed data model and seeds:
+`0.2.0` is a **governed development release**, not a finished universal classification standard. It establishes the governed data model and seeds:
 
-- 15 market domains;
-- 92 capability families;
-- 492 matchable capabilities;
+- 16 market domains;
+- 95 capability families;
+- 500 matchable capabilities;
 - 185 English search aliases;
 - 35 reusable properties and 27 controlled units;
 - 17 credential/evidence types;
 - 10 requirement types and 8 reusable requirement bundles;
 - 10 RFx request families and 7 governance profiles;
-- 29 response sections and 7 response templates; and
+- 29 response sections and 7 response templates;
 - 22 decision factors and 7 decision templates; and
 - 30 publication-readiness rules with field-level fix targets.
+
+Release `0.2.0` adds a dedicated **Standards, Taxonomy and Market Architecture** domain so organizations can explicitly represent taxonomy development, standards governance, capability mapping, evidence architecture, response architecture, decision architecture, controlled taxonomy licensing, and taxonomy API delivery as selectable market capabilities.
 
 All seeded capability definitions are original AMACS development content. Capability records marked `editorial_maturity: draft` require domain review before AMACS 1.0.
 
@@ -64,7 +66,7 @@ python -m pip install -r requirements-dev.txt
 python scripts/validate.py
 python -m unittest discover -s tests
 python scripts/export_csv.py --output dist/csv
-python scripts/export_excel.py --output dist/AMACS-0.1.0-review.xlsx
+python scripts/export_excel.py --output dist/AMACS-0.2.0-review.xlsx
 python scripts/build_release.py --output dist/release
 ```
 
@@ -89,6 +91,6 @@ make release
 
 Copyright © 2026 Accel Analysis Business Solutions. All rights reserved. See [LICENSE.md](LICENSE.md). No third-party protected taxonomy is copied into this repository. External mappings may be added only after source, version, attribution, and licensing review.
 
-## Foundation scope
+## Development-release scope
 
-AMACS 0.1.0 is deliberately broad enough to exercise production integration while remaining a governed development release. It does not claim exhaustive universal coverage. Domain definitions, aliases, lawful external crosswalks, multilingual labels, and additional user-derived proposals will expand through reviewed releases.
+AMACS 0.2.0 is deliberately broad enough to exercise production integration while remaining a governed development release. It does not claim exhaustive universal coverage. Domain definitions, aliases, lawful external crosswalks, multilingual labels, and additional user-derived proposals will expand through reviewed releases.
