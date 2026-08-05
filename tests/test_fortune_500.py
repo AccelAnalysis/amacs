@@ -1,3 +1,4 @@
+import gzip
 import importlib.util
 import sys
 import unittest
@@ -13,11 +14,20 @@ SPEC.loader.exec_module(MODULE)
 
 class Fortune500AnalyzerTests(unittest.TestCase):
     def setUp(self):
-        self.entities = [
-            MODULE.SecEntity("0001018724", "AMAZON COM INC", "AMZN"),
-            MODULE.SecEntity("0000034088", "EXXON MOBIL CORP", "XOM"),
-            MODULE.SecEntity("0000000001", "EXAMPLE INDUSTRIES INC", "EXM"),
-        ]
+        self.entities = {
+            "0001018724": MODULE.SecEntity("0001018724", "AMAZON COM INC", "AMZN", "5961", "RETAIL-CATALOG & MAIL-ORDER HOUSES", "operating", "Nasdaq"),
+            "0000034088": MODULE.SecEntity("0000034088", "EXXON MOBIL CORP", "XOM", "2911", "PETROLEUM REFINING", "operating", "NYSE"),
+            "0000000001": MODULE.SecEntity("0000000001", "EXAMPLE INDUSTRIES INC", "EXM"),
+        }
+        self.names = MODULE.build_name_index(self.entities, [
+            {"cik": "1018724", "name": "Amazon.com, Inc."},
+            {"cik": "34088", "name": "Exxon Corporation"},
+        ])
+
+    def test_decodes_gzip_csv(self):
+        raw = gzip.compress(b"name,cik,tickers\nExample Inc,1,['EXM']\n")
+        rows = MODULE.decode_csv(raw)
+        self.assertEqual(rows[0]["name"], "Example Inc")
 
     def test_normalized_and_compact_name_matching(self):
         self.assertEqual(MODULE.normalize_name("Example Industries, Inc."), "example industries")
@@ -26,45 +36,33 @@ class Fortune500AnalyzerTests(unittest.TestCase):
 
     def test_controlled_override_resolves_nonidentical_name(self):
         result = MODULE.resolve_entity(
-            "Amazon",
-            self.entities,
+            "Amazon", self.entities, self.names,
             {"Amazon": {"cik": "0001018724", "sec_name": "AMAZON COM INC", "reason": "controlled"}},
-            0.94,
-            0.86,
+            0.94, 0.86,
         )
         self.assertEqual(result["status"], "resolved_override")
         self.assertEqual(result["cik"], "0001018724")
 
+    def test_former_name_can_resolve(self):
+        result = MODULE.resolve_entity("Amazon.com", self.entities, self.names, {}, 0.94, 0.86)
+        self.assertEqual(result["status"], "resolved_automatic")
+        self.assertEqual(result["cik"], "0001018724")
+
     def test_low_similarity_is_not_forced(self):
-        result = MODULE.resolve_entity("Private Mutual Association", self.entities, {}, 0.94, 0.86)
+        result = MODULE.resolve_entity("Private Mutual Association", self.entities, self.names, {}, 0.94, 0.86)
         self.assertEqual(result["status"], "unresolved")
 
-    def test_latest_annual_filing(self):
-        submissions = {
-            "filings": {"recent": {
-                "form": ["10-Q", "10-K"],
-                "filingDate": ["2026-05-01", "2026-02-15"],
-                "reportDate": ["2026-03-31", "2025-12-31"],
-                "accessionNumber": ["0001-26-000002", "0001-26-000001"],
-                "primaryDocument": ["q1.htm", "annual.htm"],
-            }}
-        }
-        filing = MODULE.latest_annual_filing(submissions, ["10-K"])
-        self.assertIsNotNone(filing)
-        self.assertEqual(filing["primary_document"], "annual.htm")
-
-    def test_extracts_activity_and_segment_statements(self):
-        text = """
-        Item 1. Business
-        We operate through three reportable segments: Cloud Services, Retail Stores, and Logistics Operations.
-        We provide cloud infrastructure and distribute consumer products through physical and online stores.
-        Item 1A. Risk Factors
-        Risks are described here.
-        """
-        statements, segments = MODULE.extract_statements(text)
-        self.assertTrue(statements)
-        self.assertTrue(segments)
-        self.assertNotIn("Risks are described", " ".join(statements))
+    def test_sic_description_mapping_is_low_confidence(self):
+        concepts = [{
+            "concept_id": "AMACS-CAP-000001",
+            "label": "Petroleum refining",
+            "definition": "Refine crude petroleum.",
+            "parent_id": "AMACS-FAM-000001",
+            "terms": ["Petroleum refining"],
+        }]
+        mappings = MODULE.lexical_mappings("PETROLEUM REFINING", concepts)
+        self.assertEqual(mappings[0]["concept_id"], "AMACS-CAP-000001")
+        self.assertEqual(mappings[0]["confidence"], "low")
 
     def test_no_profile_assertion_path(self):
         source = (ROOT / "scripts" / "analyze_fortune_500.py").read_text(encoding="utf-8")
