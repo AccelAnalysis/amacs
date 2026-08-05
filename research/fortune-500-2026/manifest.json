@@ -1,6 +1,7 @@
 {
   "corpus_id": "fortune-500-2026",
   "edition": "2026",
+  "observed_at": "2026-08-05T18:12:54Z",
   "parent_corpus_manifest": "research/fortune-1000-2026/manifest.json",
   "scope": "Positions 1 through 500 in the current 2026 Fortune ranking, revisited for entity resolution and AMACS taxonomy-depth testing rather than repeated primary-industry triage.",
   "expected_organization_count": 500,
@@ -19,6 +20,12 @@
   },
   "entity_overrides": "research/fortune-500-2026/entity-overrides.json",
   "primary_activity_map": "research/fortune-1000-2026/primary-activity-map.json",
+  "governed_outputs": {
+    "observations": "organization-taxonomy-observations.jsonl",
+    "crosswalk_candidates": "external-classification-crosswalk-candidates.jsonl",
+    "identity_candidates": "organization-identity-candidates.jsonl",
+    "governance_summary": "governance-summary.json"
+  },
   "minimum_automatic_match_score": 0.94,
   "minimum_candidate_match_score": 0.86,
   "minimum_regulatory_resolution_rate": 0.55,
@@ -27,6 +34,7 @@
     "Regulatory entity matching resolves a likely reporting entity and metadata source, not a production organization profile.",
     "The pinned Datamule files are an SEC-derived mirror, not an SEC-hosted source, and the source chain must remain visible.",
     "Private, mutual, cooperative, governmental, foreign, and otherwise unresolved organizations remain in the analyst review queue rather than being forced to a public-company match.",
+    "External classification categories are governed through crosswalk records and must not be imported as AMACS aliases.",
     "Primary-activity and SIC-description mappings remain taxonomy observations marked not_for_profile_import.",
     "Annual filing text and operating-segment review remains a governed follow-on evidence layer and must not be inferred from the SIC description."
   ]
