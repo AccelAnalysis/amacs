@@ -5,6 +5,7 @@ on:
     paths:
       - ".github/workflows/fortune-500-research.yml"
       - "scripts/analyze_fortune_500.py"
+      - "scripts/run_fortune_500.py"
       - "research/fortune-500-2026/**"
       - "research/fortune-1000-2026/**"
       - "source/**"
@@ -52,7 +53,7 @@ jobs:
             --output /tmp/listed_filer_names.csv.gz
       - name: Run Fortune 500 taxonomy-depth analysis
         run: >-
-          python scripts/analyze_fortune_500.py
+          python scripts/run_fortune_500.py
           --source-file /tmp/fortune-1000-2026.json
           --listed-metadata-file /tmp/listed_filer_metadata.csv.gz
           --listed-names-file /tmp/listed_filer_names.csv.gz
