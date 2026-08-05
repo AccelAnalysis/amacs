@@ -1,0 +1,30 @@
+{
+  "corpus_id": "fortune-500-2026",
+  "edition": "2026",
+  "parent_corpus_manifest": "research/fortune-1000-2026/manifest.json",
+  "scope": "Positions 1 through 500 in the current 2026 Fortune ranking, revisited for reporting-entity resolution and first-party evidence depth rather than repeated primary-industry triage.",
+  "expected_organization_count": 500,
+  "expected_position_min": 1,
+  "expected_position_max": 500,
+  "baseline_amacs_release": "0.3.0",
+  "method": "reporting_entity_and_first_party_evidence_depth",
+  "sec": {
+    "company_tickers_url": "https://www.sec.gov/files/company_tickers.json",
+    "submissions_url_template": "https://data.sec.gov/submissions/CIK{cik}.json",
+    "archive_url_template": "https://www.sec.gov/Archives/edgar/data/{cik_int}/{accession_compact}/{primary_document}",
+    "user_agent": "AccelAnalysis-AMACS/0.3 (https://github.com/AccelAnalysis/amacs)",
+    "accepted_annual_forms": ["10-K", "10-K/A", "20-F", "20-F/A", "40-F", "40-F/A"]
+  },
+  "entity_overrides": "research/fortune-500-2026/entity-overrides.json",
+  "primary_activity_map": "research/fortune-1000-2026/primary-activity-map.json",
+  "minimum_automatic_match_score": 0.94,
+  "minimum_candidate_match_score": 0.86,
+  "minimum_sec_resolution_rate": 0.65,
+  "boundaries": [
+    "The Fortune position establishes cohort membership only; it does not prove any AMACS capability.",
+    "SEC matching resolves a reporting entity and evidence source, not a production organization profile.",
+    "Private, mutual, cooperative, governmental, foreign, and otherwise non-SEC-resolved organizations remain in the review queue and are not forced to a public-company match.",
+    "Extracted filing statements and candidate mappings remain taxonomy observations marked not_for_profile_import.",
+    "Subsidiary, segment, brand, affiliate, and platform-participant activity must not be attributed directly to the parent without an explicit relationship designation."
+  ]
+}
