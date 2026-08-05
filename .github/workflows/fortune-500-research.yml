@@ -16,9 +16,9 @@ permissions:
   contents: read
 
 jobs:
-  evidence-depth-pass:
+  taxonomy-depth-pass:
     runs-on: ubuntu-latest
-    timeout-minutes: 35
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -42,26 +42,25 @@ jobs:
             --user-agent "Mozilla/5.0 (compatible; AMACS taxonomy research; +https://github.com/AccelAnalysis/amacs)" \
             https://us500.com/data/log8.json \
             --output /tmp/fortune-1000-2026.json
-      - name: Retrieve SEC company registry
+      - name: Retrieve pinned SEC-derived entity metadata
         run: |
-          curl --fail --silent --show-error --retry 3 \
-            --header "Accept: application/json" \
-            --user-agent "AccelAnalysis-AMACS/0.3 https://github.com/AccelAnalysis/amacs" \
-            https://www.sec.gov/files/company_tickers.json \
-            --output /tmp/sec-company-tickers.json
-      - name: Run Fortune 500 evidence-depth analysis
+          curl --fail --location --silent --show-error --retry 3 \
+            https://raw.githubusercontent.com/john-friedman/datamule-data/9fa9defaac2eb3ecc3e1a96e4c9153061f1986b3/data/filer_metadata/listed_filer_metadata.csv.gz \
+            --output /tmp/listed_filer_metadata.csv.gz
+          curl --fail --location --silent --show-error --retry 3 \
+            https://raw.githubusercontent.com/john-friedman/datamule-data/9fa9defaac2eb3ecc3e1a96e4c9153061f1986b3/data/filer_metadata/listed_filer_names.csv.gz \
+            --output /tmp/listed_filer_names.csv.gz
+      - name: Run Fortune 500 taxonomy-depth analysis
         run: >-
           python scripts/analyze_fortune_500.py
           --source-file /tmp/fortune-1000-2026.json
-          --sec-tickers-file /tmp/sec-company-tickers.json
+          --listed-metadata-file /tmp/listed_filer_metadata.csv.gz
+          --listed-names-file /tmp/listed_filer_names.csv.gz
           --output dist/research/fortune-500-2026
-          --fetch-filings
-          --max-filings 500
-          --request-delay 0.12
       - name: Upload governed research artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: fortune-500-evidence-depth
+          name: fortune-500-taxonomy-depth
           path: dist/research/fortune-500-2026
           if-no-files-found: error
           retention-days: 30
