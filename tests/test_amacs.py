@@ -31,7 +31,7 @@ class AmacsFoundationTests(unittest.TestCase):
 
     def test_seed_has_broad_market_coverage(self):
         concepts = self.data['concepts']
-        self.assertEqual(sum(record['concept_type'] == 'domain' for record in concepts), 15)
+        self.assertEqual(sum(record['concept_type'] == 'domain' for record in concepts), 16)
         self.assertGreaterEqual(sum(record['concept_type'] == 'family' for record in concepts), 75)
         self.assertGreaterEqual(sum(record['concept_type'] == 'capability' for record in concepts), 350)
 
@@ -39,7 +39,7 @@ class AmacsFoundationTests(unittest.TestCase):
         first = load_dataset('concepts', ROOT)
         second = load_dataset('concepts', ROOT)
         self.assertEqual(first, second)
-        self.assertEqual(len(first), 599)
+        self.assertEqual(len(first), 611)
 
     def test_capabilities_are_matchable_only(self):
         for concept in self.data['concepts']:
@@ -50,6 +50,57 @@ class AmacsFoundationTests(unittest.TestCase):
         aliases = self.data['aliases']
         self.assertGreaterEqual(len(aliases), 150)
         self.assertTrue(all(alias['concept_id'] in capability_ids for alias in aliases))
+
+    def test_standards_market_architecture_capabilities_are_explicit(self):
+        concepts = {record['concept_id']: record for record in self.data['concepts']}
+        domain = concepts['AMACS-DOM-000016']
+        self.assertEqual(domain['preferred_label'], 'Standards, Taxonomy and Market Architecture')
+        self.assertEqual(domain['concept_type'], 'domain')
+        self.assertEqual(domain['version_introduced'], '0.2.0')
+
+        expected = {
+            'AMACS-CAP-000586': ('Taxonomy development', 'AMACS-FAM-000585'),
+            'AMACS-CAP-000587': ('Standards governance', 'AMACS-FAM-000585'),
+            'AMACS-CAP-000588': ('Capability mapping', 'AMACS-FAM-000585'),
+            'AMACS-CAP-000590': ('Evidence architecture', 'AMACS-FAM-000589'),
+            'AMACS-CAP-000591': ('Response architecture', 'AMACS-FAM-000589'),
+            'AMACS-CAP-000592': ('Decision architecture', 'AMACS-FAM-000589'),
+            'AMACS-CAP-000594': ('Controlled taxonomy licensing', 'AMACS-FAM-000593'),
+            'AMACS-CAP-000595': ('Taxonomy API delivery', 'AMACS-FAM-000593'),
+        }
+        for concept_id, (label, parent_id) in expected.items():
+            concept = concepts[concept_id]
+            self.assertEqual(concept['preferred_label'], label)
+            self.assertEqual(concept['primary_parent_id'], parent_id)
+            self.assertEqual(concept['concept_type'], 'capability')
+            self.assertTrue(concept['matchable'])
+            self.assertEqual(concept['version_introduced'], '0.2.0')
+            self.assertEqual(concept['editorial_maturity'], 'reviewed')
+            self.assertGreaterEqual(len(concept['definition']), 80)
+
+        self.assertEqual(concepts['AMACS-CAP-000145']['version_introduced'], '0.1.0')
+
+        relationship_pairs = {
+            (
+                record['source_concept_id'],
+                record['relationship_type'],
+                record['target_concept_id'],
+                record['version_introduced'],
+            )
+            for record in self.data['relationships']
+        }
+        self.assertIn(
+            ('AMACS-CAP-000586', 'commonly_combined_with', 'AMACS-CAP-000587', '0.2.0'),
+            relationship_pairs,
+        )
+        self.assertIn(
+            ('AMACS-CAP-000591', 'commonly_combined_with', 'AMACS-CAP-000592', '0.2.0'),
+            relationship_pairs,
+        )
+        self.assertIn(
+            ('AMACS-CAP-000594', 'commonly_combined_with', 'AMACS-CAP-000595', '0.2.0'),
+            relationship_pairs,
+        )
 
     def test_request_families_reference_architectures(self):
         response_templates = {record['response_template_id'] for record in self.data['response_templates']}
@@ -167,11 +218,11 @@ class AmacsFoundationTests(unittest.TestCase):
                 cwd=ROOT, capture_output=True, text=True, check=False,
             )
             self.assertEqual(result.returncode, 0, msg=result.stdout + result.stderr)
-            release = Path(temporary) / '0.1.0'
+            release = Path(temporary) / '0.2.0'
             concepts = (release / 'source' / 'concepts.jsonl').read_text(encoding='utf-8').splitlines()
             aliases = (release / 'source' / 'aliases.jsonl').read_text(encoding='utf-8').splitlines()
             manifest = json.loads((release / 'manifest.json').read_text(encoding='utf-8'))
-            self.assertEqual(len(concepts), 599)
+            self.assertEqual(len(concepts), 611)
             self.assertEqual(len(aliases), 185)
             self.assertEqual(manifest['source_commit'], VALID_TEST_COMMIT)
             self.assertTrue((release / 'SHA256SUMS').exists())
@@ -188,7 +239,7 @@ class AmacsFoundationTests(unittest.TestCase):
             ]
             first = subprocess.run(command, cwd=ROOT, capture_output=True, text=True, check=False)
             self.assertEqual(first.returncode, 0, msg=first.stdout + first.stderr)
-            release = Path(temporary) / '0.1.0'
+            release = Path(temporary) / '0.2.0'
             checksums_before = (release / 'SHA256SUMS').read_text(encoding='utf-8')
 
             second = subprocess.run(command, cwd=ROOT, capture_output=True, text=True, check=False)
@@ -210,7 +261,7 @@ class AmacsFoundationTests(unittest.TestCase):
                 cwd=ROOT, capture_output=True, text=True, check=False,
             )
             self.assertEqual(result.returncode, 0, msg=result.stdout + result.stderr)
-            release = Path(temporary) / '0.1.0'
+            release = Path(temporary) / '0.2.0'
             manifest = json.loads((release / 'manifest.json').read_text(encoding='utf-8'))
             self.assertEqual(manifest['source_commit'], expected)
             self.assertRegex(manifest['source_commit'], r'^[0-9a-f]{40}$')
