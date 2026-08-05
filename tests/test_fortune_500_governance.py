@@ -1,7 +1,10 @@
 import importlib.util
+import json
 import sys
 import unittest
 from pathlib import Path
+
+from jsonschema import Draft202012Validator, FormatChecker
 
 ROOT = Path(__file__).resolve().parents[1]
 SPEC = importlib.util.spec_from_file_location(
@@ -46,6 +49,18 @@ class Fortune500GovernanceTests(unittest.TestCase):
         self.assertEqual(governed["status"], "resolved")
         self.assertEqual(governed["match_basis"], "controlled_override")
         self.assertEqual(governed["resolved_identity"]["external_identifiers"]["cik"], "0001018724")
+
+    def test_crosswalk_example_validates(self):
+        schema = json.loads((ROOT / "schemas" / "external-classification-crosswalk.schema.json").read_text(encoding="utf-8"))
+        example = json.loads((ROOT / "examples" / "external-classification-crosswalk.example.json").read_text(encoding="utf-8"))
+        errors = list(Draft202012Validator(schema, format_checker=FormatChecker()).iter_errors(example))
+        self.assertEqual(errors, [])
+
+    def test_identity_example_validates(self):
+        schema = json.loads((ROOT / "schemas" / "organization-identity.schema.json").read_text(encoding="utf-8"))
+        example = json.loads((ROOT / "examples" / "organization-identity.example.json").read_text(encoding="utf-8"))
+        errors = list(Draft202012Validator(schema, format_checker=FormatChecker()).iter_errors(example))
+        self.assertEqual(errors, [])
 
 
 if __name__ == "__main__":
