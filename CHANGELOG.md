@@ -2,6 +2,21 @@
 
 All notable AMACS changes will be documented here.
 
+## [0.2.0] - 2026-08-05
+
+### Added
+
+- Added the Standards, Taxonomy and Market Architecture domain.
+- Added explicit matchable capabilities for taxonomy development, standards governance, capability mapping, evidence architecture, response architecture, decision architecture, controlled taxonomy licensing, and taxonomy API delivery.
+- Added three browseable capability families separating standards engineering, market architecture, and licensing/API delivery.
+- Added governed relationships connecting the new capabilities into common commercial delivery combinations.
+- Added regression coverage for the new identifiers, hierarchy, version provenance, relationships, and release counts.
+- Added commercial-capability guidance distinguishing AMACS operating machinery from AMACS-classified market services.
+
+### Changed
+
+- Advanced the governed development release from `0.1.0` to `0.2.0` without modifying the immutable `0.1.0` release.
+
 ## [0.1.0] - 2026-08-03
 
 ### Added
