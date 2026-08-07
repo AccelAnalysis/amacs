@@ -1,0 +1,24 @@
+{
+  "overrides": {
+    "Amazon": {
+      "cik": "0001018724",
+      "sec_name": "AMAZON COM INC",
+      "reason": "The ranking display name omits the .com element used in the SEC registrant name."
+    },
+    "ExxonMobil Holdings": {
+      "cik": "0000034088",
+      "sec_name": "EXXON MOBIL CORP",
+      "reason": "The ranking display name differs from the SEC reporting entity name."
+    },
+    "Fannie Mae": {
+      "cik": "0000310522",
+      "sec_name": "FEDERAL NATIONAL MORTGAGE ASSOCIATION FANNIE MAE",
+      "reason": "The ranking uses the common enterprise name rather than the full SEC registrant name."
+    },
+    "Freddie Mac": {
+      "cik": "0001026214",
+      "sec_name": "FEDERAL HOME LOAN MORTGAGE CORP",
+      "reason": "The ranking uses the common enterprise name rather than the full SEC registrant name."
+    }
+  }
+}
