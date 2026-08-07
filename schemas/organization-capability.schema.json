@@ -17,6 +17,23 @@
       "type": "string",
       "minLength": 1
     },
+    "organization_identity_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Optional resolved identity reference for the entity that possesses the capability."
+    },
+    "entity_scope": {
+      "type": "string",
+      "enum": [
+        "reporting_entity",
+        "legal_entity",
+        "operating_segment",
+        "subsidiary",
+        "brand",
+        "unknown"
+      ],
+      "description": "The entity scope to which this capability assertion applies."
+    },
     "concept_id": {
       "type": "string",
       "pattern": "^AMACS-CAP-\\d{6}$"
@@ -37,6 +54,15 @@
         "suspended"
       ]
     },
+    "market_role_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^AMACS-MROLE-\\d{6}$"
+      },
+      "description": "How the organization participates in the market relative to this capability; distinct from RFx team-delivery role."
+    },
     "delivery_roles": {
       "type": "array",
       "items": {
@@ -49,10 +75,21 @@
         ]
       }
     },
+    "evidence_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 240
+      },
+      "description": "References to evidence records supporting, qualifying, or contradicting the capability assertion."
+    },
     "property_values": {
       "type": "array",
       "items": {
         "type": "object",
+        "additionalProperties": false,
         "required": [
           "property_id",
           "value",
