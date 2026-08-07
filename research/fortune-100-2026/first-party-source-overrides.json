@@ -10,7 +10,7 @@
       "market_role_ids": ["AMACS-MROLE-000010","AMACS-MROLE-000013","AMACS-MROLE-000003"],
       "entity_scope_note": "The group expressly states that insurance operations consist of multiple property-and-casualty and life companies managed at affiliate level."
     },
-    "New York Life": {
+    "New York Life Insurance": {
       "sources": [
         {"title":"2025 Report to Policy Owners","url":"https://www.newyorklife.com/report-to-policy-owners","source_type":"annual_report"}
       ],
