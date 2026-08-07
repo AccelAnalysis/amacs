@@ -1,0 +1,35 @@
+{
+  "corpus_id": "fortune-100-2026",
+  "edition": "2026",
+  "observed_at": "2026-08-07T20:30:00Z",
+  "parent_corpus_manifest": "research/fortune-500-2026/manifest.json",
+  "authoritative_reference_url": "https://fortune.com/ranking/fortune500/2026/",
+  "scope": "Ranks 1 through 100 in the current 2026 Fortune 500, revisited as the deepest AMACS architecture-validation cohort.",
+  "expected_organization_count": 100,
+  "expected_position_min": 1,
+  "expected_position_max": 100,
+  "baseline_amacs_release": "0.3.0",
+  "candidate_amacs_release": "0.4.0",
+  "method": "deep_market_architecture_review",
+  "market_role_map": "research/fortune-100-2026/industry-market-role-map.json",
+  "first_party_overrides": "research/fortune-100-2026/first-party-source-overrides.json",
+  "architecture_tests": [
+    "organization_identity_and_entity_scope",
+    "capability_representation",
+    "market_role_representation",
+    "capability_evidence_linkage",
+    "requirement_architecture",
+    "response_architecture",
+    "decision_architecture",
+    "outcome_architecture",
+    "outcome_learning_guardrail"
+  ],
+  "boundaries": [
+    "Fortune rank and external industry labels establish research context only and do not prove a capability.",
+    "Market-role candidates are research classifications and are not production organization assertions.",
+    "A parent organization does not inherit a subsidiary or operating segment capability without explicit entity scope.",
+    "First-party sources may support taxonomy and architecture review but do not bypass production authority or verification requirements.",
+    "Outcome observations are separate from capability assertions and may influence future matching or standards only after governed aggregate-learning review.",
+    "No Fortune 100 research record may be imported directly into a production organization profile."
+  ]
+}
