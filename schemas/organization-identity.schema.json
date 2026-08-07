@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://amacs.accelanalysis.com/schemas/organization-identity.schema.json",
+  "title": "Organization Identity Record",
+  "description": "A governed representation of organization names, identifiers, entity type, and relationships. Identity resolution is distinct from an organization capability assertion.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["identity_id","preferred_name","organization_type","names","external_identifiers","relationships","verification_status","sources","status","version_introduced","profile_import_status"],
+  "properties": {
+    "identity_id": {"type": "string", "minLength": 1, "maxLength": 220},
+    "preferred_name": {"type": "string", "minLength": 1, "maxLength": 300},
+    "organization_type": {"type": "string", "enum": ["reporting_entity","legal_entity","operating_segment","subsidiary","brand","government_body","mutual","cooperative","nonprofit","other","unknown"]},
+    "names": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false, "required": ["name_type","value"],
+        "properties": {
+          "name_type": {"type": "string", "enum": ["legal_name","trade_name","acronym","former_name","ranking_display_name","regulatory_name","brand_name","other"]},
+          "value": {"type": "string", "minLength": 1, "maxLength": 300},
+          "valid_from": {"type": "string", "format": "date"},
+          "valid_to": {"type": "string", "format": "date"},
+          "source_reference": {"type": "string", "minLength": 1, "maxLength": 300}
+        }
+      }
+    },
+    "external_identifiers": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false, "required": ["scheme","value","issuing_authority"],
+        "properties": {
+          "scheme": {"type": "string", "minLength": 1, "maxLength": 160},
+          "value": {"type": "string", "minLength": 1, "maxLength": 300},
+          "issuing_authority": {"type": "string", "minLength": 1, "maxLength": 300},
+          "status": {"type": "string", "enum": ["current","former","unknown"]}
+        }
+      }
+    },
+    "relationships": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false, "required": ["relationship_type"],
+        "properties": {
+          "relationship_type": {"type": "string", "enum": ["parent_of","subsidiary_of","controlled_by","operating_segment_of","brand_of","affiliate_of","successor_of","predecessor_of","reports_as"]},
+          "target_identity_id": {"type": "string", "minLength": 1, "maxLength": 220},
+          "target_name": {"type": "string", "minLength": 1, "maxLength": 300},
+          "confidence": {"type": "string", "enum": ["low","medium","high"]},
+          "rationale": {"type": "string", "minLength": 10, "maxLength": 2000}
+        },
+        "anyOf": [{"required": ["target_identity_id"]},{"required": ["target_name"]}]
+      }
+    },
+    "verification_status": {"type": "string", "enum": ["research_candidate","self_reported","evidence_supported","independently_verified"]},
+    "sources": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["source_type","title","url","publisher","accessed_at"],
+        "properties": {
+          "source_type": {"type": "string", "enum": ["external_classification","regulatory_metadata_mirror","regulatory_filing","annual_report","company_website","other_public_source"]},
+          "title": {"type": "string", "minLength": 1, "maxLength": 500},
+          "url": {"type": "string", "format": "uri"},
+          "publisher": {"type": "string", "minLength": 1, "maxLength": 300},
+          "accessed_at": {"type": "string", "format": "date-time"},
+          "evidence_locator": {"type": "string", "maxLength": 500},
+          "content_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+        }
+      }
+    },
+    "status": {"type": "string", "enum": ["draft","active","deprecated","merged"]},
+    "version_introduced": {"type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$"},
+    "profile_import_status": {"type": "string", "enum": ["prohibited","pending_review","eligible"]}
+  }
+}
