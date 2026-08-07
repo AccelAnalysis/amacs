@@ -23,7 +23,7 @@
     "base_url": "https://www.annualreports.com",
     "candidate_report_years": [2025, 2026, 2024],
     "maximum_pdf_bytes": 31457280,
-    "maximum_pages_reviewed": 120,
+    "maximum_pages_reviewed": 60,
     "user_agent": "AccelAnalysis-AMACS/0.3 (+https://github.com/AccelAnalysis/amacs)",
     "provenance_note": "AnnualReports.com is used only as a document host. A retrieved report is treated as company-authored first-party evidence only when the document itself identifies the resolved organization as registrant or author."
   },
