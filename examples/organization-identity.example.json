@@ -1,0 +1,30 @@
+{
+  "identity_id": "AMACS-ORGID-CAND-F500-2026-001",
+  "preferred_name": "AMAZON COM INC",
+  "organization_type": "reporting_entity",
+  "names": [
+    {"name_type": "ranking_display_name", "value": "Amazon", "source_reference": "fortune-500-2026"},
+    {"name_type": "regulatory_name", "value": "AMAZON COM INC", "source_reference": "pinned-sec-derived-mirror"}
+  ],
+  "external_identifiers": [
+    {"scheme": "fortune_rank_2026", "value": "1", "issuing_authority": "US500", "status": "current"},
+    {"scheme": "sec_cik", "value": "0001018724", "issuing_authority": "U.S. Securities and Exchange Commission", "status": "current"},
+    {"scheme": "ticker", "value": "AMZN", "issuing_authority": "SEC-derived listed filer metadata", "status": "current"}
+  ],
+  "relationships": [],
+  "verification_status": "research_candidate",
+  "sources": [
+    {
+      "source_type": "external_classification",
+      "title": "2026 Fortune 1000 machine-readable roster and primary activity classification",
+      "url": "https://us500.com/fortune-1000-companies",
+      "publisher": "US500",
+      "accessed_at": "2026-08-05T16:00:00Z",
+      "evidence_locator": "Position 1; primary activity field",
+      "content_sha256": "16aff4ed3c2117f29c242ed81368b1e38019bd5597d7990a34af03bd5163ea0f"
+    }
+  ],
+  "status": "draft",
+  "version_introduced": "0.3.0",
+  "profile_import_status": "prohibited"
+}
