@@ -1,83 +1,96 @@
-# Fortune 500 taxonomy-depth validation
+# Fortune 500 taxonomy-depth and evidence validation
 
 ## Purpose
 
-The Fortune 500 stage revisits the first 500 records from the governed 2026 Fortune 1000 corpus. It does not repeat the primary-industry breadth classification. It tests whether AMACS can preserve external classification semantics, resolve organization identity without forcing false matches, and distinguish taxonomy observations from organization capability assertions.
+The Fortune 500 stage revisits ranks 1–500 from the governed 2026 Fortune 1000 corpus at greater depth. It does not repeat the breadth classification. It tests whether AMACS can preserve external-classification semantics, resolve organization identity without forcing false matches, represent operating-segment scope, attach first-party evidence without confusing document authorship and hosting, and distinguish taxonomy research from production capability assertions.
 
-## Automated pass
+## Governed method
 
-The governed workflow:
+The completed workflow:
 
-1. verifies the pinned Fortune 1000 source and selects exactly ranks 1–500;
-2. resolves likely reporting entities using exact normalization, compact-name matching, controlled overrides, current and former regulatory names, and conservative fuzzy candidates;
-3. distinguishes resolved, candidate, ambiguous, and unresolved entity matches;
-4. carries CIK, ticker, SIC, entity type, and exchange metadata only when a reporting entity is resolved;
-5. maps external primary-activity categories and SEC-derived SIC descriptions to low-confidence AMACS candidates;
-6. transforms every raw record into the organization taxonomy observation schema;
-7. emits separate external-classification crosswalk and organization-identity candidates; and
-8. validates that no external category becomes an AMACS alias and no organization profile or capability assertion is created.
+1. verifies the pinned 2026 Fortune corpus and selects exactly ranks 1–500;
+2. resolves likely reporting entities using exact, compact, acronym, former-name, controlled-override, and conservative fuzzy matching against a pinned SEC-derived metadata mirror;
+3. emits separate organization-identity and external-classification crosswalk candidates;
+4. treats Fortune industry and SIC descriptions as crosswalk evidence rather than AMACS aliases or organization capability evidence;
+5. attempts bounded review of the company-authored 2025 annual report for every resolved listed organization using a document mirror as host only;
+6. verifies document attribution before extracting activity language or operating-segment observations;
+7. maps extracted first-party activity statements to AMACS only as research candidates;
+8. records a terminal disposition when evidence is unavailable, identity is unresolved, or safe extraction is not possible; and
+9. fails completion unless every rank 1–500 has exactly one schema-valid terminal review.
 
-The regulatory metadata source is a pinned third-party mirror built from the SEC submissions bulk archive. Every generated record preserves that source chain. The mirror is not represented as an SEC-hosted source.
-
-Run the complete pass with:
-
-```bash
-python scripts/run_fortune_500.py \
-  --source-file /path/to/fortune-1000-2026.json \
-  --listed-metadata-file /path/to/listed_filer_metadata.csv.gz \
-  --listed-names-file /path/to/listed_filer_names.csv.gz \
-  --output dist/research/fortune-500-2026
-
-python scripts/govern_fortune_500_artifacts.py \
-  --input-dir dist/research/fortune-500-2026
-```
+No generated corpus record is eligible for direct production profile import.
 
 ## Completed results
 
-The governed pass processed all 500 organizations and produced:
+The final completion gate passed with exactly 500 records, ranks 1–500, no missing ranks, and no duplicates.
 
-- 433 resolved reporting entities, including 430 automatic matches and 3 controlled overrides;
-- 8 ambiguous, 10 candidate, and 49 unresolved identities;
-- 65 external primary-activity labels;
-- 33 compound or catch-all labels;
-- 31 labels that map to more than one AMACS capability;
-- 112 draft external-classification crosswalk candidates;
-- 500 draft organization-identity candidates;
-- 426 observations requiring crosswalk treatment;
-- 67 observations requiring identity resolution; and
-- 7 simple category observations that still lack capability-level evidence.
+### Organization identity
 
-All 500 observations, all 112 crosswalk candidates, and all 500 identity candidates pass their schemas. Zero external categories are imported as aliases, zero organization profiles are created, and zero organization capability assertions are created.
+- 445 organizations resolved to a reporting identity;
+- 2 remained ambiguous;
+- 8 remained candidate matches; and
+- 45 remained unresolved.
+
+Unresolved identity is a valid completed research disposition. Private, mutual, cooperative, foreign, or otherwise non-listed structures are not forced into a public-company match.
+
+### First-party evidence
+
+- 33 attributable 2025 annual reports were reviewed;
+- 32 organizations yielded extractable activity statements;
+- 653 bounded first-party activity statements were captured;
+- 12 organizations yielded operating-segment observations;
+- 63 operating segments were identified; and
+- 31 organizations produced AMACS candidate mappings from first-party activity language, totaling 330 candidate mappings.
+
+Terminal evidence dispositions across the full cohort were:
+
+- 32 `annual_report_reviewed`;
+- 1 `annual_report_found_no_extractable_activity`;
+- 410 `annual_report_unavailable`;
+- 2 `evidence_error`; and
+- 55 `identity_unresolved`.
+
+`annual_report_unavailable` means the bounded automated evidence path did not locate an attributable 2025 report under the governed retrieval method. It is not a statement that the organization has no annual report or that no other first-party evidence exists.
+
+### AMACS gap signals
+
+The completed pass produced:
+
+- 15 crosswalk-conflict cases, where first-party activity language diverged from the coarse external primary-activity proxy;
+- 1 capability-granularity case requiring semantic review;
+- 2 document-extraction/evidence-model exceptions; and
+- 17 reviewed organizations with no additional structural gap signal.
+
+The single capability-granularity case was Allstate. This is materially different from the Fortune 1000 breadth pass: at Fortune 500 depth, the dominant findings were structural rather than a broad absence of capability vocabulary.
 
 ## AMACS refinements established by the pass
 
 ### External classification crosswalks
 
-An external industry, commodity, occupation, regulatory, or ranking category is not automatically an AMACS synonym. The crosswalk model records the source scheme, source entry, target capability, mapping relation, confidence, rationale, provenance, and review status. It supports exact, close, broad, narrow, and related mappings without contaminating governed AMACS aliases.
+External industry, commodity, occupational, regulatory, ranking, or similar categories are not automatically AMACS synonyms. The crosswalk model preserves source scheme, source entry, target capability, mapping relation, confidence, rationale, provenance, and review status. It supports exact, close, broad, narrow, and related mappings while explicitly prohibiting alias import.
 
 ### Organization identity
 
-AMACS now has a model for legal, regulatory, trade, acronym, former, ranking-display, segment, subsidiary, and brand identities. It also separates external identifiers and entity relationships from capability assertions. This is required for organizations represented by acronyms, former names, mutual structures, brands, reporting entities, or operating segments.
+AMACS now has a research model for ranking-display, legal, regulatory, trade, acronym, former, segment, subsidiary, and brand identities, together with external identifiers and organization relationships. Identity resolution remains separate from capability assertion.
 
-### Semantic mapping safeguards
+### Evidence author/host separation
 
-SIC descriptions and other external labels are taxonomy evidence, not capability evidence. Lexical overlap can generate false candidates; for example, words such as hospital, construction, or real estate may describe a regulatory category without proving the corresponding AMACS capability. These mappings therefore remain low-confidence, relationship-unknown observations pending semantic and domain review.
+A mirrored first-party document must distinguish the organization that authored or issued the evidence from the service that hosts the file. This prevents a document mirror from being misrepresented as the evidentiary authority.
 
-## Remaining evidence layer
+### Operating-segment representation
 
-Live SEC endpoints denied requests from GitHub-hosted runners during this pass. The current automated corpus therefore completes reporting-entity resolution and taxonomy-depth analysis using the pinned SEC-derived metadata mirror, but it does not claim to have completed annual-filing business-section and operating-segment extraction. First-party filing and annual-report evidence remains a separate governed review layer and must not be inferred from SIC metadata.
+Operating-segment activity is represented explicitly as an entity relationship rather than being attributed automatically to the parent reporting entity. The Fortune 500 pass observed 63 segments across 12 organizations and established this as a recurring structural need.
 
-## Review batches
+### Semantic safeguards
 
-The 500 records remain organized in ten rank batches of 50. Review priority is increased for:
+External classifications and lexical overlap remain taxonomy evidence, not proof of capability. The 15 crosswalk conflicts show why company-authored activity language must be allowed to disagree with a coarse industry label without either source being silently overwritten.
 
-- unresolved or ambiguous identities;
-- conglomerates and organizations with several reportable segments;
-- external categories that map to several AMACS concepts;
-- SIC candidates that conflict with the primary-activity mapping;
-- parent, segment, subsidiary, affiliate, or platform relationships that cannot yet be represented cleanly; and
-- activities that appear to require a new property, role, evidence type, or relationship rather than a new capability.
+## Completion semantics
+
+The Fortune 500 stage is complete because every organization reached a governed terminal review disposition, not because every organization had equal public evidence availability. Missing public evidence, unresolved identity, and safe-extraction failure remain visible limitations rather than being converted into inferred capabilities.
+
+The Fortune 100 stage builds on this completed baseline with deeper multi-source evidence, segment/subsidiary architecture, market-role testing, capability/evidence linkage, response and decision architecture, and outcome-learning representation.
 
 ## Promotion rule
 
-Frequency identifies where to look; it does not authorize a new concept. A proposed AMACS refinement must be semantically distinct, reusable outside the Fortune corpus, placed in the correct hierarchy, defined in original AMACS language, and reviewed under the normal release process.
+Frequency identifies where to investigate; it does not authorize a new concept. Any AMACS refinement must be semantically distinct, reusable outside the Fortune corpus, placed in the correct architecture, written in original AMACS language, and pass normal governance and domain review before production promotion.
