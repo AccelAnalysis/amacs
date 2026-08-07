@@ -1,0 +1,74 @@
+{
+  "reviewed_at": "2026-08-07T20:30:00Z",
+  "entries": {
+    "State Farm Insurance": {
+      "sources": [
+        {"title":"State Farm Reports 2025 Financial Results","url":"https://newsroom.statefarm.com/state-farm-reports-2025-financial-results/","source_type":"company_website"},
+        {"title":"State Farm Annual Report","url":"https://www.statefarm.com/about-us/company-overview/annual-reports","source_type":"annual_report"}
+      ],
+      "activity_summary": "The State Farm group reports property and casualty insurance, life insurance, health insurance, investment planning services, and third-party financial products through separately managed affiliates.",
+      "market_role_ids": ["AMACS-MROLE-000010","AMACS-MROLE-000013","AMACS-MROLE-000003"],
+      "entity_scope_note": "The group expressly states that insurance operations consist of multiple property-and-casualty and life companies managed at affiliate level."
+    },
+    "New York Life": {
+      "sources": [
+        {"title":"2025 Report to Policy Owners","url":"https://www.newyorklife.com/report-to-policy-owners","source_type":"annual_report"}
+      ],
+      "activity_summary": "New York Life describes its mutual-company mission as helping families and businesses achieve financial security through insurance, annuity, investment, and advisor-supported financial solutions.",
+      "market_role_ids": ["AMACS-MROLE-000010","AMACS-MROLE-000013","AMACS-MROLE-000003"],
+      "entity_scope_note": "The reviewed source is issued to policy owners by the mutual company and is not dependent on a listed-company SEC identity."
+    },
+    "Nationwide": {
+      "sources": [
+        {"title":"2025 Nationwide Annual Report","url":"https://www.nationwide.com/cps/annual-report/index.html","source_type":"annual_report"},
+        {"title":"2025 Nationwide Annual Report — Products and Rankings","url":"https://www.nationwide.com/cps/annual-report/products-and-rankings.html","source_type":"company_website"}
+      ],
+      "activity_summary": "Nationwide reports a deliberately diversified mutual portfolio spanning personal and commercial insurance, specialty and reinsurance, annuities, life insurance, retirement solutions, group benefits, investment management, and agribusiness.",
+      "market_role_ids": ["AMACS-MROLE-000010","AMACS-MROLE-000013","AMACS-MROLE-000003"],
+      "entity_scope_note": "Nationwide distinguishes the mutual parent, life entities, property-and-casualty affiliates, and diversified product businesses."
+    },
+    "Publix Super Markets": {
+      "sources": [
+        {"title":"Publix 2025 Annual Report on Form 10-K","url":"https://www.publixstockholder.com/financial-information-and-filings/sec-filings/sec-document/%7BFEE9FA1A-4FA8-4C9D-9B4E-3EF043F39D07%7D/html","source_type":"regulatory_filing"}
+      ],
+      "activity_summary": "Publix is an employee-owned supermarket operator and retailer whose 2025 Form 10-K provides first-party reporting even though its common stock is not publicly traded on a national exchange.",
+      "market_role_ids": ["AMACS-MROLE-000005","AMACS-MROLE-000004"],
+      "entity_scope_note": "Private ownership does not prevent first-party regulatory evidence or a resolved legal reporting entity."
+    },
+    "USAA": {
+      "sources": [
+        {"title":"2025 Annual Report to Members","url":"https://www.usaa.com/about/annual-report-members/?akredirect=true","source_type":"annual_report"}
+      ],
+      "activity_summary": "USAA reports member-focused insurance, banking, payments and credit-card services, catastrophe claims support, and digital account servicing for the military community.",
+      "market_role_ids": ["AMACS-MROLE-000010","AMACS-MROLE-000011","AMACS-MROLE-000012","AMACS-MROLE-000003"],
+      "entity_scope_note": "The USAA association operates through multiple regulated financial and insurance entities while presenting a unified member experience."
+    },
+    "TIAA": {
+      "sources": [
+        {"title":"TIAA Retirement Income, Planning, Investing, and Advice","url":"https://www.tiaa.org/","source_type":"company_website"},
+        {"title":"TIAA Privacy Notice — The TIAA Companies","url":"https://www.tiaa.org/public/support/privacy/privacy-notice","source_type":"company_website"}
+      ],
+      "activity_summary": "TIAA and affiliated companies provide retirement annuities, investment management, securities distribution, advisory, trust and custody services, and related retirement-income solutions through distinct regulated entities and the Nuveen investment-management family.",
+      "market_role_ids": ["AMACS-MROLE-000010","AMACS-MROLE-000012","AMACS-MROLE-000013","AMACS-MROLE-000003"],
+      "entity_scope_note": "TIAA's own disclosure enumerates insurance, investment-company, investment-adviser, securities-distribution, trust-bank, and wealth-management entities under the shared corporate identity."
+    },
+    "Liberty Mutual Insurance Group": {
+      "sources": [
+        {"title":"Liberty Mutual Business Summary","url":"https://www.libertymutualgroup.com/about-lm/corporate-information/business-summary","source_type":"company_website"},
+        {"title":"Liberty Mutual Financial Reports","url":"https://www.libertymutualgroup.com/about-lm/investor-relations/financial-reports","source_type":"company_website"}
+      ],
+      "activity_summary": "Liberty Mutual describes three major business units: Personal Insurance Lines, Commercial Insurance Lines including specialty, surety and reinsurance, and Liberty Mutual Investments managing the group's financial assets.",
+      "market_role_ids": ["AMACS-MROLE-000010","AMACS-MROLE-000013","AMACS-MROLE-000003"],
+      "entity_scope_note": "Business-unit and subsidiary scope is essential because personal insurance, commercial insurance, reinsurance, and investment activities are not a single undifferentiated parent capability."
+    },
+    "Massachusetts Mutual Life": {
+      "sources": [
+        {"title":"MassMutual 2025 Financial Summary and Annual Report","url":"https://www.massmutual.com/about-us/massmutual-financial-summary","source_type":"annual_report"},
+        {"title":"MassMutual 2025 Annual Report PDF","url":"https://www.massmutual.com/global/media/shared/doc/financial-documents/annual-reports/2025_annual_report.pdf","source_type":"annual_report"}
+      ],
+      "activity_summary": "MassMutual reports life insurance, annuities, investment and asset-management activities, including affiliated businesses such as Barings and MassMutual Ascend, and publishes consolidated and entity-specific statutory reporting.",
+      "market_role_ids": ["AMACS-MROLE-000010","AMACS-MROLE-000013","AMACS-MROLE-000003"],
+      "entity_scope_note": "The reporting distinguishes the mutual parent, subsidiaries, affiliated asset managers, annuity businesses, and separate statutory insurance entities."
+    }
+  }
+}
