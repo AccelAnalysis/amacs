@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://amacs.accelanalysis.com/schemas/organization-market-architecture-review.schema.json",
+  "title": "Organization Market Architecture Review",
+  "description": "A research-only review used to test whether AMACS can represent a complex organization's identity scope, capabilities, market roles, evidence, requirements, responses, decisions, outcomes, and learning safeguards.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["review_id","organization","corpus","source_activity","complexity","capability_candidates","market_role_candidates","evidence_status","architecture_tests","baseline_gap_signals","current_gap_signals","review_status","not_for_profile_import"],
+  "properties": {
+    "review_id": {"type": "string", "minLength": 1, "maxLength": 220},
+    "organization": {
+      "type": "object", "additionalProperties": false,
+      "required": ["name","position","identity_id"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1, "maxLength": 300},
+        "position": {"type": "integer", "minimum": 1, "maximum": 100},
+        "identity_id": {"type": "string", "minLength": 1, "maxLength": 240},
+        "identity_resolution_status": {"type": "string", "enum": ["resolved","candidate","ambiguous","unresolved","first_party_override"]}
+      }
+    },
+    "corpus": {
+      "type": "object", "additionalProperties": false,
+      "required": ["corpus_id","edition","memberships"],
+      "properties": {
+        "corpus_id": {"const": "fortune-100-2026"},
+        "edition": {"const": "2026"},
+        "memberships": {"type": "array", "uniqueItems": true, "minItems": 3, "items": {"type": "string"}}
+      }
+    },
+    "source_activity": {"type": "string", "minLength": 1, "maxLength": 300},
+    "complexity": {
+      "type": "object", "additionalProperties": false,
+      "required": ["compound_or_catch_all","candidate_capability_count","multi_capability","first_party_override_available"],
+      "properties": {
+        "compound_or_catch_all": {"type": "boolean"},
+        "candidate_capability_count": {"type": "integer", "minimum": 1},
+        "multi_capability": {"type": "boolean"},
+        "first_party_override_available": {"type": "boolean"},
+        "observed_segment_count": {"type": "integer", "minimum": 0}
+      }
+    },
+    "capability_candidates": {
+      "type": "array", "minItems": 1, "uniqueItems": true,
+      "items": {"type": "string", "pattern": "^AMACS-CAP-\\d{6}$"}
+    },
+    "market_role_candidates": {
+      "type": "array", "minItems": 1, "uniqueItems": true,
+      "items": {"type": "string", "pattern": "^AMACS-MROLE-\\d{6}$"}
+    },
+    "evidence_status": {
+      "type": "object", "additionalProperties": false,
+      "required": ["disposition","source_count"],
+      "properties": {
+        "disposition": {"type": "string", "enum": ["fortune500_evidence_reviewed","fortune500_evidence_unavailable","fortune500_evidence_error","first_party_override_reviewed","identity_unresolved"]},
+        "source_count": {"type": "integer", "minimum": 0},
+        "first_party_activity_summary": {"type": "string", "maxLength": 2000},
+        "entity_scope_note": {"type": "string", "maxLength": 2000}
+      }
+    },
+    "architecture_tests": {
+      "type": "object", "additionalProperties": false,
+      "required": ["organization_identity_and_entity_scope","capability_representation","market_role_representation","capability_evidence_linkage","requirement_architecture","response_architecture","decision_architecture","outcome_architecture","outcome_learning_guardrail"],
+      "properties": {
+        "organization_identity_and_entity_scope": {"$ref": "#/$defs/test_result"},
+        "capability_representation": {"$ref": "#/$defs/test_result"},
+        "market_role_representation": {"$ref": "#/$defs/test_result"},
+        "capability_evidence_linkage": {"$ref": "#/$defs/test_result"},
+        "requirement_architecture": {"$ref": "#/$defs/test_result"},
+        "response_architecture": {"$ref": "#/$defs/test_result"},
+        "decision_architecture": {"$ref": "#/$defs/test_result"},
+        "outcome_architecture": {"$ref": "#/$defs/test_result"},
+        "outcome_learning_guardrail": {"$ref": "#/$defs/test_result"}
+      }
+    },
+    "baseline_gap_signals": {
+      "type": "array", "uniqueItems": true,
+      "items": {"type": "string", "enum": ["entity_scoped_capability","market_role","explicit_evidence_linkage","outcome_architecture","outcome_learning_guardrail"]}
+    },
+    "current_gap_signals": {
+      "type": "array", "uniqueItems": true,
+      "items": {"type": "string", "enum": ["entity_scoped_capability","market_role","explicit_evidence_linkage","outcome_architecture","outcome_learning_guardrail","capability_granularity","identity_resolution","evidence_availability","none"]}
+    },
+    "review_status": {"type": "string", "enum": ["machine_reviewed","analyst_reviewed","domain_reviewed"]},
+    "not_for_profile_import": {"const": true}
+  },
+  "$defs": {
+    "test_result": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status","rationale"],
+      "properties": {
+        "status": {"type": "string", "enum": ["represented","partial","missing","not_applicable"]},
+        "rationale": {"type": "string", "minLength": 10, "maxLength": 1200}
+      }
+    }
+  }
+}
