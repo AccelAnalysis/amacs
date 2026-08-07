@@ -1,0 +1,400 @@
+{
+  "map_id": "fortune-1000-2026-primary-activity",
+  "source_field": "industry",
+  "baseline_amacs_release": "0.2.0",
+  "candidate_amacs_release": "0.3.0",
+  "entries": [
+    {
+      "source_label": "Advertising, marketing",
+      "baseline_status": "direct",
+      "candidate_concept_ids": ["AMACS-CAP-000380", "AMACS-CAP-000383"]
+    },
+    {
+      "source_label": "Aerospace & Defense",
+      "baseline_status": "partial",
+      "candidate_concept_ids": ["AMACS-CAP-000599"]
+    },
+    {
+      "source_label": "Airlines",
+      "baseline_status": "gap",
+      "candidate_concept_ids": ["AMACS-CAP-000697"]
+    },
+    {
+      "source_label": "Apparel",
+      "baseline_status": "gap",
+      "candidate_concept_ids": ["AMACS-CAP-000618"]
+    },
+    {
+      "source_label": "Automotive Retailing, Services",
+      "baseline_status": "partial",
+      "candidate_concept_ids": ["AMACS-CAP-000668", "AMACS-CAP-000441"]
+    },
+    {
+      "source_label": "Beverages",
+      "baseline_status": "direct",
+      "candidate_concept_ids": ["AMACS-CAP-000094"]
+    },
+    {
+      "source_label": "Building Materials, Glass",
+      "baseline_status": "gap",
+      "candidate_concept_ids": ["AMACS-CAP-000615"]
+    },
+    {
+      "source_label": "Chemicals",
+      "baseline_status": "gap",
+      "candidate_concept_ids": ["AMACS-CAP-000609"]
+    },
+    {
+      "source_label": "Commercial Banks",
+      "baseline_status": "partial",
+      "candidate_concept_ids": ["AMACS-CAP-000625"]
+    },
+    {
+      "source_label": "Computer Software",
+      "baseline_status": "partial",
+      "candidate_concept_ids": ["AMACS-CAP-000678"]
+    },
+    {
+      "source_label": "Computers, Office Equipment",
+      "baseline_status": "partial",
+      "candidate_concept_ids": ["AMACS-CAP-000604"]
+    },
+    {
+      "source_label": "Construction and Farm Machinery",
+      "baseline_status": "partial",
+      "candidate_concept_ids": ["AMACS-CAP-000623"]
+    },
+    {
+      "source_label": "Diversified Financials",
+      "baseline_status": "partial",
+      "candidate_concept_ids": ["AMACS-CAP-000630", "AMACS-CAP-000640", "AMACS-CAP-000645"]
+    },
+    {
+      "source_label": "Diversified Outsourcing Services",
+      "baseline_status": "partial",
+      "candidate_concept_ids": ["AMACS-CAP-000726", "AMACS-CAP-000728"]
+    },
+    {
+      "source_label": "Education",
+      "baseline_status": "partial",
+      "candidate_concept_ids": ["AMACS-CAP-000730", "AMACS-CAP-000731", "AMACS-CAP-000732"]
+    },
+    {
+      "source_label": "Electronics, Electrical Equip.",
+      "baseline_status": "direct",
+      "candidate_concept_ids": ["AMACS-CAP-000606", "AMACS-CAP-000073"]
+    },
+    {
+      "source_label": "Energy",
+      "baseline_status": "partial",
+      "candidate_concept_ids": ["AMACS-CAP-000652", "AMACS-CAP-000655", "AMACS-CAP-000656"]
+    },
+    {
+      "source_label": "Engineering & Construction",
+      "baseline_status": "direct",
+      "candidate_concept_ids": ["AMACS-CAP-000002", "AMACS-CAP-000509"]
+    },
+    {
+      "source_label": "Entertainment",
+      "baseline_status": "partial",
+      "candidate_concept_ids": ["AMACS-CAP-000676", "AMACS-CAP-000693", "AMACS-CAP-000694"]
+    },
+    {
+      "source_label": "Equipment Leasing",
+      "baseline_status": "gap",
+      "candidate_concept_ids": ["AMACS-CAP-000647", "AMACS-CAP-000701"]
+    },
+    {
+      "source_label": "Financial Data Services",
+      "baseline_status": "partial",
+      "candidate_concept_ids": ["AMACS-CAP-000645", "AMACS-CAP-000646"]
+    },
+    {
+      "source_label": "Food Consumer Products",
+      "baseline_status": "direct",
+      "candidate_concept_ids": ["AMACS-CAP-000093"]
+    },
+    {
+      "source_label": "Food Production",
+      "baseline_status": "direct",
+      "candidate_concept_ids": ["AMACS-CAP-000093"]
+    },
+    {
+      "source_label": "Food Services",
+      "baseline_status": "direct",
+      "candidate_concept_ids": ["AMACS-CAP-000423", "AMACS-CAP-000673"]
+    },
+    {
+      "source_label": "Food and Drug Stores",
+      "baseline_status": "partial",
+      "candidate_concept_ids": ["AMACS-CAP-000665", "AMACS-CAP-000666"]
+    },
+    {
+      "source_label": "Forest and Paper Products",
+      "baseline_status": "gap",
+      "candidate_concept_ids": ["AMACS-CAP-000616"]
+    },
+    {
+      "source_label": "General Merchandisers",
+      "baseline_status": "partial",
+      "candidate_concept_ids": ["AMACS-CAP-000664"]
+    },
+    {
+      "source_label": "Health Care: Insurance and Managed Care",
+      "baseline_status": "gap",
+      "candidate_concept_ids": ["AMACS-CAP-000708", "AMACS-CAP-000709"]
+    },
+    {
+      "source_label": "Health Care: Medical Facilities",
+      "baseline_status": "partial",
+      "candidate_concept_ids": ["AMACS-CAP-000711", "AMACS-CAP-000712", "AMACS-CAP-000713"]
+    },
+    {
+      "source_label": "Health Care: Pharmacy and Other Services",
+      "baseline_status": "partial",
+      "candidate_concept_ids": ["AMACS-CAP-000666", "AMACS-CAP-000710"]
+    },
+    {
+      "source_label": "Home Equipment, Furnishings",
+      "baseline_status": "gap",
+      "candidate_concept_ids": ["AMACS-CAP-000617"]
+    },
+    {
+      "source_label": "Homebuilders",
+      "baseline_status": "partial",
+      "candidate_concept_ids": ["AMACS-CAP-000716"]
+    },
+    {
+      "source_label": "Hotels, Casinos, Resorts",
+      "baseline_status": "partial",
+      "candidate_concept_ids": ["AMACS-CAP-000674", "AMACS-CAP-000675"]
+    },
+    {
+      "source_label": "Household and Personal Products",
+      "baseline_status": "gap",
+      "candidate_concept_ids": ["AMACS-CAP-000612"]
+    },
+    {
+      "source_label": "Industrial Machinery",
+      "baseline_status": "direct",
+      "candidate_concept_ids": ["AMACS-CAP-000622", "AMACS-CAP-000075"]
+    },
+    {
+      "source_label": "Information Technology Services",
+      "baseline_status": "direct",
+      "candidate_concept_ids": ["AMACS-CAP-000103", "AMACS-CAP-000129"]
+    },
+    {
+      "source_label": "Insurance: Life, Health (Mutual)",
+      "baseline_status": "gap",
+      "candidate_concept_ids": ["AMACS-CAP-000633"]
+    },
+    {
+      "source_label": "Insurance: Life, Health (stock)",
+      "baseline_status": "gap",
+      "candidate_concept_ids": ["AMACS-CAP-000633"]
+    },
+    {
+      "source_label": "Insurance: Property and Casualty (Mutual)",
+      "baseline_status": "gap",
+      "candidate_concept_ids": ["AMACS-CAP-000632"]
+    },
+    {
+      "source_label": "Insurance: Property and Casualty (Stock)",
+      "baseline_status": "gap",
+      "candidate_concept_ids": ["AMACS-CAP-000632"]
+    },
+    {
+      "source_label": "Internet Services and Retailing",
+      "baseline_status": "partial",
+      "candidate_concept_ids": ["AMACS-CAP-000671", "AMACS-CAP-000680", "AMACS-CAP-000681", "AMACS-CAP-000682", "AMACS-CAP-000683"]
+    },
+    {
+      "source_label": "Mail, Package, and Freight Delivery",
+      "baseline_status": "direct",
+      "candidate_concept_ids": ["AMACS-CAP-000208", "AMACS-CAP-000700"]
+    },
+    {
+      "source_label": "Medical Products and Equipment",
+      "baseline_status": "gap",
+      "candidate_concept_ids": ["AMACS-CAP-000611"]
+    },
+    {
+      "source_label": "Metals",
+      "baseline_status": "partial",
+      "candidate_concept_ids": ["AMACS-CAP-000614"]
+    },
+    {
+      "source_label": "Mining, Crude-Oil Production",
+      "baseline_status": "gap",
+      "candidate_concept_ids": ["AMACS-CAP-000650", "AMACS-CAP-000661"]
+    },
+    {
+      "source_label": "Miscellaneous",
+      "baseline_status": "gap",
+      "organization_names": ["Service Corp. International"],
+      "activity_observation": {
+        "source_label": "Funeral, cremation, and cemetery services",
+        "description": "The organization describes itself as a provider of funeral, cremation, and cemetery services.",
+        "method": "explicit_statement"
+      },
+      "supplemental_evidence": [
+        {
+          "source_type": "company_website",
+          "title": "Service Corporation International: Home",
+          "url": "https://www.sci-corp.com/",
+          "publisher": "Service Corporation International",
+          "accessed_at": "2026-08-05T16:00:00Z",
+          "evidence_locator": "Who we are. What we do."
+        }
+      ],
+      "mapping_status": "exact",
+      "confidence": "high",
+      "entity_relationship": "direct",
+      "rationale": "The organization's first-party description expressly identifies funeral, cremation, and cemetery service operations represented by the candidate concepts.",
+      "gap_disposition": "none",
+      "review_status": "analyst_reviewed",
+      "candidate_concept_ids": ["AMACS-CAP-000734", "AMACS-CAP-000735"]
+    },
+    {
+      "source_label": "Motor Vehicles & Parts",
+      "baseline_status": "partial",
+      "candidate_concept_ids": ["AMACS-CAP-000597", "AMACS-CAP-000598"]
+    },
+    {
+      "source_label": "Network and Other Communications Equipment",
+      "baseline_status": "partial",
+      "candidate_concept_ids": ["AMACS-CAP-000605"]
+    },
+    {
+      "source_label": "Oil and Gas Equipment, Services",
+      "baseline_status": "partial",
+      "candidate_concept_ids": ["AMACS-CAP-000653"]
+    },
+    {
+      "source_label": "Packaging, Containers",
+      "baseline_status": "direct",
+      "candidate_concept_ids": ["AMACS-CAP-000084", "AMACS-CAP-000085"]
+    },
+    {
+      "source_label": "Petroleum Refining",
+      "baseline_status": "gap",
+      "candidate_concept_ids": ["AMACS-CAP-000651"]
+    },
+    {
+      "source_label": "Pharmaceuticals",
+      "baseline_status": "gap",
+      "candidate_concept_ids": ["AMACS-CAP-000610"]
+    },
+    {
+      "source_label": "Pipelines",
+      "baseline_status": "gap",
+      "candidate_concept_ids": ["AMACS-CAP-000658", "AMACS-CAP-000659"]
+    },
+    {
+      "source_label": "Publishing, Printing",
+      "baseline_status": "gap",
+      "candidate_concept_ids": ["AMACS-CAP-000690", "AMACS-CAP-000691", "AMACS-CAP-000692"]
+    },
+    {
+      "source_label": "Railroads",
+      "baseline_status": "gap",
+      "candidate_concept_ids": ["AMACS-CAP-000698"]
+    },
+    {
+      "source_label": "Real estate",
+      "baseline_status": "partial",
+      "candidate_concept_ids": ["AMACS-CAP-000715", "AMACS-CAP-000717", "AMACS-CAP-000718", "AMACS-CAP-000719"]
+    },
+    {
+      "source_label": "Scientific,Photographic and  Control Equipment",
+      "baseline_status": "partial",
+      "candidate_concept_ids": ["AMACS-CAP-000607"]
+    },
+    {
+      "source_label": "Securities",
+      "baseline_status": "partial",
+      "candidate_concept_ids": ["AMACS-CAP-000638", "AMACS-CAP-000639", "AMACS-CAP-000640", "AMACS-CAP-000642"]
+    },
+    {
+      "source_label": "Semiconductors and Other Electronic Components",
+      "baseline_status": "gap",
+      "candidate_concept_ids": ["AMACS-CAP-000602", "AMACS-CAP-000603", "AMACS-CAP-000606"]
+    },
+    {
+      "source_label": "Shipping",
+      "baseline_status": "gap",
+      "candidate_concept_ids": ["AMACS-CAP-000699"]
+    },
+    {
+      "source_label": "Specialty Retailers: Apparel",
+      "baseline_status": "partial",
+      "candidate_concept_ids": ["AMACS-CAP-000667"]
+    },
+    {
+      "source_label": "Specialty Retailers: Other",
+      "baseline_status": "partial",
+      "candidate_concept_ids": ["AMACS-CAP-000670"]
+    },
+    {
+      "source_label": "Telecommunications",
+      "baseline_status": "partial",
+      "candidate_concept_ids": ["AMACS-CAP-000685", "AMACS-CAP-000686", "AMACS-CAP-000687", "AMACS-CAP-000688"]
+    },
+    {
+      "source_label": "Tobacco",
+      "baseline_status": "gap",
+      "candidate_concept_ids": ["AMACS-CAP-000619"]
+    },
+    {
+      "source_label": "Toys, Sporting Goods",
+      "baseline_status": "gap",
+      "candidate_concept_ids": ["AMACS-CAP-000620"]
+    },
+    {
+      "source_label": "Transportation Equipment",
+      "baseline_status": "partial",
+      "candidate_concept_ids": ["AMACS-CAP-000600"]
+    },
+    {
+      "source_label": "Transportation and Logistics",
+      "baseline_status": "direct",
+      "candidate_concept_ids": ["AMACS-CAP-000213", "AMACS-CAP-000217"]
+    },
+    {
+      "source_label": "Trucking, Truck Leasing",
+      "baseline_status": "partial",
+      "candidate_concept_ids": ["AMACS-CAP-000194", "AMACS-CAP-000195", "AMACS-CAP-000701"]
+    },
+    {
+      "source_label": "Utilities: Gas and Electric",
+      "baseline_status": "gap",
+      "candidate_concept_ids": ["AMACS-CAP-000655", "AMACS-CAP-000656", "AMACS-CAP-000657"]
+    },
+    {
+      "source_label": "Waste Management",
+      "baseline_status": "direct",
+      "candidate_concept_ids": ["AMACS-CAP-000249", "AMACS-CAP-000250"]
+    },
+    {
+      "source_label": "Wholesalers: Diversified",
+      "baseline_status": "partial",
+      "candidate_concept_ids": ["AMACS-CAP-000703"]
+    },
+    {
+      "source_label": "Wholesalers: Electronics and Office Equipment",
+      "baseline_status": "partial",
+      "candidate_concept_ids": ["AMACS-CAP-000704"]
+    },
+    {
+      "source_label": "Wholesalers: Food and Grocery",
+      "baseline_status": "partial",
+      "candidate_concept_ids": ["AMACS-CAP-000705"]
+    },
+    {
+      "source_label": "Wholesalers: Health Care",
+      "baseline_status": "partial",
+      "candidate_concept_ids": ["AMACS-CAP-000706"]
+    }
+  ]
+}

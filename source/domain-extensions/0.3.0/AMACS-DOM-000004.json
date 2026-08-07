@@ -1,0 +1,77 @@
+{
+  "domain_id": "AMACS-DOM-000004",
+  "version_introduced": "0.3.0",
+  "source_origin": "original_amacs",
+  "families": [
+    {
+      "family_id": "AMACS-FAM-000696",
+      "label": "Modal Transportation Operations",
+      "definition": "Scheduled or network-scale operation of air, rail, maritime, postal, package, and leased commercial transportation assets and services.",
+      "editorial_maturity": "draft",
+      "capabilities": [
+        {
+          "capability_id": "AMACS-CAP-000697",
+          "label": "Airline operations",
+          "definition": "The organizational ability to operate scheduled or network air passenger and cargo service with integrated fleet, crew, safety, airport, and customer systems.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000698",
+          "label": "Rail transportation operations",
+          "definition": "The organizational ability to operate freight or passenger rail networks, rolling stock, terminals, schedules, safety systems, and supporting infrastructure.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000699",
+          "label": "Maritime freight transportation",
+          "definition": "The organizational ability to operate vessels and related terminal or network systems for commercial movement of containerized, bulk, or specialized freight by water.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000700",
+          "label": "Package and postal delivery operations",
+          "definition": "The organizational ability to operate integrated acceptance, sortation, linehaul, tracking, customs, and final-delivery networks for mail and parcels.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000701",
+          "label": "Commercial vehicle leasing",
+          "definition": "The organizational ability to acquire, lease, rent, maintain, replace, and administer commercial vehicles or fleets for business customers.",
+          "editorial_maturity": "draft"
+        }
+      ]
+    },
+    {
+      "family_id": "AMACS-FAM-000702",
+      "label": "Wholesale Distribution",
+      "definition": "Acquisition, stocking, sale, fulfillment, and channel distribution of goods to retailers, institutions, businesses, and other non-consumer buyers.",
+      "editorial_maturity": "draft",
+      "capabilities": [
+        {
+          "capability_id": "AMACS-CAP-000703",
+          "label": "Diversified wholesale distribution",
+          "definition": "The organizational ability to source, stock, sell, fulfill, and distribute a broad assortment of products to business, institutional, or retail-channel buyers.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000704",
+          "label": "Electronics and office equipment wholesale distribution",
+          "definition": "The organizational ability to source, stock, configure, sell, fulfill, and distribute electronics, computing, communications, or office equipment through wholesale channels.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000705",
+          "label": "Food and grocery wholesale distribution",
+          "definition": "The organizational ability to source, store, sell, fulfill, and distribute food, beverage, grocery, and related products to retail or food-service buyers.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000706",
+          "label": "Healthcare product wholesale distribution",
+          "definition": "The organizational ability to source, store, sell, trace, fulfill, and distribute pharmaceuticals, medical products, or healthcare supplies to authorized buyers.",
+          "editorial_maturity": "draft"
+        }
+      ]
+    }
+  ]
+}

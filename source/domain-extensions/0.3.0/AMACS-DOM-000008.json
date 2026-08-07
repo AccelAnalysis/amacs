@@ -1,0 +1,103 @@
+{
+  "domain_id": "AMACS-DOM-000008",
+  "version_introduced": "0.3.0",
+  "source_origin": "original_amacs",
+  "families": [
+    {
+      "family_id": "AMACS-FAM-000648",
+      "label": "Energy Production and Processing",
+      "definition": "Exploration, production, processing, refining, equipment support, marketing, and distribution activities across conventional energy supply chains.",
+      "editorial_maturity": "draft",
+      "capabilities": [
+        {
+          "capability_id": "AMACS-CAP-000649",
+          "label": "Oil and gas exploration",
+          "definition": "The organizational ability to identify, assess, acquire, and test prospects for commercially recoverable petroleum or natural gas resources.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000650",
+          "label": "Crude oil and natural gas production",
+          "definition": "The organizational ability to develop, operate, and manage wells and field systems that produce crude oil, natural gas, or associated liquids.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000651",
+          "label": "Petroleum refining",
+          "definition": "The organizational ability to process crude oil or intermediate feedstocks into fuels, lubricants, petrochemical feedstocks, and other refined products.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000652",
+          "label": "Fuel marketing and distribution",
+          "definition": "The organizational ability to acquire, market, wholesale, distribute, or deliver refined fuels and related energy products to commercial or retail channels.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000653",
+          "label": "Oilfield equipment and services",
+          "definition": "The organizational ability to provide equipment, technology, field operations, well services, or technical support used in oil and gas development and production.",
+          "editorial_maturity": "draft"
+        }
+      ]
+    },
+    {
+      "family_id": "AMACS-FAM-000654",
+      "label": "Utility and Midstream Operations",
+      "definition": "Operation of generation, transmission, distribution, storage, terminal, pipeline, and regulated utility systems that deliver energy services.",
+      "editorial_maturity": "draft",
+      "capabilities": [
+        {
+          "capability_id": "AMACS-CAP-000655",
+          "label": "Electric power generation",
+          "definition": "The organizational ability to own or operate facilities and systems that convert energy resources into electricity for wholesale, retail, or captive use.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000656",
+          "label": "Electric utility operations",
+          "definition": "The organizational ability to operate regulated or contracted electric transmission, distribution, metering, service, and customer-delivery systems.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000657",
+          "label": "Natural gas utility operations",
+          "definition": "The organizational ability to operate regulated or contracted natural gas distribution, metering, service, safety, and customer-delivery systems.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000658",
+          "label": "Pipeline transportation",
+          "definition": "The organizational ability to own or operate pipeline systems that transport crude oil, natural gas, refined products, water, or other bulk commodities.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000659",
+          "label": "Energy terminal and storage operations",
+          "definition": "The organizational ability to operate terminals, tank farms, caverns, gathering assets, or other facilities that receive, store, blend, and transfer energy commodities.",
+          "editorial_maturity": "draft"
+        }
+      ]
+    },
+    {
+      "family_id": "AMACS-FAM-000660",
+      "label": "Mineral and Raw Material Extraction",
+      "definition": "Extraction and primary handling of minerals, stone, sand, aggregates, ores, and other geologic raw materials for industrial use.",
+      "editorial_maturity": "draft",
+      "capabilities": [
+        {
+          "capability_id": "AMACS-CAP-000661",
+          "label": "Mineral extraction",
+          "definition": "The organizational ability to develop and operate mines or extraction systems that recover metallic, nonmetallic, or industrial minerals from geologic deposits.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000662",
+          "label": "Quarry and aggregate production",
+          "definition": "The organizational ability to extract, crush, screen, grade, and supply stone, sand, gravel, or other aggregate materials for construction or industry.",
+          "editorial_maturity": "draft"
+        }
+      ]
+    }
+  ]
+}

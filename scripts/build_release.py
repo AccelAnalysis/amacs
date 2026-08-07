@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import datetime as dt
 import hashlib
 import json
 import re
@@ -55,6 +56,11 @@ def main() -> None:
         parser.error(str(exc))
 
     version = (ROOT / 'VERSION').read_text(encoding='utf-8').strip()
+    release_date = (ROOT / 'RELEASE_DATE').read_text(encoding='utf-8').strip()
+    try:
+        dt.date.fromisoformat(release_date)
+    except ValueError as exc:
+        parser.error(f'RELEASE_DATE must be an ISO 8601 calendar date: {exc}')
     target = Path(args.output) / version
     if target.exists():
         parser.error(
@@ -76,6 +82,9 @@ def main() -> None:
     for schema in sorted((ROOT / 'schemas').glob('*.json')):
         shutil.copy2(schema, schema_target / schema.name)
     shutil.copytree(ROOT / 'source' / 'domain-seeds', seed_target / 'domain-seeds')
+    extensions = ROOT / 'source' / 'domain-extensions'
+    if extensions.exists():
+        shutil.copytree(extensions, seed_target / 'domain-extensions')
     shutil.copy2(ROOT / 'source' / 'alias-seed.json', seed_target / 'alias-seed.json')
 
     counts = {DATASET_FILENAMES[name].removesuffix('.jsonl'): len(datasets[name]) for name in DATASET_ORDER}
@@ -83,7 +92,7 @@ def main() -> None:
         'name': 'Accel Market Activity and Capability Standard',
         'version': version,
         'status': 'development',
-        'released_at': '2026-08-03',
+        'released_at': release_date,
         'source_commit': source_commit,
         'record_counts': counts,
     }

@@ -15,11 +15,11 @@ The RFxchange is the first production implementation of AMACS. AMACS supplies th
 
 ## Current release
 
-`0.2.0` is a **governed development release**, not a finished universal classification standard. It establishes the governed data model and seeds:
+`0.3.0` is a **governed development release**, not a finished universal classification standard. It establishes the governed data model and seeds:
 
 - 16 market domains;
-- 95 capability families;
-- 500 matchable capabilities;
+- 120 capability families;
+- 615 matchable capabilities;
 - 185 English search aliases;
 - 35 reusable properties and 27 controlled units;
 - 17 credential/evidence types;
@@ -29,7 +29,9 @@ The RFxchange is the first production implementation of AMACS. AMACS supplies th
 - 22 decision factors and 7 decision templates; and
 - 30 publication-readiness rules with field-level fix targets.
 
-Release `0.2.0` adds a dedicated **Standards, Taxonomy and Market Architecture** domain so organizations can explicitly represent taxonomy development, standards governance, capability mapping, evidence architecture, response architecture, decision architecture, controlled taxonomy licensing, and taxonomy API delivery as selectable market capabilities.
+Release `0.3.0` adds 25 families and 115 draft capabilities identified through a breadth-first review of the current 2026 Fortune 1000. The additions represent core enterprise market operations that were previously absent or only partially represented, including product manufacturing, banking and underwriting, energy and utility operations, retail, digital platforms, telecommunications, modal transportation, wholesale distribution, health-plan and care-facility operations, real estate ownership and development, primary production, outsourcing, and formal education delivery.
+
+The release also adds a research-only organization taxonomy observation contract and a reproducible corpus analyzer. These tools test whether AMACS has adequate language without converting a ranking, industry label, inference, parent-company relationship, or public observation into an organization capability assertion.
 
 All seeded capability definitions are original AMACS development content. Capability records marked `editorial_maturity: draft` require domain review before AMACS 1.0.
 
@@ -49,6 +51,7 @@ The canonical source is the version-controlled content under `source/` and `sche
 ## Repository map
 
 - `source/domain-seeds/` — compact canonical domain, family, and capability seeds.
+- `source/domain-extensions/` — additive, versioned families and capabilities attached to existing domains without rewriting their original provenance.
 - `source/alias-seed.json` — compact canonical search-language seed.
 - Other `source/` records — canonical JSON Lines registries.
 - Release and review builds deterministically expand the compact seeds into ordinary concept and alias records.
@@ -66,8 +69,9 @@ python -m pip install -r requirements-dev.txt
 python scripts/validate.py
 python -m unittest discover -s tests
 python scripts/export_csv.py --output dist/csv
-python scripts/export_excel.py --output dist/AMACS-0.2.0-review.xlsx
+python scripts/export_excel.py --output dist/AMACS-0.3.0-review.xlsx
 python scripts/build_release.py --output dist/release
+python scripts/analyze_organization_corpus.py --output dist/research/fortune-1000-2026
 ```
 
 Or run:
@@ -82,6 +86,7 @@ make release
 
 - An AMACS concept is a controlled market term, **not evidence that an organization possesses that capability**.
 - A profile capability assertion may be self-reported, evidence-supported, or verified.
+- A research corpus observation is not a profile capability assertion and cannot be imported as one.
 - Capability, credential, experience, geography, capacity, delivery condition, evidence, specification, commercial, and site requirements remain distinct structured dimensions.
 - A potential match is not universal qualification, endorsement, or a prediction of award.
 - Paid membership, sponsorship, or founding status cannot satisfy substantive capability requirements.

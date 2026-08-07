@@ -1,0 +1,39 @@
+{
+  "domain_id": "AMACS-DOM-000012",
+  "version_introduced": "0.3.0",
+  "source_origin": "original_amacs",
+  "families": [
+    {
+      "family_id": "AMACS-FAM-000720",
+      "label": "Primary Agriculture and Forestry Production",
+      "definition": "Direct production and primary handling of crops, livestock, timber, and agricultural commodities before advanced manufacturing or consumer preparation.",
+      "editorial_maturity": "draft",
+      "capabilities": [
+        {
+          "capability_id": "AMACS-CAP-000721",
+          "label": "Crop production",
+          "definition": "The organizational ability to cultivate, harvest, handle, and manage commercial field, orchard, greenhouse, or specialty crop production systems.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000722",
+          "label": "Livestock production",
+          "definition": "The organizational ability to breed, raise, feed, manage, and market livestock or animal products through commercial production systems.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000723",
+          "label": "Timber production",
+          "definition": "The organizational ability to establish, manage, harvest, and supply commercial timber resources through controlled forestry and land operations.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000724",
+          "label": "Agricultural commodity handling",
+          "definition": "The organizational ability to receive, grade, aggregate, condition, store, trade, and transfer bulk agricultural commodities before downstream processing.",
+          "editorial_maturity": "draft"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "domain_id": "AMACS-DOM-000009",
+  "version_introduced": "0.3.0",
+  "source_origin": "original_amacs",
+  "families": [
+    {
+      "family_id": "AMACS-FAM-000729",
+      "label": "Education Program Delivery",
+      "definition": "Operation and delivery of formal higher education, career and technical education, and primary or secondary education programs and institutions.",
+      "editorial_maturity": "draft",
+      "capabilities": [
+        {
+          "capability_id": "AMACS-CAP-000730",
+          "label": "Higher education program delivery",
+          "definition": "The organizational ability to design, authorize, deliver, assess, and support postsecondary degree, certificate, credit, or continuing education programs.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000731",
+          "label": "Career and technical education delivery",
+          "definition": "The organizational ability to deliver structured occupational, trade, technical, licensure, or career preparation programs with instruction and assessment.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000732",
+          "label": "Primary and secondary education delivery",
+          "definition": "The organizational ability to operate and deliver formal elementary or secondary education programs with curriculum, instruction, assessment, and student support.",
+          "editorial_maturity": "draft"
+        }
+      ]
+    }
+  ]
+}

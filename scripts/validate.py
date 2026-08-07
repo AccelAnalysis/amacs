@@ -68,6 +68,24 @@ def validate_seed_sources(errors: list[str]) -> None:
             location = '.'.join(str(part) for part in error.path) or '<seed>'
             errors.append(f'{path.relative_to(ROOT)} {location}: {error.message}')
 
+    extension_validator = Draft202012Validator(
+        load_schema('domain-extension.schema.json'),
+        format_checker=FormatChecker(),
+    )
+    base_domain_ids = {
+        json.loads(path.read_text(encoding='utf-8'))['domain_id']
+        for path in domain_paths
+    }
+    for path in sorted((ROOT / 'source' / 'domain-extensions').glob('**/*.json')):
+        instance = json.loads(path.read_text(encoding='utf-8'))
+        for error in sorted(extension_validator.iter_errors(instance), key=lambda item: list(item.path)):
+            location = '.'.join(str(part) for part in error.path) or '<extension>'
+            errors.append(f'{path.relative_to(ROOT)} {location}: {error.message}')
+        if instance.get('domain_id') not in base_domain_ids:
+            errors.append(
+                f"{path.relative_to(ROOT)} references unknown base domain {instance.get('domain_id')}"
+            )
+
     alias_path = ROOT / 'source' / 'alias-seed.json'
     if not alias_path.exists():
         errors.append('source/alias-seed.json is missing')

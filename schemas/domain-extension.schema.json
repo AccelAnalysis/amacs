@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://amacs.accelanalysis.com/schemas/domain-extension.schema.json",
+  "title": "AMACS Domain Extension",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "domain_id",
+    "version_introduced",
+    "source_origin",
+    "families"
+  ],
+  "properties": {
+    "domain_id": {
+      "type": "string",
+      "pattern": "^AMACS-DOM-\\d{6}$"
+    },
+    "version_introduced": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "source_origin": {
+      "type": "string",
+      "enum": [
+        "original_amacs",
+        "user_proposal",
+        "external_crosswalk"
+      ]
+    },
+    "families": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "family_id",
+          "label",
+          "definition",
+          "capabilities"
+        ],
+        "properties": {
+          "family_id": {
+            "type": "string",
+            "pattern": "^AMACS-FAM-\\d{6}$"
+          },
+          "label": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 160
+          },
+          "definition": {
+            "type": "string",
+            "minLength": 20,
+            "maxLength": 1000
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "proposed",
+              "active",
+              "deprecated",
+              "suspended",
+              "retired"
+            ]
+          },
+          "editorial_maturity": {
+            "type": "string",
+            "enum": [
+              "draft",
+              "reviewed",
+              "approved"
+            ]
+          },
+          "capabilities": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "capability_id",
+                "label",
+                "definition"
+              ],
+              "properties": {
+                "capability_id": {
+                  "type": "string",
+                  "pattern": "^AMACS-CAP-\\d{6}$"
+                },
+                "label": {
+                  "type": "string",
+                  "minLength": 2,
+                  "maxLength": 160
+                },
+                "definition": {
+                  "type": "string",
+                  "minLength": 20,
+                  "maxLength": 1000
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "proposed",
+                    "active",
+                    "deprecated",
+                    "suspended",
+                    "retired"
+                  ]
+                },
+                "editorial_maturity": {
+                  "type": "string",
+                  "enum": [
+                    "draft",
+                    "reviewed",
+                    "approved"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

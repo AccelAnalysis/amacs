@@ -1,0 +1,83 @@
+{
+  "domain_id": "AMACS-DOM-000003",
+  "version_introduced": "0.3.0",
+  "source_origin": "original_amacs",
+  "families": [
+    {
+      "family_id": "AMACS-FAM-000677",
+      "label": "Digital Products and Platforms",
+      "definition": "Operation and delivery of software products, cloud services, marketplaces, discovery systems, social platforms, and digital advertising infrastructure.",
+      "editorial_maturity": "draft",
+      "capabilities": [
+        {
+          "capability_id": "AMACS-CAP-000678",
+          "label": "Software product publishing",
+          "definition": "The organizational ability to develop, license, distribute, update, and support reusable software products offered to multiple customers or user organizations.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000679",
+          "label": "Cloud computing service delivery",
+          "definition": "The organizational ability to operate and deliver elastic computing, storage, database, platform, or application services through metered or contracted cloud infrastructure.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000680",
+          "label": "Online marketplace operation",
+          "definition": "The organizational ability to operate a digital market that enables independent buyers and sellers or providers to discover, transact, fulfill, and govern exchanges.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000681",
+          "label": "Search and discovery platform operation",
+          "definition": "The organizational ability to index, rank, retrieve, recommend, and present digital information, products, services, or entities through a discovery platform.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000682",
+          "label": "Social media platform operation",
+          "definition": "The organizational ability to operate a digital platform for user identity, content creation, sharing, interaction, moderation, discovery, and community participation.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000683",
+          "label": "Digital advertising platform operation",
+          "definition": "The organizational ability to operate technology for advertising inventory, audience selection, bidding, delivery, measurement, attribution, safety, and settlement.",
+          "editorial_maturity": "draft"
+        }
+      ]
+    },
+    {
+      "family_id": "AMACS-FAM-000684",
+      "label": "Communications Services",
+      "definition": "Operation and delivery of wireless, wireline, broadband, cable, transmission, and managed communications networks and subscriber services.",
+      "editorial_maturity": "draft",
+      "capabilities": [
+        {
+          "capability_id": "AMACS-CAP-000685",
+          "label": "Wireless telecommunications service",
+          "definition": "The organizational ability to operate licensed or managed wireless networks and deliver mobile voice, messaging, data, or connected-device services to subscribers.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000686",
+          "label": "Wireline broadband service",
+          "definition": "The organizational ability to operate fixed communications access networks and deliver broadband, voice, data, or enterprise connectivity services.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000687",
+          "label": "Cable and media network service",
+          "definition": "The organizational ability to operate cable or managed media distribution networks and deliver video, broadband, voice, or related subscriber services.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000688",
+          "label": "Communications network operation",
+          "definition": "The organizational ability to operate, monitor, maintain, interconnect, secure, and restore carrier-grade communications and transmission infrastructure.",
+          "editorial_maturity": "draft"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "domain_id": "AMACS-DOM-000011",
+  "version_introduced": "0.3.0",
+  "source_origin": "original_amacs",
+  "families": [
+    {
+      "family_id": "AMACS-FAM-000689",
+      "label": "Media, Publishing and Entertainment",
+      "definition": "Creation, publication, printing, licensing, distribution, and streaming of news, books, periodicals, film, television, and other media content.",
+      "editorial_maturity": "draft",
+      "capabilities": [
+        {
+          "capability_id": "AMACS-CAP-000690",
+          "label": "News and periodical publishing",
+          "definition": "The organizational ability to commission, produce, edit, publish, distribute, and sustain news, magazine, journal, or other recurring editorial products.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000691",
+          "label": "Book and digital publishing",
+          "definition": "The organizational ability to acquire, edit, produce, license, publish, distribute, and manage books or comparable long-form digital works.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000692",
+          "label": "Commercial printing",
+          "definition": "The organizational ability to reproduce publications, packaging, marketing materials, transactional documents, or other printed products at commercial scale.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000693",
+          "label": "Film and television production",
+          "definition": "The organizational ability to develop, finance, produce, manage, and complete film, television, or episodic audiovisual content for commercial distribution.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000694",
+          "label": "Media content distribution",
+          "definition": "The organizational ability to license, schedule, aggregate, market, and distribute media content through broadcast, theatrical, physical, digital, or syndicated channels.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000695",
+          "label": "Streaming media service",
+          "definition": "The organizational ability to operate subscription, advertising-supported, or transactional services that deliver on-demand or live media over digital networks.",
+          "editorial_maturity": "draft"
+        }
+      ]
+    }
+  ]
+}

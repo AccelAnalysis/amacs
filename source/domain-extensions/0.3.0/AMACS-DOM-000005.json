@@ -1,0 +1,159 @@
+{
+  "domain_id": "AMACS-DOM-000005",
+  "version_introduced": "0.3.0",
+  "source_origin": "original_amacs",
+  "families": [
+    {
+      "family_id": "AMACS-FAM-000624",
+      "label": "Banking and Lending Operations",
+      "definition": "Provision and administration of depository, transaction, commercial, consumer, mortgage, and specialty finance products and services.",
+      "editorial_maturity": "draft",
+      "capabilities": [
+        {
+          "capability_id": "AMACS-CAP-000625",
+          "label": "Commercial banking",
+          "definition": "The organizational ability to provide regulated deposit, credit, treasury, transaction, and related banking services to businesses and institutions.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000626",
+          "label": "Consumer banking",
+          "definition": "The organizational ability to provide regulated deposit, payment, credit, and account services to individual consumers through branch or digital channels.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000627",
+          "label": "Deposit account services",
+          "definition": "The organizational ability to open, maintain, safeguard, transact against, and service regulated demand, savings, time, or custodial deposit accounts.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000628",
+          "label": "Consumer lending",
+          "definition": "The organizational ability to originate, underwrite, fund, and service personal, education, vehicle, revolving, or other consumer credit products.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000629",
+          "label": "Mortgage lending and servicing",
+          "definition": "The organizational ability to originate, acquire, underwrite, fund, administer, or service residential or commercial mortgage obligations.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000630",
+          "label": "Specialty finance",
+          "definition": "The organizational ability to provide non-depository or specialized credit, receivables, structured finance, consumer finance, or asset-backed financing products.",
+          "editorial_maturity": "draft"
+        }
+      ]
+    },
+    {
+      "family_id": "AMACS-FAM-000631",
+      "label": "Insurance Underwriting and Administration",
+      "definition": "Assumption, pricing, pooling, transfer, and administration of insured risk through regulated insurance and reinsurance products.",
+      "editorial_maturity": "draft",
+      "capabilities": [
+        {
+          "capability_id": "AMACS-CAP-000632",
+          "label": "Property and casualty insurance underwriting",
+          "definition": "The organizational ability to price, assume, pool, and administer property, liability, casualty, or related insured risks under regulated insurance contracts.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000633",
+          "label": "Life and health insurance underwriting",
+          "definition": "The organizational ability to price, assume, pool, and administer mortality, longevity, disability, health, or related insured risks under regulated contracts.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000634",
+          "label": "Reinsurance",
+          "definition": "The organizational ability to assume, transfer, price, and administer portions of risks originally underwritten by insurance carriers.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000635",
+          "label": "Insurance policy administration",
+          "definition": "The organizational ability to issue, maintain, bill, renew, endorse, and service insurance policies throughout their contractual lifecycle.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000636",
+          "label": "Insurance claims administration",
+          "definition": "The organizational ability to receive, investigate, adjudicate, reserve, settle, and report insurance claims on behalf of a risk-bearing or administrative entity.",
+          "editorial_maturity": "draft"
+        }
+      ]
+    },
+    {
+      "family_id": "AMACS-FAM-000637",
+      "label": "Securities and Investment Services",
+      "definition": "Origination, execution, distribution, management, and advisory activities involving securities, investments, capital markets, and managed assets.",
+      "editorial_maturity": "draft",
+      "capabilities": [
+        {
+          "capability_id": "AMACS-CAP-000638",
+          "label": "Securities brokerage",
+          "definition": "The organizational ability to receive, route, execute, clear, custody, or service customer transactions in regulated securities and investment products.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000639",
+          "label": "Investment banking",
+          "definition": "The organizational ability to advise on and execute capital raising, securities issuance, mergers, acquisitions, restructurings, or related capital-market transactions.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000640",
+          "label": "Asset management",
+          "definition": "The organizational ability to manage investment portfolios, mandates, funds, or pooled assets under defined strategies, fiduciary duties, and risk controls.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000641",
+          "label": "Wealth management",
+          "definition": "The organizational ability to integrate investment, planning, trust, tax-aware, estate, and financial services for individuals, families, or private clients.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000642",
+          "label": "Securities trading and market making",
+          "definition": "The organizational ability to trade securities for customers or own account, quote two-sided markets, provide liquidity, or manage associated market risk.",
+          "editorial_maturity": "draft"
+        }
+      ]
+    },
+    {
+      "family_id": "AMACS-FAM-000643",
+      "label": "Financial Infrastructure and Data",
+      "definition": "Operation of financial transaction networks, specialized data services, credit and risk information products, and leased-asset finance infrastructure.",
+      "editorial_maturity": "draft",
+      "capabilities": [
+        {
+          "capability_id": "AMACS-CAP-000644",
+          "label": "Payment network operation",
+          "definition": "The organizational ability to operate networks, rules, routing, authorization, clearing, settlement, or risk controls that enable electronic payments.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000645",
+          "label": "Financial data services",
+          "definition": "The organizational ability to collect, normalize, govern, analyze, and deliver financial, market, transaction, pricing, or reference data as a product or service.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000646",
+          "label": "Credit and risk information services",
+          "definition": "The organizational ability to develop and deliver credit, identity, fraud, actuarial, underwriting, or risk information used in financial decisions.",
+          "editorial_maturity": "draft"
+        },
+        {
+          "capability_id": "AMACS-CAP-000647",
+          "label": "Equipment leasing and asset finance",
+          "definition": "The organizational ability to acquire, finance, lease, administer, and remarket equipment or other productive assets under commercial agreements.",
+          "editorial_maturity": "draft"
+        }
+      ]
+    }
+  ]
+}
