@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://amacs.accelanalysis.com/schemas/capability-evidence.schema.json",
+  "title": "Organization Capability Evidence",
+  "description": "A runtime evidence record supporting, qualifying, contradicting, or verifying an organization capability assertion at an explicit entity scope.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["evidence_id","organization_id","concept_id","amacs_release","entity_scope","source_type","title","url","authoring_organization","observed_at","evidence_status"],
+  "properties": {
+    "evidence_id": {"type": "string", "minLength": 1, "maxLength": 240},
+    "organization_id": {"type": "string", "minLength": 1, "maxLength": 240},
+    "organization_identity_id": {"type": "string", "minLength": 1, "maxLength": 240},
+    "concept_id": {"type": "string", "pattern": "^AMACS-CAP-\\d{6}$"},
+    "amacs_release": {"type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$"},
+    "entity_scope": {"type": "string", "enum": ["reporting_entity","legal_entity","operating_segment","subsidiary","brand","unknown"]},
+    "entity_relationship": {"type": "string", "enum": ["direct","controlled_subsidiary","operating_segment","affiliate","platform_participant","unknown"]},
+    "source_type": {"type": "string", "enum": ["company_website","regulatory_filing","annual_report","credential","customer_confirmation","transaction_record","outcome_record","other_evidence"]},
+    "title": {"type": "string", "minLength": 1, "maxLength": 500},
+    "url": {"type": "string", "format": "uri"},
+    "authoring_organization": {"type": "string", "minLength": 1, "maxLength": 300},
+    "host": {"type": "string", "minLength": 1, "maxLength": 300},
+    "published_at": {"type": "string", "format": "date"},
+    "observed_at": {"type": "string", "format": "date-time"},
+    "valid_from": {"type": "string", "format": "date"},
+    "valid_to": {"type": "string", "format": "date"},
+    "evidence_locator": {"type": "string", "maxLength": 600},
+    "content_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "evidence_status": {"type": "string", "enum": ["submitted","reviewed","verified","contradicted","rejected","expired"]},
+    "verification_method": {"type": "string", "enum": ["self_reported","platform_observed","counterparty_confirmed","independently_verified","research_only"]}
+  }
+}
