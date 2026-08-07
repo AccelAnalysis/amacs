@@ -31,6 +31,8 @@ SCHEMA_FILES = {
     'response_templates': 'response-template.schema.json',
     'decision_factors': 'decision-factor.schema.json',
     'decision_templates': 'decision-template.schema.json',
+    'market_roles': 'market-role.schema.json',
+    'outcome_types': 'outcome-type.schema.json',
 }
 
 ID_FIELDS = {
@@ -42,6 +44,7 @@ ID_FIELDS = {
     'readiness_rules': 'readiness_rule_id', 'request_families': 'request_family_id',
     'response_sections': 'response_section_id', 'response_templates': 'response_template_id',
     'decision_factors': 'decision_factor_id', 'decision_templates': 'decision_template_id',
+    'market_roles': 'market_role_id', 'outcome_types': 'outcome_type_id',
 }
 
 
@@ -285,6 +288,7 @@ def check_labels_and_codes(data: dict[str, list[dict[str, Any]]], errors: list[s
         ('request_families', 'code'), ('requirement_types', 'code'),
         ('requirement_bundles', 'code'), ('governance_profiles', 'code'),
         ('readiness_rules', 'code'), ('units', 'code'),
+        ('market_roles', 'code'), ('outcome_types', 'code'),
     ]:
         values = Counter(record[field] for record in data[dataset] if record['status'] == 'active')
         duplicates = sorted(value for value, count in values.items() if count > 1)

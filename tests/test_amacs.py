@@ -15,6 +15,8 @@ sys.path.insert(0, str(ROOT / 'scripts'))
 from amacs_io import all_datasets, load_dataset  # noqa: E402
 
 VALID_TEST_COMMIT = 'a' * 40
+CURRENT_VERSION = (ROOT / 'VERSION').read_text(encoding='utf-8').strip()
+CURRENT_RELEASE_DATE = (ROOT / 'RELEASE_DATE').read_text(encoding='utf-8').strip()
 
 
 class AmacsFoundationTests(unittest.TestCase):
@@ -250,14 +252,14 @@ class AmacsFoundationTests(unittest.TestCase):
                 cwd=ROOT, capture_output=True, text=True, check=False,
             )
             self.assertEqual(result.returncode, 0, msg=result.stdout + result.stderr)
-            release = Path(temporary) / '0.3.0'
+            release = Path(temporary) / CURRENT_VERSION
             concepts = (release / 'source' / 'concepts.jsonl').read_text(encoding='utf-8').splitlines()
             aliases = (release / 'source' / 'aliases.jsonl').read_text(encoding='utf-8').splitlines()
             manifest = json.loads((release / 'manifest.json').read_text(encoding='utf-8'))
             self.assertEqual(len(concepts), 751)
             self.assertEqual(len(aliases), 185)
             self.assertEqual(manifest['source_commit'], VALID_TEST_COMMIT)
-            self.assertEqual(manifest['released_at'], '2026-08-05')
+            self.assertEqual(manifest['released_at'], CURRENT_RELEASE_DATE)
             self.assertTrue((release / 'source-seeds' / 'domain-extensions' / '0.3.0').exists())
             self.assertTrue((release / 'SHA256SUMS').exists())
 
@@ -273,7 +275,7 @@ class AmacsFoundationTests(unittest.TestCase):
             ]
             first = subprocess.run(command, cwd=ROOT, capture_output=True, text=True, check=False)
             self.assertEqual(first.returncode, 0, msg=first.stdout + first.stderr)
-            release = Path(temporary) / '0.3.0'
+            release = Path(temporary) / CURRENT_VERSION
             checksums_before = (release / 'SHA256SUMS').read_text(encoding='utf-8')
 
             second = subprocess.run(command, cwd=ROOT, capture_output=True, text=True, check=False)
@@ -295,7 +297,7 @@ class AmacsFoundationTests(unittest.TestCase):
                 cwd=ROOT, capture_output=True, text=True, check=False,
             )
             self.assertEqual(result.returncode, 0, msg=result.stdout + result.stderr)
-            release = Path(temporary) / '0.3.0'
+            release = Path(temporary) / CURRENT_VERSION
             manifest = json.loads((release / 'manifest.json').read_text(encoding='utf-8'))
             self.assertEqual(manifest['source_commit'], expected)
             self.assertRegex(manifest['source_commit'], r'^[0-9a-f]{40}$')

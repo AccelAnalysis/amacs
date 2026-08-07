@@ -1,0 +1,148 @@
+name: Fortune 100 Architecture Research
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/fortune-100-research.yml"
+      - "scripts/fortune100_*.py"
+      - "scripts/fortune500_prepare.py"
+      - "scripts/fortune500_evidence*.py"
+      - "research/fortune-100-2026/**"
+      - "research/fortune-500-2026/**"
+      - "source/market-roles.jsonl"
+      - "source/outcome-types.jsonl"
+      - "schemas/**"
+      - "tests/test_fortune100_architecture.py"
+      - "VERSION"
+      - "RELEASE_DATE"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install development dependencies
+        run: python -m pip install -r requirements-dev.txt
+      - name: Run Fortune 100 architecture tests
+        run: python -m unittest discover -s tests -p "test_fortune100_architecture.py"
+      - name: Retrieve pinned Fortune roster
+        run: |
+          curl --fail --silent --show-error --retry 3 \
+            --cookie-jar /tmp/us500.cookies \
+            --user-agent "Mozilla/5.0 (compatible; AMACS taxonomy research; +https://github.com/AccelAnalysis/amacs)" \
+            https://us500.com/fortune-1000-companies \
+            --output /tmp/us500-page.html
+          curl --fail --silent --show-error --retry 3 \
+            --cookie /tmp/us500.cookies \
+            --referer https://us500.com/fortune-1000-companies \
+            --header "Accept: application/json,text/plain,*/*" \
+            --user-agent "Mozilla/5.0 (compatible; AMACS taxonomy research; +https://github.com/AccelAnalysis/amacs)" \
+            https://us500.com/data/log8.json \
+            --output /tmp/fortune-1000-2026.json
+      - name: Retrieve pinned SEC-derived entity metadata
+        run: |
+          curl --fail --location --silent --show-error --retry 3 \
+            https://raw.githubusercontent.com/john-friedman/datamule-data/9fa9defaac2eb3ecc3e1a96e4c9153061f1986b3/data/filer_metadata/listed_filer_metadata.csv.gz \
+            --output /tmp/listed_filer_metadata.csv.gz
+          curl --fail --location --silent --show-error --retry 3 \
+            https://raw.githubusercontent.com/john-friedman/datamule-data/9fa9defaac2eb3ecc3e1a96e4c9153061f1986b3/data/filer_metadata/listed_filer_names.csv.gz \
+            --output /tmp/listed_filer_names.csv.gz
+      - name: Prepare governed cohort and identities
+        run: >-
+          python scripts/fortune500_prepare.py
+          --source-file /tmp/fortune-1000-2026.json
+          --listed-metadata-file /tmp/listed_filer_metadata.csv.gz
+          --listed-names-file /tmp/listed_filer_names.csv.gz
+          --output dist/prepared-all
+      - name: Select exact Fortune 100 subset
+        run: |
+          mkdir -p dist/prepared
+          head -n 100 dist/prepared-all/cohort-records.jsonl > dist/prepared/cohort-records.jsonl
+          python - <<'PY'
+          import json
+          rows=[json.loads(x) for x in open('dist/prepared/cohort-records.jsonl') if x.strip()]
+          ranks=[int(r['position']) for r in rows]
+          assert ranks == list(range(1,101)), ranks
+          print('Fortune 100 ranks verified:', ranks[0], ranks[-1], len(ranks))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fortune100-prepared
+          path: dist/prepared
+          if-no-files-found: error
+          retention-days: 30
+
+  evidence:
+    needs: prepare
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      max-parallel: 5
+      matrix:
+        batch: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install development dependencies
+        run: python -m pip install -r requirements-dev.txt
+      - uses: actions/download-artifact@v4
+        with:
+          name: fortune100-prepared
+          path: dist/prepared
+      - name: Re-run bounded first-party evidence review for the Fortune 100 subset
+        run: >-
+          python scripts/fortune500_evidence_fast.py
+          --input dist/prepared/cohort-records.jsonl
+          --output dist/evidence/evidence-batch-${{ matrix.batch }}.jsonl
+          --batch-index ${{ matrix.batch }}
+          --batch-count 10
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fortune100-evidence-${{ matrix.batch }}
+          path: dist/evidence/evidence-batch-${{ matrix.batch }}.jsonl
+          if-no-files-found: error
+          retention-days: 30
+
+  architecture:
+    needs: evidence
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install development dependencies
+        run: python -m pip install -r requirements-dev.txt
+      - uses: actions/download-artifact@v4
+        with:
+          name: fortune100-prepared
+          path: dist/prepared
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: fortune100-evidence-*
+          path: dist/evidence
+          merge-multiple: true
+      - name: Complete Fortune 100 architecture review
+        run: >-
+          python scripts/fortune100_architecture.py
+          --cohort dist/prepared/cohort-records.jsonl
+          --evidence-dir dist/evidence
+          --output dist/final
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fortune100-complete-architecture-review
+          path: dist/final
+          if-no-files-found: error
+          retention-days: 30

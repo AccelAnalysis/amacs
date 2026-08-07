@@ -2,6 +2,30 @@
 
 All notable AMACS changes will be documented here.
 
+## [0.4.0] - 2026-08-07
+
+### Added
+
+- Added a governed market-role registry that separates how an organization participates in a market from how it participates on an RFx delivery team.
+- Added 18 market roles spanning production, service delivery, operations, distribution, platforms, finance, risk assumption, asset ownership, development, information, intellectual property, and demand-side participation.
+- Added an explicit organization capability evidence contract with entity scope, entity relationship, source authority, document hosting, validity, verification status, and provenance.
+- Added 12 governed outcome types covering completion, timeliness, quality, effectiveness, financial value, adoption, stakeholder experience, safety/risk, compliance, sustainability, resilience, and innovation/improvement.
+- Added an outcome-observation contract connecting post-decision results to request, response, decision, organization, capability, evidence, and measurement context.
+- Added an explicit outcome-learning gate so observed outcomes cannot automatically modify capability assertions, matching behavior, or canonical AMACS content.
+- Added the Fortune 100 deep market-architecture validation workflow and research contracts.
+
+### Changed
+
+- Extended organization capability assertions, backward-compatibly, with optional organization-identity reference, entity scope, governed market-role references, and explicit evidence references.
+- Advanced the governed development release from `0.3.0` to `0.4.0` without changing the meaning or introduction version of existing capabilities.
+- Made release-builder regression tests derive the current release version and release date from canonical source files instead of hard-coding `0.3.0`.
+
+### Findings
+
+- The Fortune 500 evidence-depth pass completed exactly ranks 1–500 and showed that the principal remaining deficiencies were structural: external-classification crosswalks, organization identity, evidence provenance, and operating-segment scope rather than another broad absence of capability vocabulary.
+- The Fortune 100 stress test identified five baseline architectural gaps in 0.3.0: entity-scoped capability where segment/subsidiary structure matters, market-role representation, explicit evidence linkage, outcome architecture, and an outcome-learning guardrail.
+- Existing requirement, response, and decision architectures remained suitable for the Fortune 100 architecture tests and were retained rather than replaced.
+
 ## [0.3.0] - 2026-08-05
 
 ### Added

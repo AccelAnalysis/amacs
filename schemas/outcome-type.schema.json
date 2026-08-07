@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://amacs.accelanalysis.com/schemas/outcome-type.schema.json",
+  "title": "AMACS Outcome Type",
+  "description": "A governed category for the result or effect observed after a market activity, delivery, award, engagement, or transaction.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["outcome_type_id","code","preferred_label","definition","measurement_kind","status","version_introduced"],
+  "properties": {
+    "outcome_type_id": {"type": "string", "pattern": "^AMACS-OUT-\\d{6}$"},
+    "code": {"type": "string", "pattern": "^[a-z0-9_]+$"},
+    "preferred_label": {"type": "string", "minLength": 1, "maxLength": 160},
+    "definition": {"type": "string", "minLength": 20, "maxLength": 1200},
+    "measurement_kind": {"type": "string", "enum": ["quantitative","qualitative","mixed"]},
+    "status": {"type": "string", "enum": ["active","deprecated"]},
+    "version_introduced": {"type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$"}
+  }
+}

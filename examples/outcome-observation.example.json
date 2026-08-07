@@ -1,0 +1,25 @@
+{
+  "outcome_observation_id": "OUTCOME-EXAMPLE-001",
+  "outcome_type_id": "AMACS-OUT-000004",
+  "amacs_release": "0.4.0",
+  "context": {
+    "request_id": "RFX-EXAMPLE-001",
+    "decision_id": "DECISION-EXAMPLE-001"
+  },
+  "organization_refs": ["ORG-EXAMPLE-001"],
+  "capability_refs": [
+    {
+      "organization_id": "ORG-EXAMPLE-001",
+      "organization_identity_id": "AMACS-ORGID-EXAMPLE-001",
+      "concept_id": "AMACS-CAP-000001",
+      "entity_scope": "operating_segment"
+    }
+  ],
+  "observed_at": "2026-08-07T20:30:00Z",
+  "value": "Intended operating result achieved",
+  "unit_id": null,
+  "evidence_ids": ["EVID-EXAMPLE-001"],
+  "verification_status": "counterparty_confirmed",
+  "learning_status": "eligible_for_review",
+  "learning_notes": "This observation may be considered in aggregate learning only after governance review; it does not automatically alter the capability assertion."
+}

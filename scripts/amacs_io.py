@@ -23,6 +23,8 @@ DATASET_PATHS: dict[str, str] = {
     "response_templates": "source/response-templates.jsonl",
     "decision_factors": "source/decision-factors.jsonl",
     "decision_templates": "source/decision-templates.jsonl",
+    "market_roles": "source/market-roles.jsonl",
+    "outcome_types": "source/outcome-types.jsonl",
 }
 
 DATASET_ORDER = [
@@ -30,7 +32,7 @@ DATASET_ORDER = [
     "concept_properties", "credentials", "units", "requirement_types",
     "requirement_bundles", "governance_profiles", "readiness_rules",
     "request_families", "response_sections", "response_templates",
-    "decision_factors", "decision_templates",
+    "decision_factors", "decision_templates", "market_roles", "outcome_types",
 ]
 
 DATASET_FILENAMES = {
@@ -51,6 +53,8 @@ DATASET_FILENAMES = {
     "response_templates": "response-templates.jsonl",
     "decision_factors": "decision-factors.jsonl",
     "decision_templates": "decision-templates.jsonl",
+    "market_roles": "market-roles.jsonl",
+    "outcome_types": "outcome-types.jsonl",
 }
 
 

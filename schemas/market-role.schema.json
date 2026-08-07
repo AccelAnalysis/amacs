@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://amacs.accelanalysis.com/schemas/market-role.schema.json",
+  "title": "AMACS Market Role",
+  "description": "A governed role describing how an organization participates in a market relative to a capability. Market role is distinct from RFx delivery role such as prime or subcontractor.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["market_role_id","code","preferred_label","definition","role_class","status","version_introduced"],
+  "properties": {
+    "market_role_id": {"type": "string", "pattern": "^AMACS-MROLE-\\d{6}$"},
+    "code": {"type": "string", "pattern": "^[a-z0-9_]+$"},
+    "preferred_label": {"type": "string", "minLength": 1, "maxLength": 160},
+    "definition": {"type": "string", "minLength": 20, "maxLength": 1200},
+    "role_class": {"type": "string", "enum": ["production","service","operation","distribution","platform","finance","risk","ownership","development","information","intellectual_property","demand"]},
+    "status": {"type": "string", "enum": ["active","deprecated"]},
+    "version_introduced": {"type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$"}
+  }
+}
