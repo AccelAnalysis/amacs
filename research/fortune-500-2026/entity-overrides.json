@@ -19,6 +19,51 @@
       "cik": "0001026214",
       "sec_name": "FEDERAL HOME LOAN MORTGAGE CORP",
       "reason": "The ranking uses the common enterprise name rather than the full SEC registrant name."
+    },
+    "JPMorgan Chase": {
+      "cik": "0000019617",
+      "sec_name": "JPMORGAN CHASE & CO",
+      "reason": "The 2026 ranking shortens the SEC registrant name; current SEC filings identify CIK 0000019617 as JPMORGAN CHASE & CO."
+    },
+    "Costco Wholesale": {
+      "cik": "0000909832",
+      "sec_name": "COSTCO WHOLESALE CORP /NEW",
+      "reason": "The ranking omits the corporate suffix and SEC jurisdiction marker; current SEC filings identify CIK 0000909832 as Costco Wholesale."
+    },
+    "Wells Fargo": {
+      "cik": "0000072971",
+      "sec_name": "WELLS FARGO & COMPANY/MN",
+      "reason": "The ranking uses the common enterprise name; current SEC filings identify CIK 0000072971 as WELLS FARGO & COMPANY/MN."
+    },
+    "Valero Energy": {
+      "cik": "0001035002",
+      "sec_name": "VALERO ENERGY CORP/TX",
+      "reason": "The ranking omits the corporate suffix and SEC jurisdiction marker; current SEC filings identify CIK 0001035002 as Valero Energy."
+    },
+    "Target": {
+      "cik": "0000027419",
+      "sec_name": "TARGET CORP",
+      "reason": "The ranking uses the trade/display name; current SEC filings identify CIK 0000027419 as TARGET CORP."
+    },
+    "Progressive": {
+      "cik": "0000080661",
+      "sec_name": "PROGRESSIVE CORP/OH/",
+      "reason": "The ranking uses the common brand name; current SEC filings identify CIK 0000080661 as The Progressive Corporation."
+    },
+    "IBM": {
+      "cik": "0000051143",
+      "sec_name": "INTERNATIONAL BUSINESS MACHINES CORP",
+      "reason": "The ranking uses the IBM acronym; current SEC filings identify CIK 0000051143 as International Business Machines Corporation."
+    },
+    "Eli Lilly": {
+      "cik": "0000059478",
+      "sec_name": "ELI LILLY & Co",
+      "reason": "The ranking shortens the registrant name; current SEC filings identify CIK 0000059478 as Eli Lilly & Co."
+    },
+    "Merck": {
+      "cik": "0000310158",
+      "sec_name": "Merck & Co., Inc.",
+      "reason": "The ranking uses the common company name; the SEC entity record identifies CIK 0000310158 as Merck & Co., Inc."
     }
   }
 }
