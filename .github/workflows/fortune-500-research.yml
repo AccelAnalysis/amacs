@@ -70,7 +70,7 @@ jobs:
   evidence:
     needs: prepare
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 30
     strategy:
       fail-fast: false
       max-parallel: 4
@@ -89,7 +89,7 @@ jobs:
           path: dist/prepared
       - name: Review annual-report evidence
         run: >-
-          python scripts/fortune500_evidence.py
+          python scripts/fortune500_evidence_fast.py
           --input dist/prepared/cohort-records.jsonl
           --output dist/evidence/evidence-batch-${{ matrix.batch }}.jsonl
           --batch-index ${{ matrix.batch }}
