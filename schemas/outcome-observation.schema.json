@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://amacs.accelanalysis.com/schemas/outcome-observation.schema.json",
+  "title": "AMACS Outcome Observation",
+  "description": "A runtime observation of a post-decision or post-delivery result that can be connected to needs, capabilities, organizations, responses, decisions, and future governed learning without automatically changing a capability assertion.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["outcome_observation_id","outcome_type_id","amacs_release","context","observed_at","value","verification_status","learning_status"],
+  "properties": {
+    "outcome_observation_id": {"type": "string", "minLength": 1, "maxLength": 240},
+    "outcome_type_id": {"type": "string", "pattern": "^AMACS-OUT-\\d{6}$"},
+    "amacs_release": {"type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$"},
+    "context": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "request_id": {"type": "string", "minLength": 1, "maxLength": 240},
+        "engagement_id": {"type": "string", "minLength": 1, "maxLength": 240},
+        "decision_id": {"type": "string", "minLength": 1, "maxLength": 240},
+        "response_id": {"type": "string", "minLength": 1, "maxLength": 240}
+      },
+      "anyOf": [
+        {"required": ["request_id"]},
+        {"required": ["engagement_id"]},
+        {"required": ["decision_id"]},
+        {"required": ["response_id"]}
+      ]
+    },
+    "organization_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1, "maxLength": 240}
+    },
+    "capability_refs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["organization_id","concept_id","entity_scope"],
+        "properties": {
+          "organization_id": {"type": "string", "minLength": 1, "maxLength": 240},
+          "organization_identity_id": {"type": "string", "minLength": 1, "maxLength": 240},
+          "concept_id": {"type": "string", "pattern": "^AMACS-CAP-\\d{6}$"},
+          "entity_scope": {"type": "string", "enum": ["reporting_entity","legal_entity","operating_segment","subsidiary","brand","unknown"]}
+        }
+      }
+    },
+    "observed_at": {"type": "string", "format": "date-time"},
+    "measurement_period_start": {"type": "string", "format": "date-time"},
+    "measurement_period_end": {"type": "string", "format": "date-time"},
+    "value": {},
+    "unit_id": {
+      "oneOf": [
+        {"type": "string", "pattern": "^AMACS-UNIT-\\d{6}$"},
+        {"type": "null"}
+      ]
+    },
+    "target_value": {},
+    "evidence_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1, "maxLength": 240}
+    },
+    "verification_status": {"type": "string", "enum": ["self_reported","platform_observed","counterparty_confirmed","independently_verified"]},
+    "learning_status": {"type": "string", "enum": ["excluded","eligible_for_review","reviewed","approved_for_aggregate_learning"]},
+    "learning_notes": {"type": "string", "maxLength": 2000}
+  }
+}
