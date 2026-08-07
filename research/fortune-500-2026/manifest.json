@@ -3,7 +3,7 @@
   "edition": "2026",
   "observed_at": "2026-08-07T19:52:00Z",
   "parent_corpus_manifest": "research/fortune-1000-2026/manifest.json",
-  "scope": "Positions 1 through 500 in the 2026 Fortune ranking, reviewed for organization identity, external-classification crosswalks, first-party annual-report evidence, operating segments, and AMACS capability coverage.",
+  "scope": "Positions 1 through 500 in the 2026 Fortune ranking, reviewed for organization identity, external-classification crosswalks, first-party 2025 annual-report evidence, operating segments, and AMACS capability coverage.",
   "expected_organization_count": 500,
   "expected_position_min": 1,
   "expected_position_max": 500,
@@ -21,11 +21,11 @@
   "annual_report_evidence": {
     "host": "AnnualReports.com",
     "base_url": "https://www.annualreports.com",
-    "candidate_report_years": [2025, 2026, 2024],
+    "candidate_report_years": [2025],
     "maximum_pdf_bytes": 31457280,
-    "maximum_pages_reviewed": 60,
+    "maximum_pages_reviewed": 40,
     "user_agent": "AccelAnalysis-AMACS/0.3 (+https://github.com/AccelAnalysis/amacs)",
-    "provenance_note": "AnnualReports.com is used only as a document host. A retrieved report is treated as company-authored first-party evidence only when the document itself identifies the resolved organization as registrant or author."
+    "provenance_note": "The Fortune 500 stage targets the 2025 company-authored annual report because the 2026 ranking is based on the preceding fiscal-year scale. AnnualReports.com is used only as a document host. A retrieved report is treated as first-party evidence only when the document itself identifies the resolved organization as registrant or author. Multi-year fallback and deeper document review are reserved for the Fortune 100 architecture stage."
   },
   "entity_overrides": "research/fortune-500-2026/entity-overrides.json",
   "primary_activity_map": "research/fortune-1000-2026/primary-activity-map.json",
