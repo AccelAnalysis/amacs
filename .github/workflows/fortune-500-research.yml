@@ -1,0 +1,138 @@
+name: Fortune 500 Research
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/fortune-500-research.yml"
+      - "scripts/fortune500_*.py"
+      - "research/fortune-500-2026/**"
+      - "research/fortune-1000-2026/**"
+      - "source/**"
+      - "schemas/**"
+      - "examples/external-classification-crosswalk.example.json"
+      - "examples/organization-identity.example.json"
+      - "tests/test_fortune500*.py"
+      - "requirements-dev.txt"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install development dependencies
+        run: python -m pip install -r requirements-dev.txt
+      - name: Run Fortune 500 regression tests
+        run: python -m unittest discover -s tests -p "test_fortune500*.py"
+      - name: Retrieve pinned Fortune roster
+        run: |
+          curl --fail --silent --show-error --retry 3 \
+            --cookie-jar /tmp/us500.cookies \
+            --user-agent "Mozilla/5.0 (compatible; AMACS taxonomy research; +https://github.com/AccelAnalysis/amacs)" \
+            https://us500.com/fortune-1000-companies \
+            --output /tmp/us500-page.html
+          curl --fail --silent --show-error --retry 3 \
+            --cookie /tmp/us500.cookies \
+            --referer https://us500.com/fortune-1000-companies \
+            --header "Accept: application/json,text/plain,*/*" \
+            --user-agent "Mozilla/5.0 (compatible; AMACS taxonomy research; +https://github.com/AccelAnalysis/amacs)" \
+            https://us500.com/data/log8.json \
+            --output /tmp/fortune-1000-2026.json
+      - name: Retrieve pinned SEC-derived entity metadata
+        run: |
+          curl --fail --location --silent --show-error --retry 3 \
+            https://raw.githubusercontent.com/john-friedman/datamule-data/9fa9defaac2eb3ecc3e1a96e4c9153061f1986b3/data/filer_metadata/listed_filer_metadata.csv.gz \
+            --output /tmp/listed_filer_metadata.csv.gz
+          curl --fail --location --silent --show-error --retry 3 \
+            https://raw.githubusercontent.com/john-friedman/datamule-data/9fa9defaac2eb3ecc3e1a96e4c9153061f1986b3/data/filer_metadata/listed_filer_names.csv.gz \
+            --output /tmp/listed_filer_names.csv.gz
+      - name: Prepare identity and crosswalk corpus
+        run: >-
+          python scripts/fortune500_prepare.py
+          --source-file /tmp/fortune-1000-2026.json
+          --listed-metadata-file /tmp/listed_filer_metadata.csv.gz
+          --listed-names-file /tmp/listed_filer_names.csv.gz
+          --output dist/prepared
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fortune500-prepared
+          path: dist/prepared
+          if-no-files-found: error
+          retention-days: 30
+
+  evidence:
+    needs: prepare
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix:
+        batch: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install development dependencies
+        run: python -m pip install -r requirements-dev.txt
+      - uses: actions/download-artifact@v4
+        with:
+          name: fortune500-prepared
+          path: dist/prepared
+      - name: Review annual-report evidence
+        run: >-
+          python scripts/fortune500_evidence_fast.py
+          --input dist/prepared/cohort-records.jsonl
+          --output dist/evidence/evidence-batch-${{ matrix.batch }}.jsonl
+          --batch-index ${{ matrix.batch }}
+          --batch-count 20
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fortune500-evidence-${{ matrix.batch }}
+          path: dist/evidence/evidence-batch-${{ matrix.batch }}.jsonl
+          if-no-files-found: error
+          retention-days: 30
+
+  aggregate:
+    needs: evidence
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install development dependencies
+        run: python -m pip install -r requirements-dev.txt
+      - uses: actions/download-artifact@v4
+        with:
+          name: fortune500-prepared
+          path: dist/prepared
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: fortune500-evidence-*
+          path: dist/evidence
+          merge-multiple: true
+      - name: Enforce full-cohort completion
+        run: >-
+          python scripts/fortune500_aggregate.py
+          --input-dir dist/evidence
+          --output-dir dist/final
+      - name: Include identity and crosswalk artifacts
+        run: |
+          mkdir -p dist/final/prepared
+          cp dist/prepared/* dist/final/prepared/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fortune500-complete-governed-review
+          path: dist/final
+          if-no-files-found: error
+          retention-days: 30

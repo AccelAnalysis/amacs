@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://amacs.accelanalysis.com/schemas/organization-evidence-review.schema.json",
+  "title": "Organization Evidence Review",
+  "description": "A research-only terminal review of public evidence used to test AMACS against a known organization. It does not create a production organization capability assertion.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["review_id","organization","corpus","identity_resolution_status","evidence_disposition","evidence","observed_segments","observed_activity_statements","candidate_mappings","gap_candidates","review_status","not_for_profile_import"],
+  "properties": {
+    "review_id": {"type": "string", "minLength": 1, "maxLength": 220},
+    "organization": {
+      "type": "object", "additionalProperties": false,
+      "required": ["name","position"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1, "maxLength": 300},
+        "position": {"type": "integer", "minimum": 1},
+        "identity_id": {"type": "string", "minLength": 1, "maxLength": 220},
+        "resolved_name": {"type": "string", "minLength": 1, "maxLength": 300},
+        "external_identifiers": {"type": "object", "additionalProperties": {"type": "string", "minLength": 1, "maxLength": 300}}
+      }
+    },
+    "corpus": {
+      "type": "object", "additionalProperties": false,
+      "required": ["corpus_id","edition","memberships"],
+      "properties": {
+        "corpus_id": {"type": "string", "minLength": 1, "maxLength": 160},
+        "edition": {"type": "string", "minLength": 1, "maxLength": 80},
+        "memberships": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1, "maxLength": 80}}
+      }
+    },
+    "identity_resolution_status": {"type": "string", "enum": ["resolved","candidate","ambiguous","unresolved"]},
+    "evidence_disposition": {
+      "type": "string",
+      "enum": ["annual_report_reviewed","annual_report_found_no_extractable_activity","annual_report_unavailable","identity_unresolved","evidence_error"]
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["source_type","title","url","authoring_organization","host","accessed_at"],
+        "properties": {
+          "source_type": {"type": "string", "enum": ["annual_report_mirror","regulatory_filing","company_website","other_public_source"]},
+          "title": {"type": "string", "minLength": 1, "maxLength": 500},
+          "url": {"type": "string", "format": "uri"},
+          "authoring_organization": {"type": "string", "minLength": 1, "maxLength": 300},
+          "host": {"type": "string", "minLength": 1, "maxLength": 300},
+          "report_year": {"type": "integer", "minimum": 1990, "maximum": 2100},
+          "accessed_at": {"type": "string", "format": "date-time"},
+          "content_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "pages_reviewed": {"type": "integer", "minimum": 0},
+          "evidence_locator": {"type": "string", "maxLength": 500}
+        }
+      }
+    },
+    "observed_segments": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["name","entity_relationship","confidence","evidence_locator"],
+        "properties": {
+          "name": {"type": "string", "minLength": 1, "maxLength": 300},
+          "entity_relationship": {"const": "operating_segment"},
+          "confidence": {"type": "string", "enum": ["low","medium","high"]},
+          "evidence_locator": {"type": "string", "minLength": 1, "maxLength": 500}
+        }
+      }
+    },
+    "observed_activity_statements": {
+      "type": "array",
+      "maxItems": 30,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["statement","method","entity_relationship","evidence_locator"],
+        "properties": {
+          "statement": {"type": "string", "minLength": 10, "maxLength": 500},
+          "method": {"const": "first_party_document_extract"},
+          "entity_relationship": {"type": "string", "enum": ["direct","operating_segment","controlled_subsidiary","unknown"]},
+          "evidence_locator": {"type": "string", "minLength": 1, "maxLength": 500}
+        }
+      }
+    },
+    "candidate_mappings": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["concept_id","mapping_status","confidence","entity_relationship","mapping_basis","rationale"],
+        "properties": {
+          "concept_id": {"type": "string", "pattern": "^AMACS-CAP-\\d{6}$"},
+          "mapping_status": {"type": "string", "enum": ["candidate","partial","exact"]},
+          "confidence": {"type": "string", "enum": ["low","medium","high"]},
+          "entity_relationship": {"type": "string", "enum": ["direct","operating_segment","controlled_subsidiary","unknown"]},
+          "mapping_basis": {"type": "string", "enum": ["first_party_activity_statement","annual_report_segment","external_classification_support"]},
+          "rationale": {"type": "string", "minLength": 10, "maxLength": 2000}
+        }
+      }
+    },
+    "gap_candidates": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "enum": ["none","capability_granularity","capability_missing","identity_resolution","organization_relationship","segment_representation","evidence_unavailable","evidence_model","crosswalk_conflict"]}
+    },
+    "review_status": {"type": "string", "enum": ["machine_reviewed","analyst_reviewed","domain_reviewed"]},
+    "not_for_profile_import": {"const": true}
+  }
+}

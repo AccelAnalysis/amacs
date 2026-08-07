@@ -1,0 +1,27 @@
+{
+  "crosswalk_id": "AMACS-XWALK-F500-43B3F4CD6D19D896",
+  "source_scheme": {
+    "scheme_id": "us500-fortune-1000-primary-activity-2026",
+    "title": "2026 Fortune 1000 machine-readable primary activity classification",
+    "edition": "2026",
+    "publisher": "US500",
+    "source_field": "industry"
+  },
+  "source_entry": {"label": "Utilities: Gas and Electric"},
+  "target_concept_id": "AMACS-CAP-000655",
+  "mapping_relation": "broad_match",
+  "mapping_status": "candidate",
+  "confidence": "low",
+  "rationale": "The external primary-activity category is broader than this individual AMACS capability and requires domain review before approval.",
+  "provenance": [{
+    "source_type": "external_classification",
+    "title": "2026 Fortune 1000 machine-readable roster and primary activity classification",
+    "url": "https://us500.com/fortune-1000-companies",
+    "publisher": "US500",
+    "accessed_at": "2026-08-05T16:00:00Z",
+    "content_sha256": "16aff4ed3c2117f29c242ed81368b1e38019bd5597d7990a34af03bd5163ea0f"
+  }],
+  "status": "draft",
+  "version_introduced": "0.3.0",
+  "not_for_alias_import": true
+}

@@ -1,0 +1,43 @@
+{
+  "corpus_id": "fortune-500-2026",
+  "edition": "2026",
+  "observed_at": "2026-08-07T19:52:00Z",
+  "parent_corpus_manifest": "research/fortune-1000-2026/manifest.json",
+  "scope": "Positions 1 through 500 in the 2026 Fortune ranking, reviewed for organization identity, external-classification crosswalks, first-party 2025 annual-report evidence, operating segments, and AMACS capability coverage.",
+  "expected_organization_count": 500,
+  "expected_position_min": 1,
+  "expected_position_max": 500,
+  "baseline_amacs_release": "0.3.0",
+  "method": "identity_crosswalk_and_terminal_evidence_review",
+  "regulatory_metadata_mirror": {
+    "repository": "john-friedman/datamule-data",
+    "commit": "9fa9defaac2eb3ecc3e1a96e4c9153061f1986b3",
+    "listed_metadata_url": "https://raw.githubusercontent.com/john-friedman/datamule-data/9fa9defaac2eb3ecc3e1a96e4c9153061f1986b3/data/filer_metadata/listed_filer_metadata.csv.gz",
+    "listed_names_url": "https://raw.githubusercontent.com/john-friedman/datamule-data/9fa9defaac2eb3ecc3e1a96e4c9153061f1986b3/data/filer_metadata/listed_filer_names.csv.gz",
+    "upstream": "SEC submissions bulk archive",
+    "license": "MIT",
+    "provenance_note": "The mirror is a third-party transformation of the SEC nightly submissions archive and remains explicitly identified as such."
+  },
+  "annual_report_evidence": {
+    "host": "AnnualReports.com",
+    "base_url": "https://www.annualreports.com",
+    "candidate_report_years": [2025],
+    "maximum_pdf_bytes": 31457280,
+    "maximum_pages_reviewed": 40,
+    "user_agent": "AccelAnalysis-AMACS/0.3 (+https://github.com/AccelAnalysis/amacs)",
+    "provenance_note": "The Fortune 500 stage targets the 2025 company-authored annual report because the 2026 ranking is based on the preceding fiscal-year scale. AnnualReports.com is used only as a document host. A retrieved report is treated as first-party evidence only when the document itself identifies the resolved organization as registrant or author. Multi-year fallback and deeper document review are reserved for the Fortune 100 architecture stage."
+  },
+  "entity_overrides": "research/fortune-500-2026/entity-overrides.json",
+  "primary_activity_map": "research/fortune-1000-2026/primary-activity-map.json",
+  "minimum_automatic_match_score": 0.94,
+  "minimum_candidate_match_score": 0.86,
+  "completion_rule": "Every rank 1 through 500 must end with exactly one terminal evidence disposition; absence of accessible first-party evidence is recorded as evidence_unavailable rather than converted into a capability assertion.",
+  "boundaries": [
+    "Fortune rank establishes cohort membership only and does not prove a capability.",
+    "External industry and SIC categories are crosswalk inputs, not AMACS aliases or organization capability evidence.",
+    "Regulatory metadata resolves likely reporting identity but does not prove market activity.",
+    "A mirrored annual report may support an activity observation only when the report itself identifies the reviewed organization and supplies the relevant statement or segment disclosure.",
+    "Private, mutual, cooperative, governmental, foreign, or otherwise unresolved organizations remain terminally classified as identity_unresolved or evidence_unavailable when appropriate.",
+    "No generated corpus record may be imported into a production organization profile or capability assertion without a separate authority and verification path."
+  ]
+}
