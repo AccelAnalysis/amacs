@@ -1,0 +1,19 @@
+{
+  "evidence_id": "EVID-EXAMPLE-001",
+  "organization_id": "ORG-EXAMPLE-001",
+  "organization_identity_id": "AMACS-ORGID-EXAMPLE-001",
+  "concept_id": "AMACS-CAP-000001",
+  "amacs_release": "0.4.0",
+  "entity_scope": "operating_segment",
+  "entity_relationship": "operating_segment",
+  "source_type": "annual_report",
+  "title": "Example organization annual report",
+  "url": "https://example.com/annual-report.pdf",
+  "authoring_organization": "Example Organization",
+  "host": "Example document host",
+  "published_at": "2026-03-01",
+  "observed_at": "2026-08-07T20:30:00Z",
+  "evidence_locator": "Business segment discussion, page 12",
+  "evidence_status": "reviewed",
+  "verification_method": "research_only"
+}
