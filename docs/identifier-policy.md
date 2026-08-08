@@ -30,4 +30,8 @@ AMACS identifiers use stable, nonsemantic prefixes and six digits for canonical 
 
 Allocated identifiers are never renumbered or reused. Deprecation preserves the original record and points to a replacement, split, or merge disposition where applicable.
 
-Runtime evidence and outcome-observation identifiers are scoped to the system of record that creates them and therefore are not drawn from the canonical AMACS registry-ID sequence. Research-candidate identifiers likewise remain noncanonical unless a governed proposal explicitly promotes the underlying record into a canonical registry.
+Runtime market-need, interpretation-record, interpretation-candidate, evidence, and outcome-observation identifiers are scoped to the system of record that creates them and therefore are not drawn from the canonical AMACS registry-ID sequence. An implementation may use its own opaque identifier format while preserving the applicable AMACS release and referenced canonical identifiers.
+
+Concept-interpretation guidance references an existing canonical capability ID. Guidance does not receive a second capability identity and must not be used to create an alternate concept namespace.
+
+Research-candidate identifiers likewise remain noncanonical unless a governed proposal explicitly promotes the underlying record into a canonical registry.
