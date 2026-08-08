@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://amacs.accelanalysis.com/schemas/interpretation-record.schema.json",
+  "title": "AMACS Interpretation Record",
+  "description": "A provider-neutral runtime record that groups one bounded human or machine-assisted interpretation exercise. The record has no authoritative effect; participant confirmation and a separate system-of-record write are required to create a market need, capability assertion, RFx requirement, or other authoritative transaction record.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "interpretation_record_id",
+    "organization_id",
+    "purpose",
+    "amacs_release",
+    "mapping_method",
+    "source_refs",
+    "candidate_ids",
+    "record_status",
+    "human_confirmation_required",
+    "authoritative_effect",
+    "created_at",
+    "updated_at"
+  ],
+  "properties": {
+    "interpretation_record_id": {"type": "string", "minLength": 1, "maxLength": 240},
+    "organization_id": {"type": "string", "minLength": 1, "maxLength": 240},
+    "actor_user_id": {"type": "string", "minLength": 1, "maxLength": 240},
+    "purpose": {
+      "type": "string",
+      "enum": [
+        "seller_capability_declaration",
+        "buyer_need_definition",
+        "provider_service_definition",
+        "evidence_linking",
+        "request_structure",
+        "response_assistance",
+        "outcome_classification",
+        "other"
+      ]
+    },
+    "subject_ref": {"type": "string", "minLength": 1, "maxLength": 240},
+    "amacs_release": {"type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$"},
+    "mapping_method": {
+      "type": "string",
+      "enum": ["human", "assisted", "algorithmic", "imported", "other"]
+    },
+    "source_refs": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "maxItems": 100,
+      "items": {"type": "string", "minLength": 1, "maxLength": 240}
+    },
+    "candidate_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "maxItems": 500,
+      "items": {"type": "string", "minLength": 1, "maxLength": 240}
+    },
+    "record_status": {
+      "type": "string",
+      "enum": ["draft", "awaiting_confirmation", "partially_confirmed", "confirmed", "closed", "superseded"]
+    },
+    "human_confirmation_required": {"const": true},
+    "authoritative_effect": {"const": "none"},
+    "implementation_provenance_ref": {"type": "string", "minLength": 1, "maxLength": 240},
+    "created_at": {"type": "string", "format": "date-time"},
+    "updated_at": {"type": "string", "format": "date-time"}
+  }
+}
