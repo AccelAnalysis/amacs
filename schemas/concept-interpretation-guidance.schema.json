@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://amacs.accelanalysis.com/schemas/concept-interpretation-guidance.schema.json",
+  "title": "AMACS Concept Interpretation Guidance",
+  "description": "A governed guidance contract for explaining a concept boundary to humans and interpretation systems. Guidance supports retrieval and disambiguation but does not change concept identity or establish an organization's capability.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "concept_id",
+    "amacs_release",
+    "inclusion_notes",
+    "exclusion_notes",
+    "example_activities",
+    "example_outputs",
+    "common_confusion_concept_ids",
+    "clarification_questions",
+    "guidance_status",
+    "version_introduced"
+  ],
+  "properties": {
+    "concept_id": {"type": "string", "pattern": "^AMACS-CAP-\\d{6}$"},
+    "amacs_release": {"type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$"},
+    "inclusion_notes": {"type": "string", "minLength": 20, "maxLength": 4000},
+    "exclusion_notes": {"type": "string", "minLength": 20, "maxLength": 4000},
+    "example_activities": {
+      "type": "array",
+      "uniqueItems": true,
+      "minItems": 1,
+      "maxItems": 30,
+      "items": {"type": "string", "minLength": 2, "maxLength": 500}
+    },
+    "example_outputs": {
+      "type": "array",
+      "uniqueItems": true,
+      "maxItems": 30,
+      "items": {"type": "string", "minLength": 2, "maxLength": 500}
+    },
+    "common_confusion_concept_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "maxItems": 30,
+      "items": {"type": "string", "pattern": "^AMACS-CAP-\\d{6}$"}
+    },
+    "clarification_questions": {
+      "type": "array",
+      "uniqueItems": true,
+      "maxItems": 30,
+      "items": {"type": "string", "minLength": 5, "maxLength": 1000}
+    },
+    "guidance_status": {
+      "type": "string",
+      "enum": ["draft", "reviewed", "approved", "deprecated"]
+    },
+    "version_introduced": {"type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$"}
+  }
+}
