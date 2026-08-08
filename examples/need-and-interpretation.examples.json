@@ -1,0 +1,148 @@
+{
+  "market_need": {
+    "market_need_id": "need_civic_center_stormwater_001",
+    "organization_id": "org_isle_of_wight_001",
+    "request_id": "rfx_draft_001",
+    "amacs_release": "0.5.0",
+    "need_status": "clarifying",
+    "source_statement": "The civic center parking lot floods during heavy rain, visitors cannot safely reach the building, and we need it corrected before hurricane season. We have approximately $200,000 available but do not know the right solution.",
+    "observed_condition": "Recurring stormwater flooding obstructs safe access to the civic center during heavy rainfall.",
+    "desired_outcome": "Maintain safe and reliable public access to the civic center during major rainfall events.",
+    "affected_context": [
+      "Visitors",
+      "Civic center operations",
+      "Parking and pedestrian access"
+    ],
+    "success_measures": [
+      {
+        "measure": "Primary public access remains usable during the agreed design rainfall event.",
+        "target_value": true,
+        "unit_id": null
+      }
+    ],
+    "geography_refs": [
+      "geo_site_civic_center_001"
+    ],
+    "geography_description": "Civic center parking lot and connected drainage area.",
+    "timing": {
+      "urgency": "time_sensitive",
+      "required_by": "2026-10-01T00:00:00Z",
+      "duration_text": "Assessment and corrective work must be sequenced before hurricane season."
+    },
+    "commercial_context": {
+      "value_status": "planning_estimate",
+      "currency": "USD",
+      "minimum_value": null,
+      "maximum_value": 200000
+    },
+    "constraints": [
+      {
+        "constraint_type": "operational",
+        "statement": "The civic center must remain accessible while work is performed.",
+        "knowledge_status": "known"
+      },
+      {
+        "constraint_type": "legal_regulatory",
+        "statement": "Applicable stormwater or land-disturbance approvals may be required.",
+        "knowledge_status": "unresolved"
+      }
+    ],
+    "known_facts": [
+      "Flooding recurs during heavy rainfall.",
+      "The available planning amount is approximately USD 200,000."
+    ],
+    "assumptions": [
+      "The existing drainage system contributes to the observed flooding."
+    ],
+    "unresolved_questions": [
+      "Is an assessment-only request appropriate before design and construction?",
+      "Which approvals apply to the site?"
+    ],
+    "solution_posture": "open",
+    "proposed_solution_text": "",
+    "prohibited_approaches": [],
+    "required_outputs": [
+      "Documented diagnosis",
+      "Recommended corrective pathway",
+      "Implementation scope and estimated cost"
+    ],
+    "interpretation_record_ids": [
+      "interp_need_001"
+    ],
+    "confirmed_requirement_ids": [],
+    "confirmation_status": "participant_reviewed",
+    "created_at": "2026-08-08T14:00:00Z",
+    "updated_at": "2026-08-08T14:15:00Z"
+  },
+  "interpretation_record": {
+    "interpretation_record_id": "interp_capability_001",
+    "organization_id": "org_hvac_001",
+    "actor_user_id": "user_owner_001",
+    "purpose": "seller_capability_declaration",
+    "subject_ref": "org_hvac_001",
+    "amacs_release": "0.5.0",
+    "mapping_method": "assisted",
+    "source_refs": [
+      "profile_statement_001"
+    ],
+    "candidate_ids": [
+      "candidate_cap_001",
+      "candidate_cap_002"
+    ],
+    "record_status": "awaiting_confirmation",
+    "human_confirmation_required": true,
+    "authoritative_effect": "none",
+    "implementation_provenance_ref": "rfx_ai_provenance_001",
+    "created_at": "2026-08-08T14:00:00Z",
+    "updated_at": "2026-08-08T14:01:00Z"
+  },
+  "interpretation_candidate": {
+    "candidate_id": "candidate_cap_001",
+    "interpretation_record_id": "interp_capability_001",
+    "amacs_release": "0.5.0",
+    "target_kind": "organization_capability_assertion",
+    "source_evidence": [
+      {
+        "source_ref": "profile_statement_001",
+        "source_type": "participant_text",
+        "locator": "organization capability intake",
+        "excerpt": "We install and maintain commercial HVAC systems and troubleshoot building controls."
+      }
+    ],
+    "candidate_value": {
+      "amacs_id": "AMACS-CAP-000016",
+      "label_snapshot": "HVAC installation"
+    },
+    "rationale": "The participant explicitly states that the organization installs commercial HVAC systems.",
+    "confidence": 0.97,
+    "ambiguity_status": "none",
+    "mapping_method": "assisted",
+    "disposition": "suggested",
+    "authoritative_effect": "none",
+    "created_at": "2026-08-08T14:00:30Z"
+  },
+  "concept_interpretation_guidance": {
+    "concept_id": "AMACS-CAP-000006",
+    "amacs_release": "0.5.0",
+    "inclusion_notes": "Includes planning, scheduling, coordination, monitoring, and control of construction execution on behalf of an owner, contractor, or program.",
+    "exclusion_notes": "Does not by itself establish general-contractor authority, architectural or engineering design, trade installation, or a professional license required for another activity.",
+    "example_activities": [
+      "Construction schedule management",
+      "Contractor coordination",
+      "Change and issue tracking"
+    ],
+    "example_outputs": [
+      "Construction management plan",
+      "Master schedule",
+      "Progress and risk report"
+    ],
+    "common_confusion_concept_ids": [
+      "AMACS-CAP-000002"
+    ],
+    "clarification_questions": [
+      "Does the organization manage construction execution, perform the contracted construction work, or both?"
+    ],
+    "guidance_status": "reviewed",
+    "version_introduced": "0.5.0"
+  }
+}
