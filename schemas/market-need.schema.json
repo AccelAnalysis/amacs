@@ -1,0 +1,182 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://amacs.accelanalysis.com/schemas/market-need.schema.json",
+  "title": "AMACS Market Need",
+  "description": "A runtime representation of the condition, desired outcome, constraints, known facts, unknowns, and solution posture that motivate market activity. A market need is distinct from a capability requirement, a proposed solution, and a post-delivery outcome observation.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "market_need_id",
+    "organization_id",
+    "amacs_release",
+    "need_status",
+    "source_statement",
+    "observed_condition",
+    "desired_outcome",
+    "affected_context",
+    "success_measures",
+    "geography_refs",
+    "timing",
+    "commercial_context",
+    "constraints",
+    "known_facts",
+    "assumptions",
+    "unresolved_questions",
+    "solution_posture",
+    "prohibited_approaches",
+    "required_outputs",
+    "interpretation_record_ids",
+    "confirmed_requirement_ids",
+    "confirmation_status",
+    "created_at",
+    "updated_at"
+  ],
+  "properties": {
+    "market_need_id": {"type": "string", "minLength": 1, "maxLength": 240},
+    "organization_id": {"type": "string", "minLength": 1, "maxLength": 240},
+    "request_id": {"type": "string", "minLength": 1, "maxLength": 240},
+    "amacs_release": {"type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$"},
+    "need_status": {
+      "type": "string",
+      "enum": ["draft", "clarifying", "ready_for_structure", "structured", "superseded", "withdrawn"]
+    },
+    "source_statement": {"type": "string", "minLength": 1, "maxLength": 12000},
+    "observed_condition": {"type": "string", "minLength": 1, "maxLength": 4000},
+    "desired_outcome": {"type": "string", "minLength": 1, "maxLength": 4000},
+    "affected_context": {
+      "type": "array",
+      "uniqueItems": true,
+      "maxItems": 50,
+      "items": {"type": "string", "minLength": 1, "maxLength": 500}
+    },
+    "success_measures": {
+      "type": "array",
+      "maxItems": 50,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["measure", "target_value", "unit_id"],
+        "properties": {
+          "measure": {"type": "string", "minLength": 1, "maxLength": 1000},
+          "target_value": {},
+          "unit_id": {
+            "oneOf": [
+              {"type": "string", "pattern": "^AMACS-UNIT-\\d{6}$"},
+              {"type": "null"}
+            ]
+          }
+        }
+      }
+    },
+    "geography_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "maxItems": 100,
+      "items": {"type": "string", "minLength": 1, "maxLength": 240}
+    },
+    "geography_description": {"type": "string", "maxLength": 2000},
+    "timing": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["urgency", "required_by", "duration_text"],
+      "properties": {
+        "urgency": {
+          "type": "string",
+          "enum": ["unspecified", "routine", "time_sensitive", "urgent", "emergency"]
+        },
+        "required_by": {
+          "oneOf": [
+            {"type": "string", "format": "date-time"},
+            {"type": "null"}
+          ]
+        },
+        "duration_text": {"type": "string", "maxLength": 1000}
+      }
+    },
+    "commercial_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value_status", "currency", "minimum_value", "maximum_value"],
+      "properties": {
+        "value_status": {
+          "type": "string",
+          "enum": ["unknown", "planning_estimate", "target", "range", "maximum_budget", "fixed"]
+        },
+        "currency": {"type": "string", "pattern": "^[A-Z]{3}$"},
+        "minimum_value": {"oneOf": [{"type": "number"}, {"type": "null"}]},
+        "maximum_value": {"oneOf": [{"type": "number"}, {"type": "null"}]}
+      }
+    },
+    "constraints": {
+      "type": "array",
+      "maxItems": 100,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["constraint_type", "statement", "knowledge_status"],
+        "properties": {
+          "constraint_type": {
+            "type": "string",
+            "enum": [
+              "operational", "technical", "legal_regulatory", "commercial", "geographic",
+              "schedule", "accessibility", "sustainability", "security", "other"
+            ]
+          },
+          "statement": {"type": "string", "minLength": 1, "maxLength": 2000},
+          "knowledge_status": {"type": "string", "enum": ["known", "assumed", "unresolved"]}
+        }
+      }
+    },
+    "known_facts": {
+      "type": "array",
+      "uniqueItems": true,
+      "maxItems": 100,
+      "items": {"type": "string", "minLength": 1, "maxLength": 2000}
+    },
+    "assumptions": {
+      "type": "array",
+      "uniqueItems": true,
+      "maxItems": 100,
+      "items": {"type": "string", "minLength": 1, "maxLength": 2000}
+    },
+    "unresolved_questions": {
+      "type": "array",
+      "uniqueItems": true,
+      "maxItems": 100,
+      "items": {"type": "string", "minLength": 1, "maxLength": 2000}
+    },
+    "solution_posture": {
+      "type": "string",
+      "enum": ["open", "outcome_constrained", "approach_constrained", "specified_solution"]
+    },
+    "proposed_solution_text": {"type": "string", "maxLength": 4000},
+    "prohibited_approaches": {
+      "type": "array",
+      "uniqueItems": true,
+      "maxItems": 50,
+      "items": {"type": "string", "minLength": 1, "maxLength": 1000}
+    },
+    "required_outputs": {
+      "type": "array",
+      "uniqueItems": true,
+      "maxItems": 100,
+      "items": {"type": "string", "minLength": 1, "maxLength": 1000}
+    },
+    "interpretation_record_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1, "maxLength": 240}
+    },
+    "confirmed_requirement_ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1, "maxLength": 240}
+    },
+    "confirmation_status": {
+      "type": "string",
+      "enum": ["unreviewed", "participant_reviewed", "participant_confirmed", "superseded"]
+    },
+    "created_at": {"type": "string", "format": "date-time"},
+    "updated_at": {"type": "string", "format": "date-time"}
+  }
+}
