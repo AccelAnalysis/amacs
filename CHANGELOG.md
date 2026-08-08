@@ -2,6 +2,30 @@
 
 All notable AMACS changes will be documented here.
 
+## [0.5.0] - 2026-08-08
+
+### Added
+
+- Added a `MarketNeed` runtime contract that separates source statement, observed condition, desired outcome, success measures, geography, timing, commercial context, constraints, known facts, assumptions, unresolved questions, required outputs, and solution posture.
+- Added provider-neutral interpretation-record and interpretation-candidate contracts for seller capability declaration, buyer need definition, provider service definition, request structuring, evidence linking, response assistance, and outcome classification.
+- Added an explicit `authoritative_effect: none` boundary and mandatory human-confirmation flag for interpretation records and candidates.
+- Added a governed concept-interpretation-guidance contract for inclusion notes, exclusion notes, example activities, example outputs, commonly confused capabilities, and clarification questions.
+- Added examples and regression tests covering demand-side needs, supply-side capability interpretation, provider neutrality, release packaging, and the distinction between suggestions and authoritative market records.
+- Added canonical need-and-interpretation architecture documentation, including manual fallback and provisional-term pathways.
+
+### Changed
+
+- Advanced the governed development release from `0.4.0` to `0.5.0` without changing the IDs, hierarchy, meaning, or introduction version of the existing 615 capabilities.
+- Clarified that desired outcomes are target states and remain distinct from post-delivery outcome observations.
+- Clarified that AI or other assistance may interpret and propose, while AMACS defines and constrains, the participant confirms, and the implementing system creates the authoritative record.
+- Extended historical-meaning rules to market needs, interpretation records, candidates, and concept-guidance changes.
+
+### Boundaries
+
+- AMACS 0.5.0 does not select or call an AI provider, store provider credentials, prescribe model names, or make model output authoritative.
+- Accepting an interpretation candidate does not itself create a capability assertion, RFx requirement, qualification decision, or taxonomy change.
+- Implementations must retain a manual path and must allow provisional terms when no canonical concept fits accurately.
+
 ## [0.4.0] - 2026-08-07
 
 ### Added
