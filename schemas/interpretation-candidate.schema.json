@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://amacs.accelanalysis.com/schemas/interpretation-candidate.schema.json",
+  "title": "AMACS Interpretation Candidate",
+  "description": "A non-authoritative candidate mapping from source language or source evidence to an AMACS concept, controlled value, transaction dimension, or provisional term. Acceptance records a participant disposition; it does not itself create an organization capability assertion or RFx requirement.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "candidate_id",
+    "interpretation_record_id",
+    "amacs_release",
+    "target_kind",
+    "source_evidence",
+    "candidate_value",
+    "rationale",
+    "confidence",
+    "ambiguity_status",
+    "mapping_method",
+    "disposition",
+    "authoritative_effect",
+    "created_at"
+  ],
+  "properties": {
+    "candidate_id": {"type": "string", "minLength": 1, "maxLength": 240},
+    "interpretation_record_id": {"type": "string", "minLength": 1, "maxLength": 240},
+    "amacs_release": {"type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$"},
+    "target_kind": {
+      "type": "string",
+      "enum": [
+        "market_need_dimension",
+        "organization_capability_assertion",
+        "rfx_capability_requirement",
+        "request_family",
+        "property_value",
+        "credential_requirement",
+        "response_section",
+        "decision_factor",
+        "market_role",
+        "provisional_term"
+      ]
+    },
+    "source_evidence": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 50,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["source_ref", "source_type", "locator", "excerpt"],
+        "properties": {
+          "source_ref": {"type": "string", "minLength": 1, "maxLength": 240},
+          "source_type": {
+            "type": "string",
+            "enum": [
+              "participant_text",
+              "participant_selection",
+              "participant_document",
+              "organization_profile",
+              "public_source",
+              "prior_transaction",
+              "other"
+            ]
+          },
+          "locator": {"type": "string", "maxLength": 1000},
+          "excerpt": {"type": "string", "minLength": 1, "maxLength": 2000}
+        }
+      }
+    },
+    "candidate_value": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "amacs_id": {"type": "string", "pattern": "^AMACS-[A-Z]{3,8}-\\d{6}$"},
+        "label_snapshot": {"type": "string", "maxLength": 300},
+        "text_value": {"type": "string", "maxLength": 4000},
+        "structured_value": {}
+      },
+      "anyOf": [
+        {"required": ["amacs_id"]},
+        {"required": ["text_value"]},
+        {"required": ["structured_value"]}
+      ]
+    },
+    "rationale": {"type": "string", "minLength": 1, "maxLength": 4000},
+    "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+    "ambiguity_status": {
+      "type": "string",
+      "enum": ["none", "needs_clarification", "conflicting_sources", "insufficient_support"]
+    },
+    "clarification_question": {"type": "string", "maxLength": 2000},
+    "mapping_method": {
+      "type": "string",
+      "enum": ["human", "assisted", "algorithmic", "imported", "other"]
+    },
+    "disposition": {
+      "type": "string",
+      "enum": ["suggested", "accepted", "edited", "rejected", "unresolved", "withdrawn"]
+    },
+    "disposition_by_user_id": {"type": "string", "minLength": 1, "maxLength": 240},
+    "disposition_at": {"type": "string", "format": "date-time"},
+    "resulting_record_ref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240,
+      "description": "Optional reference populated only after a separate confirmed write creates an authoritative runtime record."
+    },
+    "provisional_proposal_id": {"type": "string", "pattern": "^AMACS-PROPOSED-\\d{6}$"},
+    "authoritative_effect": {"const": "none"},
+    "created_at": {"type": "string", "format": "date-time"}
+  }
+}
